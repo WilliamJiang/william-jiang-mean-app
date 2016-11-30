@@ -1,0 +1,116 @@
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.clear-both {
+	clear: both;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.float-none {
+	float: none;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.inline-block {
+	// display: inline-block;
+	// vertical-align: middle;
+	@extend .display-inline-block;
+	@extend .vertical-align-middle;
+}
+
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.fixed {
+	position: fixed;
+}
+
+.clear {
+	clear: both;
+}
+
+.is-hidden {
+	visibility: hidden;
+}
+
+.is-show {
+	visibility: visible !important;
+}
+
+.none {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.display-block {
+	display: block;
+}
+
+.display-inline {
+	display: inline;
+}
+
+.display-inline-block {
+	display: inline-block;
+}
+
+.vertical-align-middle {
+	vertical-align: middle;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.lowercase {
+	text-transform: lowercase;
+}
+
+.capitalize {
+		text-transform: capitalize;
+}
+
+.rotate180 {
+	@include rotate(180deg);
+}
+
+%clearfix {
+	*zoom: 1;
+
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}

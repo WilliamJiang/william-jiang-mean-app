@@ -1,0 +1,624 @@
+/*=====================================================*/
+/**** START: TRAFFIC BRIDGE overrides****/
+/* these styles are overridden because they are
+   not working as expected due to conflicts with the way
+   the HTMLs are constructed with AngularJS */
+/*=====================================================*/
+
+/*body {
+    font-size: 14px; *//*This is to fix the default font size of the body*//*
+    background-color: #899aa8;
+}*/
+
+ul {
+    list-style: none !important; /*this is to get rid of the - from the ul elements*/
+    margin: 0;
+    padding: 0;
+}
+
+.network a.dropdown-toggle:hover {
+    color: #62d6fc !important; /*this is to fix the network name hover issue*/
+}
+
+.add-copy-instruction {
+    width: 19.2rem; /*this is to fix the anchor text splitting into 2nd line*/
+    height: 3.5rem;
+}
+
+.add-copy-instruction a {
+    color: #c4cdd3;
+    margin-left: 0.5rem;
+}
+
+.revision.active {
+    /*background-color: #004f7b;*/
+    background-color: #cc026d; /* this is to fix the background color when revision in navbar is clicked*/
+}
+
+/*.list-view .ci {
+    width: auto;
+    height: 8.7rem;
+    float: none;
+    margin-left: 0;
+    margin-top: 0;
+    border-top: 1px solid #c4cdd3 !important; *//*This is to show the border on top of each item in CI list view*//*
+    background-color: #fff;
+    border-radius: 0;
+}*/
+
+.list-view .ci:first-child {
+    /* border-top: none;*/
+}
+
+/*.sidebar-wrapper {
+    float: left;
+    background-color: #001b2f;
+    width: 21.5rem;
+    position: fixed;
+    overflow: hidden; *//*This is to fix the network drop down hiding behind the 'sidebar-wrapper' div problem!*//*
+    margin-left: -21.5rem;
+    height: 100%;
+    min-height: 76.8rem;
+}*/
+
+.filter-collapse .filter-list {
+    /*margin-left: 42rem;*/
+    /*This is to fix the filters alignment issue in the expanded section*/
+    margin-left: 0px !important;
+}
+
+.list-selected .result {
+    float: left;
+    margin-top: -0.2rem;
+    color: #86929a;
+    padding-top: 4px; /*This is to fix the Selected Filter alignment with X icon in Library screen.*/
+}
+
+/*@media (min-width: 1501px) {
+    .filter-expanded,
+    .filter-collapse {
+        text-align: left; /!*This is to bring the library filters left aligned*!/
+        margin-right: 2rem;
+    }
+
+    .filter-list .filter-item {
+        text-align: left;
+    }
+}*/
+
+/*pagination overrides*/
+
+.paging {
+    overflow: visible; /*this is to fix the issue with 'page size' drop down list hiding when open*/
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+    color: #777777;
+    background-color: transparent;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+    z-index: 2;
+    color: #fff;
+    background-color: #001b2f;
+    border-color: #001b2f;
+    cursor: default;
+}
+
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+    color: #777777;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: not-allowed;
+}
+
+/*this is to fix the note issue due to annotator css precedence*/
+.group-conditions .conditions .conditions-icon .note {
+    box-sizing: border-box !important;
+    color: rgb(255, 255, 255) !important;
+    display: inline !important;
+    font-size: 13px !important;
+    height: auto !important;
+    line-height: 42px !important;
+    padding-left: 7px !important;
+    width: auto !important;
+    border: none !important;
+    background-color: transparent !important;
+}
+
+/*this is to fix the modal backdrop fade issue with AngularJS 3.1*/
+.modal-backdrop {
+    bottom: 0;
+}
+
+.ci-header .btn-remove-parking {
+    width: 16rem;
+    margin-right: 1.6rem;
+    color: #00b1eb;
+    height: 3.5rem;
+    font-family: "Lato-Bold";
+    font-size: 1.2rem;
+}
+
+/*this is to hide the spinners in the number field*/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.toast-message {
+    font-size: 14px;
+}
+
+.metadata-typeahead {
+    width: 18.9rem;
+}
+
+/*this is to fix the typeahead dropdown size issue in Edit Metadata modal*/
+.metadata-typeahead + .dropdown-menu,
+.metadata-dropdown-menu,
+.library-dropdown-menu {
+    max-height: 500px !important;
+    width: auto !important;
+    max-width: 500px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+
+/*this is to fix the metadata wrapping issue in the CI Modal header*/
+.ci-header .meta-data {
+    min-width: 43.1rem !important;
+    width: auto !important;
+}
+
+/*this is for the email placeholder in the CI Details modal*/
+.email-placeholder {
+    height: 67rem;
+    /*width: 77.2rem;*/
+    margin: 0 auto;
+    border-left: 1px solid #d5dbe1;
+    border-right: 1px solid #d5dbe1;
+
+    background-color: lightgray;
+}
+
+/*this is to show hand cursor for the saved searches in left nav*/
+.search-name {
+    cursor: pointer;
+}
+
+/*this is to fix the widht of save search name text box*/
+.save-search-modal input {
+    width: 37rem !important;
+}
+
+/*this is to fix the CI Details being displayed behind the affix-matching in Library*/
+/*This is very important, as the angular bootstrap Modals have their own way of calculating the z-index!*/
+.affix-matching.affix-scrolling,
+.content-header.scrolling {
+    z-index: 1000 !important;
+}
+
+.group-action .group-btn-action .dropdown-menu {
+    min-width: 12rem !important;
+    width: auto !important;
+}
+
+.upload-document .drap-and-drop {
+    padding-top: 0px !important;
+}
+
+.upload-document .drap-and-drop .drop-box {
+    height: 15.5rem;
+    line-height: 1.8rem;
+    color: #86929a;
+    padding-top: 5.8rem;
+    text-align: center;
+}
+
+.upload-document .upload-complete {
+    color: #86929a;
+}
+
+/*START: these are to show required in the File CI modal*/
+.new-copy-instruction .filter-title .required {
+    color: #ff0000;
+}
+
+.new-copy-instruction .metadata-typeahead,
+.new-copy-instruction .btn-dropdown {
+    /*width: 15.4rem;*/
+    min-width: 15.4rem;
+}
+/*.list-inline > li {
+    display: inline-table;
+}*/
+
+/*this is to get rid of the RED background between vertical & horizontal scrolls*/
+.jspHorizontalBar {
+    background-color: transparent !important;
+}
+/*this is to fix the horizantal scrollbar not appearing in filing screen.*/
+.new-copy-instruction .jspHorizontalBar {
+    display: block !important;
+}
+
+.jspHorizontalBar .jspDrag {
+    height: 8px !important;
+    top: 0.4rem;
+    background-color: #c1c1c1;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    -o-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    -o-border-radius: 0.4rem;
+    border-radius: 0.4rem;
+}
+
+/*END: these are to show required in the File CI modal*/
+.is-disabled-label {
+    cursor: not-allowed;
+    /*font-style: italic !important;*/
+    color: #9EA1A3 !important;
+}
+
+/*START: Annotations Side Viewer styles*/
+.annotations-list-uoc {
+    position: inherit !important;
+    background-color: #d5dbe1 !important;
+}
+
+.annotation-side-viewer {
+    font-size: 1.4rem;
+    width: 100%;
+    height: 100%;
+    /*width: 32.6rem;*/
+    /*height: 80rem;*/
+    display: inline-block;
+    background-color: #d5dbe1;
+}
+
+.annotation-side-viewer.collapsed,
+.annotation .label-collapse {
+    display: none !important;
+}
+
+.annotation.collapsed .label-collapse {
+    display: block !important;
+}
+
+.annotation-side-viewer-list {
+
+    height: 100%;
+    /*height: 75rem;*/
+    overflow-y: auto;
+    margin: 5px;
+}
+
+/*END: Annotations Side Viewer styles*/
+
+/*START: this is to show caneldar icon in air dates filed of Library*/
+/*.cc-library .btn-air-dates .ci-calendar {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url("../images/buttons/calendar-modal.png");
+    background-size: 100% 100%;
+}
+
+.cc-library .btn-air-dates:hover .ci-calendar {
+    background-image: url("../images/buttons/calender-hover.png");
+}*/
+.cc-filing .calendar-icon,
+.cc-library .calendar-icon {
+    float: right;
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    top: 0;
+    right: 0.4rem;
+    margin-top: 0.3rem;
+}
+.cc-filing .icon-tpIcons02-09,
+.cc-library .icon-tpIcons02-09 {
+    font-size: 2.8rem;
+    color: #485662;
+}
+
+/*END: this is to show caneldar icon in air dates filed of Library*/
+
+/*this is to get rid of capitalized text in the Delete Search Modal dialog*/
+.delete-item {
+    text-transform: none !important;
+}
+
+/*this is to fix the model problems in possible revision modal screen*/
+.compare-revision.modal {
+    z-index: 999999;
+}
+.compare-revision.modal .modal-dialog {
+    margin: 0 auto;
+    min-width: 128rem;
+    width: 100%;
+    /*this is added*/
+    height: 100%;
+}
+.compare-revision.modal .modal-content {
+    border-radius: 0;
+    border: none;
+    width: 100%;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    /*this is added*/
+    height: 100%;
+    background-color: #899aa8;
+}
+
+.compare-revision.modal .revision-version {
+    width: 17rem;
+    height: auto; /*100%;*/
+    z-index: 9999;
+
+    box-shadow: rgba(0, 0, 0, 0.498039) 4px 2px 5px 0px;
+}
+.compare-revision.modal .mutiple-version {
+    /*height: px2rem(527);*/
+    overflow: hidden;
+}
+.compare-revision.modal .revision-version.collapsed {
+    width: 3rem;
+    margin-right: 0;
+
+    box-shadow: none;
+}
+.compare-revision.modal .revision-version.collapsed .revision-collapse {
+    width: 3rem;
+}
+.compare-revision.modal .revision-version.collapsed .label-collapse {
+    top: 13.4rem;
+    left: -7.3rem;
+}
+.compare-revision.modal .group-btn-zoom {
+    width: auto;
+}
+.compare-revision.modal .group-btn-zoom-wrapper {
+    width: 17rem;
+}
+/*.compare-revision.modal .pdf-placeholder {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #d5dbe1;
+}*/
+
+.compare-revision-version .view-content-wrapper {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.compare-version-current .group-action {
+    margin-left: 0rem;
+    margin-right: 0rem;
+}
+
+/*.staple-content-option .option-yes, */
+.staple-content-option .option-no {
+    padding-left: 0.1rem  !important;
+}
+.reason {
+    width: 98% !important;
+    height: 2.4rem !important;
+    margin: 5px !important;
+    color: #86929a !important;
+    background-color: #ecf0f4 !important;
+    border: 0.0rem solid #ecf0f4 !important;
+    border-radius: 0.0rem !important;
+}
+.compare-version-next .compare-action-review {
+    font-family: "Lato";
+    width: 100%;
+    height: 14.8rem;
+    background-color: #62d6fc;
+    padding-top: 1.4rem;
+    padding-left: 1.4rem;
+}
+.compare-action-review .info-compare-action {
+    margin-top: 20px;
+}
+.compare-action-review .info-compare-action > span,
+.compare-action-review .info-compare-action > p {
+    font-family: "Lato";
+    color: #485662;
+    font-size: 1.4rem;
+    padding-right: 0.4rem;
+}
+.compare-action-review .instruction-button {
+    font-family: "Lato";
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+    padding-top: 25px;
+}
+.compare-action-review .btn {
+    font-family: "Lato";
+    width: 7rem;
+    height: 2.5rem;
+    padding: 0;
+    margin-right: 1rem;
+    float: left;
+    font-size: 1.2rem;
+}
+.compare-action-review .btn-instruction-ignore {
+    font-family: "Lato";
+    color: #00b1eb;
+    float: left;
+}
+.compare-action-review .btn-instruction-save {
+    font-family: "Lato";
+    background-color: #00b1eb;
+    color: #fff;
+    margin-right: 3rem;
+}
+/*this is to fix the gap issue when the revisions panel is hidden for not stapled candidates on right side*/
+.compare-version-current .content-compare-version-current.no-revisions {
+    width: 99.6% !important;
+}
+/*this is to fix the advertiser tooltip word wrap issue for long email addresses*/
+.advertiser-show {
+    word-wrap: break-word;
+}
+.wrap-annotation-list-min-height {
+    min-height: 72.5rem;
+}
+/*this is to fix the width of annotation item in view all annotations panel*/
+.annotation-list .annotation-item {
+    width: 31.8rem;
+    margin: 1rem 1rem 0 1rem;
+}
+/*this is to fix the font issues in the annotations panel*/
+/*.annotator-marginviewer-element .category-name {
+    font-family: "Lato";
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.annotator-marginviewer-element .annotation-author {
+    font-family: "Lato";
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.annotator-marginviewer-element .annotation-date,
+.annotator-marginviewer-element .wrap-comment,
+.annotator-marginviewer-element .bold-label{
+    font-family: "Lato";
+    font-size: 1.2rem;
+    font-weight: 400;
+}*/
+
+/*this is to fix the problem in hovering the anchor inside li in network dropdown*/
+.dropdown-network li {
+    padding: 0rem !important;
+}
+.dropdown-network li a {
+    padding: 0 20px !important;
+    line-height: 30px !important;
+}
+
+
+.owner-now-dropdown .multiSelect > button {
+    color: #485662 !important;
+    background-color: #ecf0f4 !important;
+}
+.owner-now-dropdown .multiSelect .caret {
+    background-color: #ecf0f4 !important;
+}
+.owner-now-dropdown .multiSelect > button:focus,
+.owner-now-dropdown .multiSelect > button:active,
+.owner-now-dropdown .multiSelect > button:visited {
+    background-color: #fff !important;
+    color: #86929a !important;
+}
+.owner-now-dropdown .multiSelect > button:focus .caret,
+.owner-now-dropdown .multiSelect > button:active .caret,
+.owner-now-dropdown .multiSelect > button:visited .caret,
+.buttonClicked button .caret  {
+    background-color: #d5dbe1 !important;
+}
+.owner-now-dropdown .multiSelect > button:hover .caret {
+    background-color: #013357 !important;
+}
+.owner-now-dropdown .multiSelect > button:hover {
+    background-color: #013357 !important;
+    color: #fff !important;
+}
+.owner-now-dropdown .multiSelect > button:disabled {
+    background-image: linear-gradient(#fff, #fff) !important;
+    color: #999 !important;
+}
+.owner-now-dropdown .multiSelect .buttonClicked {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+.owner-now-dropdown .multiSelect .buttonLabel {
+    display: inline-block !important;
+}
+
+.view-content-wrapper .buttons-unchecked,
+.revision-content .buttons-unchecked {
+    /*width: auto;*/
+    height: auto;
+    background-image: none;
+    margin-left: 1.4rem;
+}
+.view-content-wrapper .icon-TBicons4-02,
+.revision-content .icon-TBicons4-02 {
+    font-size: 2.8rem;
+    color: #485662;
+    line-height: 4.8rem;
+}
+/*this is to fix the zoom wrapper width issue in CI Details*/
+.ci-detail .group-action .group-btn-zoom-wrapper {
+    width: 17rem !important;
+}
+
+.annotation-dropdown .select-annotation {
+    width: 17.6rem !important;
+}
+
+.header-login .success-span {
+    color: #001b2f;
+    box-sizing: border-box;
+    display: inline;
+    font-family: Lato-Regular;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    zoom: 1;
+}
+.header-login .form-signin-heading {
+    color: #001b2f;
+    text-align: center;
+}
+/*this is to add 10px margin to left of pdf when there are not revisions*/
+.revision-content-margin {
+    margin-left: 1rem;
+}
+.showButton {
+    visibility: visible !important;
+}
+.hideButton {
+    visibility: hidden !important;
+}
+.is-clearstuck-list .annotation-category {
+    color: #485662;
+}
+/*=============================================*/
+/****END: TRAFFIC BRIDGE overrides****/
+/*=============================================*/
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    background-color: #ecf0f4;
+}

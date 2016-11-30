@@ -1,0 +1,97 @@
+/* font face */
+@mixin font-face($font-family, $font-weight) {
+	@font-face {
+		font-family: $font-family;
+		src: font_url($font-family + '.woff') format('woff'),
+				 font_url($font-family + '.woff2') format('woff2'),
+				 font_url($font-family + '.ttf') format('truetype'),
+				 font_url($font-family + '.svg#') format('svg');
+		font-weight: $font-weight;
+		font-style: normal;
+	}
+}
+
+@include font-face($Lato-Bold, normal);
+@include font-face($Lato-Regular, normal);
+@include font-face($Lato-Black, normal);
+@include font-face($Lato-Light, normal);
+@include font-face($tpIcon2, normal);
+
+
+/* font-size class for each font-size */
+@mixin font-size-class($font-size){
+	.f-#{$font-size} {
+		font-size: px2rem($font-size);
+	}
+}
+
+/* Convert PX units to EMs.
+$pxval: value of element want to convert to rem unit
+$parentFontSize: parent font-size of root html element
+*/
+@function px2rem($pxval, $base: $body-fontsize) {
+	@return #{$pxval / $base}rem;
+}
+
+
+/* Used to convert PX to EMs for multiple properties or values or both.
+$base is an optional measurement that allows making measurements relative to the parent font size rather than the current. Also accepts a list of lists (instead a list of values) for properties that accept multiple lists of values. Only numbers of converted; everything else is passed through.
+$props: properties of element
+$sizes: value of element want to convert to rem unit
+$parentFontSize: parent font-size of root html element, it's default 10 by $baseFontSize
+*/
+@mixin rem-calc($props, $sizes, $base: $body-fontsize) {
+	$values: ();
+	$sublists: false;
+	@each $s in $sizes {
+		@if type-of($s) == list {
+			$sublists: true;
+			$vv: ();
+			@each $ss in $s {
+				$vv: append($vv, if(type-of($ss) == number, #{$ss / $base}rem, $ss));
+			}
+			$values: append($values, join((), $vv));
+		} @else {
+			$values: append($values, if(type-of($s) == number, #{$s / $base}rem, $s));
+		}
+	}
+	$value: join((), $values, if($sublists, comma, space));
+	@each $prop in $props { #{$prop}: $value }
+}
+
+/* Mixin rotate */
+@mixin rotate($deg) {
+	-webkit-transform: rotate($deg);
+	-moz-transform: rotate($deg);
+	-ms-transform: rotate($deg);
+	-o-transform: rotate($deg);
+}
+
+
+/* Resolution */
+@mixin calc-resolution($props, $sizes, $res: $resolution) {
+	$values: ();
+	$sublists: false;
+	@each $s in $sizes {
+		@if type-of($s) == list {
+			$sublists: true;
+			$vv: ();
+			@each $ss in $s {
+				$vv: append($vv, if(type-of($ss) == number, #{$ss * $res}px, $ss));
+			}
+			$values: append($values, join((), $vv));
+		} @else {
+			$values: append($values, if(type-of($s) == number, #{$s * $res}px, $s));
+		}
+	}
+	$value: join((), $values, if($sublists, comma, space));
+	@each $prop in $props { #{$prop}: $value }
+}
+
+@function px2res($pxval, $res: $resolution) {
+	@return #{$pxval * $res * 0.1}rem;
+}
+
+@function print($pxval, $res: $resolution) {
+	@return #{$pxval * $res / $body-fontsize}rem;
+}

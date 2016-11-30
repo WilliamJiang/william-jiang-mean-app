@@ -1,0 +1,19 @@
+<li class='annotator-item annotator-radio-fields'>
+	<div>
+		<div class="stuck-header">
+			<h4 class="category-name">Stuck:</h4>
+			<p class="stuck-reason"><%=fldStuckReason%></p>
+		</div>
+		<div class="user-date">
+			<p class="annotation-author"><%=createdUser%></p>
+			<p class="annotation-date"><%=createdDate%></p>
+		</div>
+		<div class="wrap-comment">
+			<p><%=readOnlyAnnotationText%></p>
+		</div>
+		<div class="wrap-send-notification">
+			<input id='<%=markStuckClearedOnViewerID%>' type='checkbox' value=''> 
+			<label for='<%=markStuckClearedOnViewerID%>' class='cat-checkbox'>Clear Stuck Annotation</label>
+		</div>
+	</div>
+</li>

@@ -1,0 +1,192 @@
+<style>
+ .drop-box {
+     background: #f8f8f8;
+     color: #dddddd;
+     border: 5px dashed #ddd;
+     height: 4em;
+     padding-top: 1em;
+     text-align: center;
+ }
+ .dragover {
+     border: 5px dashed #ddf;
+ }
+</style>
+<div class="wrapper clearfix">
+
+  <div class="sidebar-wrapper" ng-controller="TrafficCoordinatorLeftNavCtrl">
+    <div ng-include="'/partials/tc/leftnav'"></div>
+  </div>
+
+  <div ng-include="'/partials/common/header.html'"></div>
+
+  <div class="content">
+    <div class="main-content">
+
+      <div class="content-header" style="margin-bottom: 12px;">
+
+        <div class="option">
+          <span style="font-size: 24px; color: white;">Add a Copy Instruction</span>
+        </div>
+      </div>
+      <div>
+        <div ng-show="showUpload">
+          <form name="metadataForm" class="form-horizontal" style="width: 95%; margin-left: 15px;">
+            <fieldset>
+              <!--Network-->
+              <div class="form-group">
+                <label for="network" class="col-md-2 control-label">Network</label>
+
+                <div class="col-md-6">
+                  <select ng-options="network.name for network in networks" ng-model="selectedNetwork" ng-change="onChangeNetwork()" class="form-control input-sm"/>
+                </div>
+              </div>
+              <!--Advertiser-->
+              <div class="form-group">
+                <label for="advertiser" class="col-md-2 control-label">Advertiser</label>
+                <div class="col-md-6">
+                  <input type="text" id="advertiser" name="advertiser" ng-required="true" ng-change="onChangeAdvertiser()" placeholder="Type for advertisers" ng-model="advertiser" typeahead-editable="false" typeahead="advertiser.advertiser for advertiser in getAdvertisers($viewValue)" typeahead-loading="loadingIcon" typeahead-on-select='onSelectAdvertiser($item, $model, $label)' class="form-control" ng-disabled0="!advertiserAutoCompleteEnabled">
+                </div>
+                <div class="col-md-1">
+                  <i ng-show="loadingIcon" class="loadingIcon glyphicon glyphicon-refresh"></i>
+                </div>
+                <div class="col-md-3 invalid-group" ng-show="metadataForm.$submitted || metadataForm.advertiser.$touched">
+                  <span class="invalid-field" ng-show="metadataForm.advertiser.$error.required">Advertiser is required.</span>
+                  <span class="invalid-field" ng-show="metadataForm.advertiser.$error.parse">Invalid Advertiser.</span>
+                </div>
+              </div>
+              <!--Brand-->
+              <div class="form-group" ng-if="files_by_brand">
+                <label for="brand" class="col-md-2 control-label">Brand</label>
+                <div class="col-md-6">
+                  <!--<input name="brand" type="brand" placeholder="Brand" ng-model="ci.brand" required="required" class="form-control"/>-->
+                  <select ng-options="brand for brand in brands" ng-model="selectedBrand" ng-change="onChangeBrand()" class="form-control"></select>
+                </div>
+              </div>
+              <!--Program-->
+              <div class="form-group" ng-if="files_by_program">
+                <label for="program" class="col-md-2 control-label">Program</label>
+                <div class="col-md-6">
+                  <!--<input name="program" type="program" placeholder="Program" ng-model="ci.program" required="required" class="form-control"/>-->
+                  <select ng-options="program for program in programs" ng-model="selectedProgram" ng-change="onChangeProgram()" class="form-control"></select>
+                </div>
+              </div>
+              <!--Type-->
+              <div class="form-group">
+                <label for="type" class="col-md-2 control-label">Type</label>
+
+                <div class="col-md-6">
+                  <label data-ng-repeat="type in types">
+                    <input type="radio" name="type" value="{{type.name | lowercase}}" ng-model="selectedType"/>
+                    {{type.name}}&nbsp;
+                  </label>
+                </div>
+              </div>
+              <!--Start Date-->
+              <div class="form-group">
+                <label for="air_date_start" class="col-md-2 control-label">Air Date Start</label>
+
+                <div class="col-md-4">
+                  <p class="input-group">
+                    <input type="text" id="air_date_start" name="air_date_start" class="form-control" max-date="air_date_end" date-validator-tc datepicker-popup="{{format}}" ng-model="air_date_start" is-open="opened_air_date_start" ng-change="startDateChanged()" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="MM/DD/YYYY"/>
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open($event,'opened_air_date_start')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+                <!--Date Ranges-->
+                <div class="col-md-2" ng-show="false">
+                  <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-success">Range</button>
+                    <button type="button" class="btn btn-success dropdown-toggle" dropdown-toggle>
+                      <span class="caret"></span>
+                      <!--<span class="sr-only">Split button!</span>-->
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a ng-click="SelectDateRange($event, 'TODAY')">Today</a></li>
+                      <li><a ng-click="SelectDateRange($event, 'THIS_WEEK')">This week</a></li>
+                      <li><a ng-click="SelectDateRange($event, 'THIS_MONTH')">This month</a></li>
+                      <li><a ng-click="SelectDateRange($event, 'THIS_QUARTER')">This quarter</a></li>
+                      <li><a ng-click="SelectDateRange($event, 'NEXT_WEEK')">Next week</a></li>
+                      <li><a ng-click="SelectDateRange($event, 'NEXT_MONTH')">Next month</a></li>
+                      <li><a ng-click="SelectDateRange($event, 'NEXT_QUARTER')">Next quarter</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-4 invalid-group" ng-show="metadataForm.$submitted || metadataForm.air_date_start.$touched">
+                  <span class="invalid-field" ng-show="metadataForm.air_date_start.$error.required">Start Date is required.</span>
+                  <span class="invalid-field" ng-show="metadataForm.air_date_start.$touched && metadataForm.air_date_start.$error.badDate">Invalid date range.</span>
+                  <span class="invalid-field" ng-show="metadataForm.air_date_start.$touched && metadataForm.air_date_start.$error.badDateFormat">Invalid date format (MM/DD/YYYY).</span>
+                </div>
+              </div>
+              <!--End Date-->
+              <div class="form-group">
+                <label for="air_date_end" class="col-md-2 control-label">Air Date End</label>
+
+                <div class="col-md-4">
+                  <p class="input-group">
+                    <input type="text" id="air_date_end" name="air_date_end" class="form-control" min-date="air_date_start" date-validator-tc datepicker-popup="{{format}}" ng-model="air_date_end" is-open="opened_air_date_end" ng-change="endDateChanged()" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="MM/DD/YYYY"/>
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open($event,'opened_air_date_end')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+                <div class="col-md-4 invalid-group" ng-show="metadataForm.$submitted || metadataForm.air_date_end.$touched">
+                  <span class="invalid-field" ng-show="metadataForm.air_date_end.$error.required">End Date is required.</span>
+                  <span class="invalid-field" ng-show="metadataForm.air_date_end.$touched && metadataForm.air_date_end.$error.badDate">Invalid date range.</span>
+                  <span class="invalid-field" ng-show="metadataForm.air_date_end.$touched && metadataForm.air_date_end.$error.badDateFormat">Invalid date format (MM/DD/YYYY).</span>
+                </div>
+              </div>
+	      <!--
+              <div class="form-group">
+                <div class="pull-right">
+                  <a href="{{cancelButtonlocation}}" class="btn btn-default">Cancel</a>
+                  &nbsp;
+                  <button ng-click="addMetadata()" ng-disabled="metadataForm.$invalid" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+	      -->
+            </fieldset>
+          </form>
+          <div class="text-center" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
+            <h5>Please click on Choose File or drag a file to select CI to upload</h5>
+            <div style="padding: 12px 0px;">
+              <div ng-file-drop ng-model="files" class="drop-box" drag-over-class="dragover" allow-dir="false" accept="application/pdf">Drop PDF file here</div>
+              <div ng-no-file-drop="ng-no-file-drop">File Drag/Drop is not supported for this browser</div>
+            </div>
+            <div class="text-center" style="padding: 12px 0px;">
+              <div ng-file-select ng-model="files" class="btn btn-default" accept="application/pdf">Choose File And Submit</div>
+	      &nbsp;
+              <a href="{{cancelButtonLocation}}" class="btn btn-default">Cancel</a>	      
+            </div>
+            <div style="padding: 12px 0px;">
+              <div class="alert alert-warning" role="alert"><strong>Note:</strong> Currently, we only accept PDFs for upload.</div>
+            </div>
+          </div>
+          <div ng-show="showProgress">
+            <div ng-repeat="file in files">
+
+              <div class="progress-wrapper" ng-style="{'font-size': ((radius + stroke)/(isSemi ? 3.5 : 3))+'px'}">
+                <div class="progress2">{{file.progress}}/{{max}}</div>
+                <div round-progress
+                     max="max"
+                     current="file.progress"
+                     color="{{currentColor}}"
+                     radius="{{radius}}"
+                     semi="isSemi"
+                     rounded="rounded"
+                     stroke="{{stroke}}"
+                     iterations="{{iterations}}"
+                     animation="{{currentAnimation}}">
+                </div>
+              </div>
+              <div ng-show="showComplete">
+                <h5>Upload complete.</h5>
+                <button class="btn btn-primary" ng-click="onClickContinue()">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

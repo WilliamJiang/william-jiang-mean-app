@@ -1,0 +1,65 @@
+<!-- AgilityIO guide: add ".pendding-revision" class to enable ci in progress with conditions: Potential revision, Stuck and Matched-->
+<!-- AgilityIO guide: add ".confirmed-revision" class to enable ci in progress with conditions: Potential revision, Stuck-->
+<!-- AgilityIO guide: add ".highlight" class to enable ci active mode in progress when "All Advertiser" list is selected-->
+<div class="ci-status"></div>
+<div class="print"></div>
+<div class="wrapper-info" ng-if="display === 'grid'">
+    <div class="advertiser-info" ng-class="{'appear-advertiser': ci.advertiserSlot.length > 14 }">
+        <div class="advertiser-show">
+            <p>{{ci.advertiserSlot}}</p>
+        </div>
+        <!-- AgilityIO guide: add ".is-email" class to lowercase email sender-->
+        <div class="advertiser-network">
+            <div class="advertiser-name">{{ ci.advertiserSlot || '---' | characters:14:true }}</div>
+        </div>
+        <div class="advertiser-brand">{{ ci.brandSlot || '---' | characters:14:true }}</div>
+    </div>
+    <div class="program">
+        <div class="program-name" tooltip-append-to-body="true" tooltip="{{ ci.programSlot || '---' }}" tooltip-enable="{{ci.programSlot.length > 20}}">{{ ci.programSlot || '---' }}</div>
+        <div class="network-flight-dates">
+            <time ng-click="getCIId(ci,0)" class="start-date">{{ ci.airDateStartSlot | amDateFormat:'MMM DD' }}</time>
+            <span class="dash"> - </span>
+            <time class="end-date">{{ ci.airDateEndSlot | amDateFormat:'MMM DD' }}</time>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper-info" ng-if="display === 'list'">
+    <div class="advertiser-info" ng-class="{'appear-advertiser': ci.advertiserSlot.length > 20 }">
+        <div class="advertiser-show">
+            <p>{{ci.advertiserSlot}}</p>
+        </div>
+        <!-- AgilityIO guide: add ".is-email" class to lowercase email sender-->
+        <div class="advertiser-network">
+            <div class="advertiser-name">{{ ci.advertiserSlot || '---'| characters:20:true }}</div>
+        </div>
+        <div class="advertiser-brand">{{ ci.brandSlot || '---' | characters:20:true | bracketize}}</div>
+    </div>
+    <div class="program">
+        <div class="program-name" tooltip-append-to-body="true" tooltip="{{ ci.programSlot || '---' }}" tooltip-enable="{{ci.programSlot.length > 20}}">{{ ci.programSlot || '---' }}</div>
+        <div class="network-flight-dates">
+            <time ng-click="getCIId(ci,0)" class="start-date">{{ ci.airDateStartSlot | amDateFormat:'MMM DD' }}</time>
+            <span class="dash"> - </span>
+            <time class="end-date">{{ ci.airDateEndSlot | amDateFormat:'MMM DD'| appendComma }}</time>
+        </div>
+    </div>
+</div>
+
+<div class="type">{{ ci.typeSlot || '---' }}</div>
+<div class="owner">{{ ci.owner || '---' }}</div>
+<div class="ignored-sender">
+    <div class="sender">
+        <span class="label-ignored-sender">Sender</span><span class="info">{{ci.ingest.sender}}</span>
+    </div>
+    <div class="ignored-by">
+        <span class="label-ignored-sender">Ignored by:</span><span class="info">{{getUserNameFromId(ci.ignored_by_id) | appendComma}}</span><span class="info">{{ci.ignored_at | amDateFormat:'MMM DD, YYYY, h:mm A'}}</span>
+    </div>
+</div>
+<!--<div class="missing-network"><span>Missing Network</span></div>--> <!--Hide this for now-->
+<!-- AgilityIO guide: add ".active" class to enable menu active mode-->
+<div class="condition">
+    <a href="javascript:void(0)" class="indicator icons-stuck icon-tpIcons02-03" ng-class="{'active': ci.stuck}"></a>
+    <a href="javascript:void(0)" class="indicator icons-match icon-tpIcons02-04" ng-class="{'active': ci.uninstructed_match}"></a>
+    <!--<a href="javascript:void(0)" class="indicator icons-message" ng-class="{'active': ci.has_new_messages}"></a>-->
+    <div class="status">{{ ci.status | nameFromKey }}</div>
+</div>

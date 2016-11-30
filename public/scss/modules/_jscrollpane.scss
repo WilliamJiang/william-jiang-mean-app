@@ -1,0 +1,201 @@
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer {
+	@extend .relative;
+
+	overflow: hidden;
+}
+
+.jspPane {
+	@extend .absolute;
+
+	min-height: 100%;
+}
+
+.jspVerticalBar {
+	@extend .absolute;
+	@extend .bg-lightness-grayish-blue;
+
+	bottom: 0rem;
+	top: 0rem;
+	right: 0rem;
+
+	width: 1.5rem;
+	
+	border-left: 1px solid $very-light-gray;
+	border-right: 1px solid $very-lighting-gray;
+}
+
+.jspHorizontalBar {
+	@extend .absolute;
+
+	bottom: 0;
+	left: 0;
+
+	width: 100%;
+	height: px2rem(16);
+
+	background: red;
+}
+
+.jspCap {
+	@extend .none;
+}
+
+.jspHorizontalBar .jspCap {
+	@extend .float-left;
+}
+
+.jspTrack {
+	@extend .relative;
+	@extend .bg-lightness-grayish-blue;
+}
+
+.jspDrag {
+	@extend .absolute;
+
+	width: 100%;
+	width: 0.8rem;
+
+	left: 0.3rem;
+	background-color: $light-gray;
+
+
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding-box;
+	-o-background-clip: padding-box;
+	background-clip: padding-box;
+	
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+	
+	-webkit-border-radius: 0.4rem;
+	-moz-border-radius: 0.4rem;
+	-o-border-radius: 0.4rem;
+	border-radius: 0.4rem;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag {
+	@extend .float-left;
+
+	height: 100%;
+}
+
+.jspArrow {
+	@extend .block;
+
+	background-color: $light-gray;
+	
+	text-indent: px2rem(-200000);
+	
+	cursor: pointer;
+	padding: 0;
+	margin: 0;
+}
+
+.jspArrow.jspDisabled {
+	cursor: default;
+	background: #80808d;
+}
+
+.jspVerticalBar .jspArrow {
+	height: px2rem(16);
+}
+
+.jspHorizontalBar .jspArrow {
+	@extend .float-left;
+
+	width: px2rem(16);
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus {
+	outline: none;
+}
+
+.jspCorner {
+	@extend .float-left;
+
+	background: #eeeef4;
+	height: 100%;
+}
+
+.jspScrollable:active,
+.jspScrollable:focus {
+	outline: none;
+	border:none;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner {
+	margin: 0 px2rem(-3) 0 0;
+}
+
+/*--- matching-ci ---*/
+#content {
+	overflow: hidden;
+}
+
+.affix-matching {
+	@include rem-calc(padding-left padding-right, px2rem(20));
+
+	@extend .bg-white;
+	
+	border-bottom: 1px solid $grayish-blue;	
+}
+
+.affix-matching.affix-scrolling,
+.content-header.scrolling {
+	@extend .relative;
+	
+	z-index: 9999;
+}
+
+
+/*---------------*/
+.mutiple-version .jspVerticalBar {
+	width: 0;
+	border: none;
+}
+
+/*-------------------*/
+
+.list-select {
+	.jspVerticalBar {
+		border: none;
+	}
+	.jspTrack {
+		@extend .bg-white;
+
+		border: none;
+	}
+
+	.jspDrag {
+		width: px2rem(7);
+	}
+} 
+
+.jspHorizontalBar {
+	display: none !important;
+}
+
+
+.edit-user {
+	.jspVerticalBar {
+		@extend .bg-white;
+
+		border: none;
+	}
+
+	.jspTrack {
+		@extend .bg-white;
+	}
+}

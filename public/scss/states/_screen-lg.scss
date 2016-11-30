@@ -1,0 +1,23 @@
+@media (min-width: $screen-lg) {
+	.filter-expanded,
+	.filter-collapse {
+
+	}
+	
+	.filter-list .filter-item {
+		text-align: left;
+	}
+
+	/*---- ci-detail ----*/
+
+	.compare-ci-screen {
+
+	}
+
+	/* No Revision */
+	.ci-content.no-revision {
+		.revision-version {
+			display: none;
+		}
+	}
+}

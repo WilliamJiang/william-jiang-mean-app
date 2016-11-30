@@ -1,0 +1,187 @@
+<style>
+ .section-header {
+     background-color: #dddddd;
+     color: black;
+     padding: 8px;
+ }
+ .message_box {
+     font-size: 12px;
+     background-color: white;
+     padding: 2px;
+     margin-bottom: 2px;
+ }
+ .ci-sm {
+     border: 5px solid transparent;
+     width: 120px;
+     height: 120px;
+     background-color: rgb(213,219,225);
+     color: rgb(69,83,95);
+     margin: 15px;
+ }
+ .ci-note-sm {
+     font-size: 12px;     
+ }
+ .ci-advertiser-sm {
+     font-size: 14px;
+     height: 2em;
+ }
+ .ci-brand-sm {
+     font-size: 12px;
+ }
+ .ci-air_dates-sm {
+     font-size: 10px;
+ }
+ .ci-sm-inactive {
+     border: 5px solid transparent;
+     width: 120px;
+     height: 120px;
+     background-color: #ffffff;
+     color: #cccccc;
+     margin: 15px;
+ }
+ .ci-note-sm-inactive {
+     color: #cccccc;     
+     font-size: 12px;     
+ } 
+ .ci-advertiser-sm-inactive {
+     color: #cccccc;          
+     font-size: 14px;
+     height: 2em;
+ }
+ .ci-brand-sm-inactive {
+     color: #cccccc;               
+     font-size: 12px;
+ }
+ .ci-air_dates-sm-inactive {
+     color: #cccccc;                    
+     font-size: 10px;
+ } 
+ /*This is a temporary fix for the height issue*/
+ .main-content {
+     min-height: 1000px !important;
+ }
+ .annotations-list-uoc {
+     position: fixed;
+     top: 12.5em;
+     right: 0em;
+     height: 90%;
+     z-index: 100;
+ }
+</style>
+<div class="wrapper clearfix">
+
+  <div class="sidebar-wrapper" ng-controller="TrafficCoordinatorLeftNavCtrl">
+    <div ng-include="'/partials/tc/leftnav.html'"></div>
+  </div>
+
+  <div ng-include="'/partials/common/header.html'"></div>
+
+  <div class="content">
+
+    <div class="main-content">
+
+      <div style="background-color: white;">
+
+        <div class="section-header">
+          <table width="100%">
+            <tr>
+              <td>
+                <span style="font-size: 11px;">{{ci.ingest.metadata.network}}</span><br/>
+                <b style="font-size: 18px;">{{ci.ingest.metadata.advertiser}}</b> <span ng-if="ci.ingest.metadata.brand">({{ci.ingest.metadata.brand}})</span><br/>
+                <b>{{ci.ingest.metadata.air_date_start | amDateFormat:'MMM DD'}} - {{ci.ingest.metadata.air_date_end | amDateFormat:'MMM DD'}}</b><span ng-if="ci.program"> , {{ci.ingest.metadata.program}}</span><span ng-if="ci.type"> , {{ci.ingest.metadata.type | capitalize}}</span>
+              </td>
+	      <!--
+              <td align="right">
+                <button ng-if="!isInParkingLot" class="btn btn-default" ng-click="addToParkingLot()">Add to Parking Lot</button>
+                <button ng-if="isInParkingLot" class="btn btn-default" ng-click="removeFromParkingLot()">Remove from Parking Lot</button>
+              </td>
+	      -->
+            </tr>
+          </table>
+        </div>
+        <p/>
+
+	<!--
+        <div style="padding: 12px 0px;">
+          <div class="row" style="padding: 8px 4px;">
+            <div class="col-md-4">
+              Status: <select ng-options="status.name for status in statuses" ng-model="selectedStatus" ng-change="onChangeStatus()"></select>
+            </div>
+            <div class="col-md-2">
+              <b>Owner</b>: {{ci.owner}}
+            </div>
+            <div class="col-md-2">
+              <a href="" ng-click="onClickViewHistory()">View History</a>
+            </div>
+          </div>
+          <div class="row" style="margin: 0px 0px;">
+            <div class="col-md-4" style="background-color: #8c80f7; color: white; padding: 6px 4px;">
+	      <div ng-if="ci.uninstructed_match">	      
+		Uninstructed Match
+		<button class="btn btn-info btn-xs" ng-click="clearUninstructedMatch()">Clear</button>
+	      </div>
+	      <div ng-if="!ci.uninstructed_match" style="padding: 1.5px 0px;">
+		&nbsp;
+	      </div>
+            </div>
+            <div class="col-md-4" style="background-color: #f75704; color: white; padding: 6px 4px;">
+	      <div ng-if="ci.stuck">	      	      
+		Stuck		
+	      </div>
+	      <div ng-if="!ci.stuck" style="padding: 1.5px 0px;">
+		&nbsp;
+	      </div>	      	      
+            </div>
+          </div>
+        </div>
+	-->
+	
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-header">
+              <div class="row">
+                <div class="col-md-4">
+                  <!--Sender: <b>{{ci.source}}</b>-->
+                </div>
+                <div class="col-md-8 text-right">
+                  <!--Flight Dates: <b>{{ci.air_date_start | amDateFormat:'MMM DD'}} - {{ci.air_date_end | amDateFormat:'MMM DD'}}</b>-->
+                  Sent: <b>{{ci.created_at | amDateFormat:'MMM DD h:mm:ss a'}}</b>
+                </div>
+              </div>
+	      <!--
+              <div class="row" style="padding: 8px 0px;">
+                <div class="col-md-12">
+                  <div ng-if="!editNoteMode">
+                    <div class="row">
+                      <div class="col-md-2">Notes:</div>
+                      <div class="col-md-8">
+                        <div ng-if="ci.note">{{ci.note}}</div>
+                        <div ng-if="!ci.note"><i style="color: #777777">No note</i></div>
+                      </div>
+                      <div class="col-md-2 text-right"><span class="glyphicon glyphicon-pencil" ng-click="editNote()"></span></div>
+                    </div>
+                  </div>
+                  <div ng-if="editNoteMode">
+                    <textarea ng-model="ci.note" cols="80" rows="3"></textarea>
+                    <div class="text-right" style="padding: 6px 0px;">
+                      <button class="btn btn-primary btn-xs" ng-click="cancelSaveNote()">Cancel</button>
+                      <button class="btn btn-default btn-xs" ng-click="saveNote(ci)">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+	      -->
+	      <div class="alert alert-info" role="alert">This is a placeholder page</div>
+              <div class="row" style="background-color: #eeeeee;">
+                <div class="col-md-12">
+                  <span>Page: &nbsp;</span><span id=page_num">{{pageNum}}</span> <span>&nbsp;of&nbsp;</span> <span id="page_count">{{pageCount}}</span> &nbsp; <a href="" ng-click="onPrevPage()" class="btn btn-default">Prev</a> &nbsp;<a href="" ng-click="onNextPage()" class="btn btn-default">Next</a>
+                </div>
+              </div>
+              <div id="pdfWrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

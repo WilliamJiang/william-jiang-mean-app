@@ -1,0 +1,51 @@
+@media (max-width: $screen-md) {
+	.filter-list {
+		.btn-dropdown,
+		.dropdown-menu {
+			width: px2rem(154);
+			min-width: px2rem(154);
+		}
+		.search-box {
+			width: px2rem(328);
+		}
+	}
+
+	.dropdown-menu.dropdown-advertiser {
+		width: px2rem(230);
+	}
+
+	.instruction-meta {
+		.btn-dropdown,
+		.dropdown-menu {
+			width: px2rem(190);
+		}
+	}
+
+	/*---- ci detail ----*/
+	// .group-action {
+	// 	.contruction-btn-zoom {
+	// 		width: px2rem(470)
+	// 	}
+	// } 
+
+	.more-filters {
+		width: px2rem(1040);
+		padding-right: px2rem(0);
+	}
+
+	/*------------*/
+	.compare-revision {
+		.group-btn-zoom {
+			width: auto;
+		}
+	}
+
+	/* edit meta data */
+	.edit-meta-data {
+		.filter-list {
+			.dropdown-menu {
+				width: px2rem(189);
+			}
+		}
+	}
+}

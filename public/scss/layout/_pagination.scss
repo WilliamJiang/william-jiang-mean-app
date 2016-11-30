@@ -1,0 +1,143 @@
+.lib-pagination {
+	@extend .clear-both;
+	@extend .overflow-hidden;
+	
+	min-height: px2rem(198);
+	
+	.pagination-wrapper {
+		@extend .bg-lightness-grayish-blue;
+		@extend .absolute;
+		
+		width: 100%;
+		min-height: px2rem(68);
+
+		padding-top: px2rem(15);
+		padding-left: px2rem(25);
+
+		bottom: 0;
+
+		border-top: 1px solid $grayish-blue;
+	}
+
+	.dropdown,
+	.per-page,
+	.page-number {
+		@extend .float-left;
+	}
+
+	.dropdown-menu {
+		min-width: px2rem(68);
+		width: px2rem(68);
+	}
+
+	.btn-dropdown {
+		@include size(px2rem(68), px2rem(35));
+
+		@extend .cl-very-dark-grayish-blue;
+
+		border-color: transparent;
+
+		.caret {
+			right: px2rem(10);
+			top: px2rem(14);
+		}
+	}
+}
+
+.per-page {
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .cl-dark-grayish-blue;
+
+	line-height: px2rem(35);
+
+	margin-left: px2rem(10);
+	margin-right: px2rem(127);
+}
+
+.pagination {
+	margin: 0;
+
+	li {
+		@extend .text-center;
+
+		a {
+			@include square(px2rem(35));
+
+			@extend .inline-block;
+			@extend .bg-transparent;
+			@extend .f-20;
+			@extend .font-Lato-Bold;
+			@extend .cl-dark-grayish-blue;
+
+			border: none;
+			border-radius: px2rem(4);
+
+			padding: 0;
+			padding-top: px2rem(3);
+
+		}
+
+		.active {
+			@extend .white;
+			@extend.bg-very-dark-blue;
+
+			&:hover {
+				@extend .white;
+				@extend.bg-very-dark-blue;
+			}
+		}
+
+		& > a:focus {
+			@extend .white;
+			@extend.bg-very-dark-blue;
+		}
+
+		& > a:hover {
+			@extend .bg-transparent;
+			@extend .cl-dark-grayish-blue;
+		}
+
+		a[ng-click="selectPage(1)"],
+		a[ng-click="selectPage(totalPages)"],
+		a[ng-click="selectPage(page - 1)"],
+		a[ng-click="selectPage(page + 1)"] {
+			text-indent: px2rem(-999999);
+			background-position: center;
+			background-repeat: no-repeat;
+			width: px2rem(16);
+
+			&:focus {
+				@extend .bg-transparent;
+			}
+		}
+
+		a[ng-click="selectPage(1)"],
+		a[ng-click="selectPage(totalPages)"] {
+			background-image: url('../images/buttons/first.png');
+		}
+
+		a[ng-click="selectPage(page - 1)"],
+		a[ng-click="selectPage(page + 1)"] {
+			background-image: url('../images/buttons/previous.png');
+		}
+
+		a[ng-click="selectPage(totalPages)"] {
+			@extend .rotate180;
+			
+			margin-left: px2rem(12);
+		}
+
+		a[ng-click="selectPage(page - 1)"] {
+			margin-right: px2rem(15);
+			margin-left: px2rem(12);
+		}
+
+		a[ng-click="selectPage(page + 1)"] {
+			@extend .rotate180;
+
+			margin-left: px2rem(20);
+		}
+	}
+}
+

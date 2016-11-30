@@ -1,0 +1,25 @@
+<li class='annotator-item annotator-radio-fields'>
+	<div>
+	    <% if (createdUser && createdDate) { %>
+	    <h4 class="category-name margin-bt-12">Note</h4>
+		<% } %>
+		<% if (isViewer) { %>	
+		<div class="user-date">
+			<p class="annotation-author"><%=createdUser%></p>
+			<p class="annotation-date"><%=createdDate%></p>
+		</div>
+		<div class="wrap-comment">
+			<p><%=readOnlyAnnotationText%></p>
+		</div>
+		<% } else { %>
+		<div class="wrap-textarea">
+			<textarea rows='2' id='<%=annotationTextID%>'><%=annotationText%></textarea>
+		</div>
+		<div class="wrap-send-notification">
+				<input id='<%=sendNotificationID%>'
+				type='checkbox' value='' style='vertical-align: middle;'> 
+				<label for='<%=sendNotificationID%>' class='cat-checkbox'>Send Notification</label>
+		</div>
+		<% } %>
+	</div>
+</li>

@@ -1,0 +1,459 @@
+/*--------------------- define button default--------------------*/
+.btn {
+	border: none;
+	border-color: transparent;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.btn.focus, 
+.btn:active:focus, 
+.btn:active.focus, 
+.btn.active:focus, 
+.btn.active.focus {
+	outline: none;
+}
+
+.btn:active, .btn.active {
+	box-shadow: none;
+}
+
+.btn:active,
+.btn:focus {
+	@extend .white;
+	@extend .bg-darken-grayish-blue;
+}
+
+
+/*--------------------------------------------------------*/
+/* button dropdown */
+.btn-dropdown {
+	@include rem-calc(border-top-right-radius border-top-left-radius border-bottom-left-radius, 4);
+
+	@extend .relative;
+	@extend .text-left;
+	
+	.caret {
+		@extend .absolute;
+
+		color: $darkness-grayish-blue;
+	}
+}
+
+.caret-wrapper {
+	@include square(px2rem(35));
+
+	@extend .absolute;
+	@extend .bg-light-grayish-blue;
+
+	top: 0;
+	right: 0;
+
+	border-bottom-right-radius: px2rem(4);
+	border-top-right-radius: px2rem(4);
+
+	.caret {
+		top: px2rem(15);
+		right: px2rem(13) !important;
+	}
+}
+
+.open > .btn-default.dropdown-toggle {
+	@extend .bg-white;
+	@extend .cl-dark-grayish-blue;
+
+	.caret-wrapper {
+		@extend .bg-light-grayish-blue;
+
+		border-bottom-right-radius: 0;
+	}
+}
+
+.dropdown .btn {
+	&:focus {
+		@extend .bg-white;
+	}
+}
+
+/*--------------------- hover button --------------------*/
+.btn-rollover {
+	&:hover {
+		background-color: $dark-blue !important;
+		color: $white !important;
+		span {
+			color: $white !important;
+		}
+		.caret-wrapper {
+			background-color: $dark-blue !important;
+			color: $white !important;
+			span {
+				color: $white !important;
+			}
+		}
+	}
+}
+
+.btn-dropdown.btn-rollover:focus,
+.btn-dropdown.btn-rollover:active {
+	@extend .bg-white;
+	@extend .cl-dark-grayish-blue;
+}
+
+
+/*-----------------------------------------------------------*/
+/*--- button 'All Advertisers' and 'All Active Air Dates' ---*/
+.btn-adv,
+.btn-date {
+	@extend .btn-large-md;
+	@extend .f-14;
+	@extend .font-Lato-Regular;
+	@extend .cl-very-dark-grayish-blue;
+	@extend .bg-lightness-grayish-blue;
+
+	.caret {
+		top: px2rem(15);
+		right: px2rem(10);
+	}
+}
+
+/*-----------------------------------------------------------*/
+/*-------------- button 'grid' and 'list' view -------------*/
+.btn-grid,
+.btn-list {
+	@include rem-calc(padding, 7 12);
+
+	@extend .bg-lightness-grayish-blue;
+
+	border-radius: px2rem(5);
+
+	span {
+		@extend .cl-very-dark-grayish-blue;
+	}
+}
+
+.btn-grid {
+	@include border-right-radius(0);
+
+	margin-right: px2rem(-3);
+}
+
+.btn-list {
+	@include border-left-radius(0);
+}
+
+.btn-grid:hover,
+.btn-list:hover {
+	background-color: $darkness-blue;
+
+	span {
+		@extend .white;
+	}
+}
+/*--- add '.selected' class to change styles when button is actived ---*/
+.btn-grid.selected,
+.btn-list.selected {
+	background-color: $very-dark-blue !important;
+
+	span {
+		color: $white !important;
+	}
+}
+
+/*-----------------------------------------------------------*/
+/* button of library*/
+.icon-tpIcons02-07,
+.icon-tpIcons02-05,
+.icon-tpIcons02-06 {
+	@extend .f-28;
+	@extend .cl-very-dark-grayish-blue;
+}
+
+.btn-library {
+	@include size(px2rem(40), px2rem(35));
+
+	@extend .bg-lightness-grayish-blue;
+
+	padding: px2rem(2) 0 0 0;
+	margin-left: px2rem(7);
+
+	border-radius: px2rem(5);
+
+	&:hover {
+		background-color: $darkness-blue;
+
+		.icon-tpIcons02-07,
+		.icon-tpIcons02-05,
+		.icon-tpIcons02-06 {
+			@extend .white;
+		}
+	}
+
+	&:active,
+	&:focus,
+	&:visited {
+		@extend .bg-lightness-grayish-blue;
+
+		span {
+			@extend .cl-very-dark-grayish-blue;
+		}
+	}
+}
+
+.btn-save-search {}
+
+.btn-excel {}
+
+.btn-print {}
+
+
+/*-----------------------------------------------------------*/
+/*------------- button 'add' --------------*/
+.btn-add {
+	@include square(px2rem(35));
+
+	@extend .f-24;
+	@extend .bg-lightness-grayish-blue;
+
+	padding-top: 0;
+
+	line-height: px2rem(26);
+	color: $black;
+
+	border-radius: 100%;
+	border-color: transparent;
+	border: none;
+
+	&:focus {
+		outline: -webkit-focus-ring-color auto 0px;
+	}
+}
+
+/*-----------------------------------------------------------*/
+/*------------- button 'close' ----------------*/
+.btn-close {
+	@extend .bg-transparent;
+
+	border: none;
+	padding: 0;
+
+	&:focus {
+		outline: -webkit-focus-ring-color auto 0px;
+	}
+}
+
+/*-----------------------------------------------------------*/
+/*------------- button 'network' ----------------*/
+.btn-network {
+	@extend .bg-lightness-grayish-blue;
+}
+
+/*-----------------------------------------------------------*/
+/*------------- button 'cancel' and 'ok' ----------------*/
+.btn-cancel,
+.btn-ok {
+	@extend .btn-nomal-xs;
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .white;
+
+	padding: 0;
+	line-height: px2rem(25);
+
+	&:hover {
+		@extend .white;
+	}
+
+}
+
+.btn-cancel {
+	@extend .bg-darken-grayish-blue;
+}
+
+.btn-ok {
+	@extend .bg-mostly-pure;
+}
+
+
+/*----------- btn-add-parking ------------------*/
+.btn-add-parking {
+	@include size(px2rem(130), px2rem(35));
+
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .cl-mostly-pure;
+
+	line-height: px2rem(35);
+
+	margin-right: px2rem(16);
+	padding: 0;
+}
+
+
+/*----------- btn-close modal ------------------*/
+.btn-close-modal {
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .btn-medium-sm;
+	@extend .cl-mostly-pure;
+
+	.closed {
+		padding-right: px2rem(12);
+	}
+}
+
+/*------------- btn clear -----------------*/
+.btn-clear {
+	@include size(px2rem(65), px2rem(25));
+	@include rem-calc(margin-top margin-right, 10);
+
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .float-right;
+	@extend .cl-mostly-pure;
+
+	padding: 0;
+	
+	border-radius: px2rem(4);
+	border-color: transparent;
+
+	line-height: px2rem(25);
+}
+
+/*------------- btn view -----------------*/
+.btn-view {
+	@extend .btn-medium-xs;
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .cl-mostly-pure;
+
+	line-height: px2rem(25);
+
+	padding: 0;
+}
+
+/*------------- btn find -----------------*/
+.btn-find {
+	@extend .btn-small-sm;
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .float-left;
+	@extend .cl-mostly-pure;
+
+	line-height: px2rem(25);
+
+	padding: 0;
+	margin-top: px2rem(12);
+}
+
+.btn-instruction {
+	@extend .btn-nomal-xs;
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+
+	padding: 0;
+}
+
+
+.btn-view-system-compare {
+	@include size(px2rem(157), px2rem(35));
+
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .cl-mostly-pure;
+
+	padding: 0;
+}
+
+/* btn create user*/
+.btn-create-user {
+	@include size(px2rem(82), px2rem(25));
+	@include rem-calc(line-height, 25);
+	
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .white;
+	@extend .bg-mostly-pure;
+
+	padding: 0;
+}
+
+/* btn reset password*/
+.btn-reset-password {
+	@include size(px2rem(114), px2rem(25));
+	@include rem-calc(line-height, 25);
+	
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .white;
+	@extend .bg-white;
+	@extend .cl-mostly-pure;
+
+	padding: 0;
+}
+
+/*------------- button size -----------------*/
+/* button 60-25 */
+.btn-very-small-xs {
+	@include size(px2rem(60), px2rem(25));
+}
+/* button 62-25 */
+.btn-small-xs {
+	@include size(px2rem(62), px2rem(25));
+}
+
+/* button 63-25 */
+.btn-small-sm {
+	@include size(px2rem(63), px2rem(25));
+}
+
+/* button 64-25 */
+.btn-small-md {
+	@include size(px2rem(64), px2rem(25));
+}
+
+/* button 70-25 */
+.btn-nomal-xs {
+	@include size(px2rem(70), px2rem(25));
+}
+
+/* button 72-25 */
+.btn-nomal-sm {
+	@include size(px2rem(72), px2rem(25));
+}
+
+/* button 74-25 */
+.btn-nomal-md {
+	@include size(px2rem(74), px2rem(25));
+}
+
+/* button 80-25 */
+.btn-medium-xs {
+	@include size(px2rem(80), px2rem(25));
+}
+
+/* button 82-35 */
+.btn-medium-sm {
+	@include size(px2rem(82), px2rem(35));
+}
+
+/* button 129-35 */
+.btn-large-xs {
+	@include size(px2rem(129), px2rem(35));
+}
+
+/* button 154-35 */
+.btn-large-sm {
+	@include size(px2rem(154), px2rem(35));
+}
+
+/* button 189-35 */
+.btn-large-md {
+	@include size(px2rem(189), px2rem(35));
+}
+
+/* button 190-35 */
+.btn-large-lg {
+	@include size(px2rem(190), px2rem(35));
+}

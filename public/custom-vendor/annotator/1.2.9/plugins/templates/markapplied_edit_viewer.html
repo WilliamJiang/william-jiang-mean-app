@@ -1,0 +1,136 @@
+<li class='annotator-item annotator-radio-fields'>
+	<div>
+	<!-- if else start -->
+		<% if (isMarked) { %>
+			<h4 class="category-name margin-bt-12">Applied</h4>
+			<!-- if else start -->
+			<% if (isViewer) { %>			
+				<div class="user-date">
+					<p class="annotation-author"><%=createdUser%></p>
+					<p class="annotation-date"><%=createdDate%></p>
+				</div>
+				<div class="wrap-comment">
+					<p><span class="bold-label">Deal #(s):</span> <%=fldDealIDs%></p>
+				</div>
+				<div class="wrap-comment">
+					<p><%=readOnlyAnnotationText%></p>
+				</div>
+				<!-- if start -->
+				<% if (fldsArray) { %>			
+					<% fldsArray.forEach(function (val) { %>
+					<div class="sub-title-container">
+						<h6 class='sub-title'><%=val.name%> </h6> 
+						<p class="annotation-author"><%=val.user%></p>
+						<p class="annotation-date"><%=val.date%></p>
+					</div>
+					<div class="wrap-comment">
+						<p><%=val.comments%></p>
+					</div>
+				<% }); } %>
+				<!-- if end -->
+				<!-- if start -->
+				<% if(!isEndDated) { %>	
+					<div class="wrap-checkbox">
+						<input id='<%=markEndDatedOnViewerID%>' type='checkbox' value=''> 
+						<label for='<%=markEndDatedOnViewerID%>' class='cat-checkbox'>Mark as End Dated</label>
+					</div>
+			    <% } %>
+			    <!-- if end -->
+			    <!-- if start -->
+				<% if (!isReviewed) { %>
+					<div class="wrap-checkbox">
+						<input id='<%=markReviewedOnViewerID%>' type='checkbox' value=''> 
+						<label for='<%=markReviewedOnViewerID%>' class='cat-checkbox'>Mark as Reviewed</label>
+					</div>
+			    <% } %>
+			    <!-- if end -->
+			    <!-- if start -->
+				<% if ((!fldMarkEndDateReviewedUser && !fldMarkEndDateReviewedTime) && isEndDateNotReviewed) { %>
+					<div style="margin-top: 10px">
+						<input id='<%=markEndDateReviewedOnViewerID%>' type='checkbox' value='' class='cat-cb-label'> 
+						<label for='<%=markEndDateReviewedOnViewerID%>' class='cat-checkbox'>Review End Date</label>
+					</div>
+			    <% } %>
+			    <!-- if end -->
+			<% } else { %>
+				<!-- if else start -->
+				<% if(!isEndDated && !isEndDatedOnViewer && !isReviewed && !isReviewedOnViewer) { %>	
+					<div class="deal-label">
+						<label class='cat-read-label'>Deal #(s):</label>
+						<input type='text' id='<%=dealIDsID%>' placeholder='Enter Deal IDs separated by a comma...' class='cat-read-text'>
+					</div>
+					<div class="wrap-textarea">
+							<textarea rows='2' id='<%=annotationTextID%>' placeholder='Comments ...' class='cat-read-text'><%=annotationText%></textarea>
+					</div>
+				<% } else { %>
+					<div class="user-date">
+						<p class="annotation-author"><%=createdUser%></p>
+						<p class="annotation-date"><%=createdDate%></p>
+					</div>	
+					<div class="wrap-comment">
+						<p><span class="bold-label">Deal #(s):</span> <%=fldDealIDs%></p>
+					</div>
+				   <div class="wrap-comment">
+						<p><%=readOnlyAnnotationText%></p>
+				   </div>
+					<!-- if start -->	
+					<% if (fldsArray) { %>
+						<% fldsArray.forEach(function (val) { %>
+						<div class="sub-title-container">
+							<h6 class='sub-title'><%=val.name%> </h6>
+							<p class="annotation-author"><%=val.user%></p>
+							<p class="annotation-date"><%=val.date%></p>
+						</div>
+					<% }); } %>
+					<!-- if end -->
+					<!-- if start -->
+					<% if((isEndDated && !reviewedOnEditor && !endDateReviewedOnEditor && !isReviewedOnViewer && !isEndDateReviewedOnViewer)|| isEndDatedOnViewer) { %>	
+						<div class="wrap-checkbox">
+							<input id='<%=markEndDatedID%>' type='checkbox' value=''> 
+							<label for='<%=markEndDatedID%>' class='cat-checkbox'>Mark as End Dated</label>
+						</div>		
+						<div class="wrap-textarea">
+							<textarea rows='2' id='<%=markEndDatedCommentsID%>' placeholder='(Optional) Comments ...' class='cat-read-text'><%=fldMarkEndDatedComments%></textarea>
+						</div>
+					<% } %>
+					<!-- if end -->
+					<!-- if start -->
+					<% if ((isReviewed && !endDatedOnEditor && !endDateReviewedOnEditor && !isEndDatedOnViewer && !isEndDateReviewedOnViewer)|| isReviewedOnViewer) { %>
+						<div class="wrap-checkbox">
+							<input id='<%=markReviewedID%>' type='checkbox' value=''> 
+							<label for='<%=markReviewedID%>' class='cat-checkbox'>Mark as Reviewed</label>
+						</div>
+						<div class="wrap-textarea">
+							<textarea rows='2' id='<%=markReviewedCommentsID%>' placeholder='(Optional) Comments ...' class='cat-read-text'><%=fldMarkReviewedComments%></textarea>
+						</div>
+			        <% } %>
+			        <!-- if end -->
+			        <!-- if start -->
+					<% if ((isEndDateReviewed && !endDatedOnEditor && !reviewedOnEditor && !isEndDatedOnViewer && !isReviewedOnViewer)|| isEndDateReviewedOnViewer) { %>
+						<div class="wrap-checkbox">
+							<input id='<%=markEndDateReviewedID%>' type='checkbox' value=''> 
+							<label for='<%=markEndDateReviewedID%>' class='cat-checkbox'>Review End Date</label>
+						</div>
+						<div class="wrap-textarea">
+							<textarea rows='2' id='<%=markEndDateReviewedCommentsID%>' placeholder='(Optional) Comments ...' class='cat-read-text'><%=fldMarkEndDateReviewedComments%></textarea>
+						</div>
+				    <% } %>
+				    <!-- if end -->
+			    <% } %>	
+			     <!-- if else end -->	   
+			<% } %>		
+			 <!-- if else end-->
+	
+		<% } else { %> 
+			<div class="deal-label">
+				<label class='cat-read-label'>Deal #(s):</label>
+				<input type='text' id='<%=dealIDsID%>' class='cat-read-text'>
+			</div>
+			<div class="wrap-textarea">
+				<textarea rows='2' id='<%=annotationTextID%>' placeholder='Comments ...' value='<%=annotationText%>' class='cat-read-text'></textarea>
+			</div>
+	
+		<% } %>
+		<!-- if else end-->
+	</div>
+</li>

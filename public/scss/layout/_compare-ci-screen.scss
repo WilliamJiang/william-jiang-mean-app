@@ -1,0 +1,203 @@
+.compare-ci-screen.modal {
+	z-index: 9999999;
+
+	.modal-dialog {
+		width: 100%;
+
+		min-width: px2rem(1280);
+		max-width: px2rem(1500);
+		
+		margin: 0 auto;
+	}
+}
+
+.compare-ci-screen {
+	z-index: 9999999;
+
+	.modal-dialog {
+		width: 100%;
+		min-width: px2rem(1280);
+		
+		margin: 0 auto;
+	}
+
+	.modal-content {
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		-o-box-shadow: none;
+		box-shadow: none;
+	}
+}
+
+.compare-ci-screen {
+
+	.annotation.collapsed {
+		@include size(px2rem(30), px2rem(629));
+		@include rem-calc(right, -30);
+
+		@extend .float-right;
+		@extend .bg-lightness-grayish-blue;
+
+		border-left: 1px solid #c2c7cd;
+
+		.annotation-collapse {
+			@include rem-calc(width, 30);
+
+			border-left: 1px solid #c2c7cd;
+		}
+
+		.label-collapse {
+			@include rem-calc(right, -124);
+		}
+	}
+
+	.revision-content {
+		@include rem-calc(min-width, 570);
+
+		@extend .float-left;
+		@extend .bg-white;
+		// width: percentage(570 / 610);
+	}
+
+	.pdf-placeholder {
+		@include size(100%, 100%);
+	}
+
+	.annotation {
+		@include size(px2rem(276), px2rem(627));
+		@include rem-calc(right, -30);
+
+		@extend .absolute;
+		@extend .bg-light-grayish-blue;
+
+		z-index: 9999;
+		border-left: 1px solid #c2c7cd;
+		background-blend-mode: multiply;
+
+		-webkit-box-shadow: 0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+		-moz-box-shadow:    0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+		box-shadow:         0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+	}
+}
+
+.ci-compare-header {
+	@include rem-calc(padding-left padding-right, 20);
+
+	// @extend .bg-light-grayish-blue;
+	@extend .overflow-hidden;
+	@extend .bg-very-dark-blue;
+
+	width: 100%;
+
+	.label-compare-header {
+		@include rem-calc(padding-top padding-bottom, 30);
+		@include rem-calc(line-height, 13);
+
+		@extend .float-left;
+
+		.label-header {
+			@extend .f-18;
+			@extend .font-Lato-Bold;
+			@extend .white;
+			// @extend .cl-very-dark-grayish-blue;
+		}
+	}
+	.group-buttons {
+		@extend .float-right;
+
+		@include rem-calc(margin-top, 20);
+
+		.btn-view-system-compare {
+			@include rem-calc(margin-right, 10);
+		}
+
+		.btn-close-modal {
+			@extend .bg-mostly-pure;
+			@extend .white;
+		}
+	}
+}
+
+.ci-document-container {
+	@include rem-calc(padding-left padding-right, 20);
+	@include rem-calc(padding-top, 10);
+
+	@extend .bg-darken-grayish-blue;
+	@extend .clear-both;
+	@extend .overflow-hidden ;
+
+	width: 100%;
+	
+	.revision-meta {
+		@include rem-calc(padding-bottom, 12);
+	}
+
+	.group-action {
+		@include rem-calc(padding-right, 20);
+
+		.group-btn-zoom,
+		.group-btn-zoom-wrapper {
+
+			@extend .float-right;
+
+			width: auto;
+		}
+
+		.buttons-fit {
+			@include rem-calc(margin-left, 14);
+		}
+	}
+
+	.notes {
+		.label-info {
+			width: px2rem(301);
+
+			padding-right: 0;
+			padding-left: px2rem(5);
+
+			&:hover {
+				background-color: transparent;
+				border: 1px dashed transparent;
+	
+				.edit {
+					display: none !important;
+				}
+			}
+		}
+
+		p {
+			@include rem-calc(line-height, 17);
+		}
+
+		.label-name {
+			@include rem-calc(margin-top, 6);
+		}
+	}
+
+	.time-sender {
+		@include rem-calc(margin-left, 15);
+
+		.flight-date .start-date {
+			@include rem-calc(margin-left, 5);
+		}
+		
+		.received .start-date {
+			@include rem-calc(margin-left, 20);
+		}
+	}
+}
+
+.ci-document-container-first {
+	@extend .float-left;
+	@extend .relative;
+	// @extend .overflow-hidden;
+	
+	// width: percentage(610 / 1240);
+}
+
+.ci-document-container-second {
+	@include rem-calc(margin-left, 65);
+	@extend .relative;
+	// @extend .overflow-hidden;
+	@extend .float-left;
+}

@@ -1,0 +1,68 @@
+<div class="modal-content">
+    <div class="modal-title">Edit Meta Data</div>
+    <!--<form name="metadataForm">-->
+        <div class="modal-body">
+            <ul class="filter-list list-inline">
+                <!--NETWORK READONLY-->
+                <li class="filter-item">
+                    <div class="filter-title">Network</div>
+                    <div class="dropdown">
+                        <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown btn-rollover btn-network">{{ci.network}}
+                        </button>
+                    </div>
+                </li>
+                <!--ADVERTISER-->
+                <li class="filter-item dropdown-advertiser">
+                    <div class="filter-title">Advertiser<span class="optional required">(required)</span></div>
+                    <div class="dropdown" tooltip-append-to-body="true" tooltip="{{ ci.advertiser }}">
+                        <input type="text" id="advertiser" name="advertiser" ng-required="true" ng-change="onChangeAdvertiser()" placeholder="Type for advertisers"
+                               ng-model="ci.advertiser" typeahead-editable="false" typeahead="advertiser.advertiser for advertiser in getAdvertisers($viewValue)"
+                               typeahead-loading="loadingIcon" typeahead-on-select='onSelectAdvertiser($item, $model, $label)' class="form-control metadata-typeahead">
+                    </div>
+                </li>
+                <!--AIR DATES-->
+                <li class="filter-item">
+                    <div class="filter-title">Air Dates<span class="optional required">(required)</span></div>
+                    <date-range-select id="date-range-airdates" ng-required="true"></date-range-select>
+                </li>
+                <!--TYPE-->
+                <li class="filter-item">
+                    <div class="filter-title">Type<span class="optional required">(required)</span></div>
+                    <div class="dropdown">
+                        <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown btn-rollover">
+                            {{ selectedType.label }}
+                            <span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu">
+                            <li role="presentation" ng-repeat="type in types">
+                                <a href role="menu-item" ng-click="onChangeType(type)">{{::type.label}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--BRAND-->
+                <li class="filter-item dropdown-brand">
+                    <div class="filter-title">Brand<span class="optional required" ng-show="files_by_brand">(required)</span><span class="optional" ng-hide="files_by_brand">(optional)</span></div>
+                    <div class="dropdown" tooltip-append-to-body="true" tooltip="{{ ci.brand }}">
+                        <input type="text" id="brand" name="brand" placeholder="Type for brands" class="form-control metadata-typeahead"
+                               ng-model="ci.brand" ng-disabled="disableBrand" typeahead-editable="false" ng-required="files_by_brand" ng-change="onChangeBrand()"
+                               typeahead="brand.name for brand in brands | filter:$viewValue" typeahead-on-select='onSelectBrand($item, $model, $label)'>
+                    </div>
+                </li>
+                <!--PROGRAM-->
+                <li class="filter-item">
+                    <div class="filter-title">Program<span class="optional required" ng-show="files_by_program">(required)</span><span class="optional" ng-hide="files_by_program">(optional)</span>
+                    </div>
+                    <div class="dropdown" tooltip-append-to-body="true" tooltip="{{ ci.program }}">
+                        <input type="text" id="program" name="program" placeholder="Type for programs" class="form-control metadata-typeahead"
+                               ng-model="ci.program" typeahead-editable="true" ng-required="files_by_program" ng-change="onChangeProgram()"
+                               typeahead="program.name for program in programs | filter:$viewValue" typeahead-on-select='onSelectProgram($item, $model, $label)'>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-cancel" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-ok" ng-disabled="!isMetadataValid() || OKbuttonClicked" ng-click="ok()">OK</button>
+        </div>
+    <!--</form>-->
+</div>

@@ -1,0 +1,514 @@
+/*!
+ * Stylesheet for the Date Range Picker, for use with Bootstrap 3.x
+ *
+ * Copyright 2013-2015 Dan Grossman ( http://www.dangrossman.info )
+ * Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license.php
+ *
+ * Built for http://www.improvely.com
+ */
+
+.daterangepicker.dropdown-menu {
+	max-width: none !important;
+	z-index: 3000 !important;
+	background-color: #ecf0f4 !important;
+	padding: 15px !important;
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+
+.daterangepicker.opensleft .ranges, .daterangepicker.opensleft .calendar {
+	float: left;
+	margin: 4px !important;
+}
+
+.daterangepicker.opensright .ranges, .daterangepicker.opensright .calendar,
+.daterangepicker.openscenter .ranges, .daterangepicker.openscenter .calendar {
+	float: right;
+	margin: 0 !important;
+	float: left;
+}
+
+.daterangepicker.single .ranges, .daterangepicker.single .calendar {
+	float: none !important;
+}
+
+.daterangepicker .ranges {
+	text-align: left !important;
+}
+
+.daterangepicker .ranges .range_inputs>div {
+	float: left !important;
+}
+
+.daterangepicker .ranges .range_inputs>div:nth-child(2) {
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+}
+
+.daterangepicker .calendar {
+	display: none !important;
+	max-width: 270px !important;
+}
+
+.daterangepicker.show-calendar .calendar {
+	display: block !important;
+	margin-top: 15px !important;
+}
+
+.daterangepicker .calendar.single .calendar-date {
+	border: none !important;
+}
+
+.daterangepicker .calendar th, .daterangepicker .calendar td {
+	white-space: nowrap !important;
+	text-align: center !important;
+	min-width: 25px !important;
+}
+
+.daterangepicker .daterangepicker_start_input label,
+.daterangepicker .daterangepicker_end_input label {
+	color: #485662 !important;
+	display: block !important;
+	font-size: 12px !important;
+	font-family: "Lato-Regular";
+	margin-bottom: 6px !important;
+	line-height: 8px !important;
+}
+
+.daterangepicker .ranges input {
+	font-size: 11px !important;
+}
+
+.daterangepicker .ranges .input-mini {
+	border: 1px solid #c9cfd4 !important;
+	border-radius: 4px !important;
+	color: #86929a !important;
+	display: block !important;
+	font-size: 14px;
+	font-family: "Lato-Regular";
+	height: 30px !important;
+	vertical-align: middle !important;
+	margin: 0 0 15px 0 !important;
+	width: 98px !important;
+	text-align: left !important;
+	padding-left: 6px !important;
+}
+
+.daterangepicker .ranges ul {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	clear: both !important;
+}
+
+.daterangepicker .ranges li {
+	font-size: 13px !important;
+	color: #00b1eb !important;
+	line-height: 10px !important;
+	font-family: "Lato-Bold";
+	margin-bottom: 14px !important;
+	cursor: pointer !important;
+}
+
+.daterangepicker .calendar-date {
+	border: 1px solid #c2c8cd !important;
+	border-radius: 4px !important;
+	position: relative;
+	z-index: 0 !important;
+	background: #fff !important;
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	padding-bottom: 8px !important;
+	padding-top: 8px !important;
+}
+
+
+.daterangepicker .calendar-time {
+	text-align: center !important;
+	margin: 8px auto 0 auto !important;
+	line-height: 30px !important;
+}
+
+.daterangepicker {
+	position: absolute;
+	background: #fff !important;
+	top: 100px;
+	left: 20px;
+	padding: 0 !important;
+	margin-top: 1px !important;
+	-webkit-border-radius: 4px !important;
+	-moz-border-radius: 4px !important;
+	border-radius: 4px !important;
+}
+
+.daterangepicker td, .daterangepicker th {
+	text-align: center !important;
+	width: 28px !important;
+	height: 25px !important;
+	-webkit-border-radius: 4px !important;
+	-moz-border-radius: 4px !important;
+	border-radius: 4px !important;
+	cursor: pointer !important;
+	white-space: nowrap !important;
+}
+
+.daterangepicker td.off {
+	color: #999 !important;
+}
+
+.daterangepicker td.disabled, .daterangepicker option.disabled {
+	color: #999 !important;
+}
+
+.daterangepicker td.available:hover, .daterangepicker th.available:hover {
+	background: #eee !important;
+}
+
+.daterangepicker td.end-date {
+	-webkit-border-radius: 0 4px 4px 0 !important;
+	-moz-border-radius: 0 4px 4px 0 !important;
+	border-radius: 0 4px 4px 0 !important;
+}
+
+.daterangepicker td.start-date {
+	-webkit-border-radius: 4px 0 0 4px !important;
+	-moz-border-radius: 4px 0 0 4px !important;
+	border-radius: 4px 0 0 4px !important;
+}
+
+.daterangepicker td.start-date.end-date {
+	-webkit-border-radius: 4px !important;
+	-moz-border-radius: 4px !important;
+	border-radius: 4px !important;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+	background-color: #00b1eb !important;
+	border-color: #00b1eb !important;
+	color: #fff !important;
+}
+
+.daterangepicker td.week, .daterangepicker th.week {
+	font-size: 80% !important;
+	color: #ccc !important;
+}
+
+.daterangepicker select.monthselect, .daterangepicker select.yearselect {
+	font-size: 12px !important;
+	padding: 1px !important;
+	height: auto !important;
+	margin: 0 !important;
+	cursor: default !important;
+}
+
+.daterangepicker select.monthselect {
+	margin-right: 2% !important;
+	width: 56% !important;
+}
+
+.daterangepicker select.yearselect {
+	width: 40% !important;
+}
+
+.daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.secondselect, .daterangepicker select.ampmselect {
+	width: 50px !important;
+	margin-bottom: 0 !important;
+}
+
+.daterangepicker_start_input {
+	float: left !important;
+}
+
+.daterangepicker_end_input {
+	float: left !important;
+	padding-left: 9px
+}
+
+.daterangepicker th.month {
+	width: auto !important;
+}
+
+/* AgilityIO change style to correct with design */
+/* Button */
+.control-group {
+	text-align: right !important;
+	padding-top: 248px !important;
+}
+
+.cancelBtn {
+	width: 60px !important;
+	height: 25px !important;
+	line-height: 25px !important;
+	padding: 0 !important;
+	font-family: "Lato-Bold";
+	color: #00b1eb !important;
+    background-color: #fff!important;
+}
+.cancel2Btn {
+    width: 60px !important;
+    height: 25px !important;
+    line-height: 25px !important;
+    padding: 0 !important;
+    font-family: "Lato-Bold";
+    color: #fff !important;
+    background-color: #899aa8 !important;
+}
+.cancelBtn:hover .cancel2Btn:hover {
+	color: #00b1eb !important;
+	background-color: #fff !important;
+}
+
+.applyBtn {
+	width: 60px !important;
+	height: 25px !important;
+	line-height: 25px !important;
+    color: #fff !important;
+	background-color: #00b1eb !important;
+	padding: 0 !important;
+	font-family: "Lato-Bold";
+	margin-left: 10px !important;
+	margin-right: -4px !important;
+}
+.toggleBtn {
+	width: 170px !important;
+	height: 25px !important;
+	line-height: 25px !important;
+	background-color: #00b1eb !important;
+	padding: 0 !important;
+	font-family: "Lato-Bold" !important;
+	color: #f5f5f5;
+	margin-left: 10px !important;
+	margin-right: 530px !important;
+}
+.applyBtn:hover {
+	background-color: #00b1eb !important;
+}
+
+/*.calendar.first.right {
+	float: right !important;
+}
+*/
+
+.calendar.second.left {
+	margin-right: 10px !important;
+}
+
+.available {
+	color: #485662 !important;
+}
+
+.daterangepicker td.active {
+	background: #00b1eb !important;
+}
+
+.daterangepicker td.active.start-date {
+	position: relative;
+	border-bottom-right-radius: 4px !important;
+	border-bottom-left-radius: 0 !important;
+	overflow: visible !important;
+}
+
+.daterangepicker td.active.start-date::before {
+	content:"aaa" !important;
+	width: 30px !important;
+	height: 25px !important;
+	background: #62d6fc !important;
+	position: absolute;
+	z-index: -1 !important;
+	top: 0 !important;
+	right: 0 !important;
+	text-indent: -9999999999999px !important;
+	border-top-left-radius: 10px !important;
+	border-bottom-left-radius: 10px !important;
+}
+
+.daterangepicker td.active.end-date {
+	border-top-left-radius: 4px !important;
+	border-top-right-radius: 0 !important;
+	position: relative;
+}
+.daterangepicker td.active.end-date::before {
+	content:"aaa" !important;
+	width: 30px !important;
+	height: 25px !important;
+	background: #62d6fc !important;
+	position: absolute;
+	z-index: -1 !important;
+	top: 0 !important;
+	right: 10px !important;
+	text-indent: -9999999999999px !important;
+	border-top-left-radius: 10px !important;
+	border-bottom-left-radius: 10px !important;
+	border-top-right-radius: 0 !important;
+}
+
+.daterangepicker td:first-child.active.start-date {
+	border-bottom-left-radius: 0 !important;
+}
+.daterangepicker td:last-child.active.start-date {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+	border-top-left-radius: 4px !important;
+	border-top-right-radius: 4px !important;
+}
+
+.daterangepicker td:last-child.active.end-date {
+	/*border-top-right-radius: 0 !important;*/
+}
+.available.active.start-date.end-date {
+	left: 0 !important;
+	overflow: hidden !important;
+}
+.daterangepicker .calendar th {
+	color: #485662 !important;
+	font-family: "Lato-Bold";
+	font-size: 16px !important;
+}
+
+.daterangepicker .calendar thead tr:last-child th {
+	font-family: "Lato-Black";
+	font-size: 14px !important;
+	width: 30px !important;
+}
+
+.daterangepicker .calendar td {
+	font-family: "Lato-Regular";
+	font-size: 14px !important;
+	color: #485662 !important;
+}
+
+.daterangepicker td.off {
+	font-family: "Lato-Regular";
+	font-size: 14px !important;
+	color: #86929a !important;
+}
+
+.daterangepicker td.in-range {
+	background: #62d6fc !important;
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+}
+
+.daterangepicker td.active {
+	color: #fff !important;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > th,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > th,
+.table-condensed > tfoot > tr > td {
+	padding: 0 !important;
+}
+
+.daterangepicker .calendar th.prev {
+	text-align: left !important;
+}
+.daterangepicker .calendar th.prev:hover {
+	background-color: #fff !important;
+}
+
+.daterangepicker .calendar th.next {
+	text-align: right !important;
+}
+.daterangepicker .calendar th.next:hover {
+	background-color: #fff !important;
+}
+
+.glyphicon {
+	line-height: 15px !important;
+	top: 2px !important;
+}
+
+.glyphicon-chevron-left {
+	padding-left: 4px !important;
+}
+
+.glyphicon-chevron-right {
+	padding-right: 4px !important;
+}
+
+.available.active.start-date {
+
+}
+
+.daterangepicker td.week, .daterangepicker th.week {
+	color: #808080 !important;
+}
+
+/*********** AgilityIO: support class to import *************/
+
+/* AgilityIO: add '.last-child' class change style when start-date in last-child of row*/
+.daterangepicker td.active.start-date.last-child::before {
+	background-color: transparent !important;
+}
+
+/* AgilityIO: add '.first-child' class change style when end-date in first-child of row*/
+.daterangepicker td.active.end-date.first-child {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 4px !important;
+}
+
+.daterangepicker td.active.end-date.first-child::before {
+	background-color: transparent !important;
+}
+
+/* AgilityIO: add '.top-left-corner' class to border top-left-corner in when date in range*/
+.daterangepicker td.in-range.top-left-corner {
+	border-top-left-radius: 4px !important;
+}
+
+/* AgilityIO: add '.top-right-corner' class to border top-right-corner in when date in range*/
+.daterangepicker td.in-range.top-right-corner {
+	border-top-right-radius: 4px !important;
+}
+
+/* AgilityIO: add '.bottom-left-corner' class to border bottom-left-corner in when date in range*/
+.daterangepicker td.in-range.bottom-left-corner {
+	border-bottom-left-radius: 4px !important;
+}
+
+/* AgilityIO: add '.bottom-right-corner' class to border bottom-right-corner in when date in range*/
+.daterangepicker td.in-range.bottom-right-corner {
+	border-bottom-right-radius: 4px !important;
+}
+
+
+
+
+/*START: TB Overrides - these are needed due to priority of styles defined in other libraries in the app*/
+.daterangepicker .calendar th {
+	background-color: rgb(255, 255, 255)  !important;
+}
+.daterangepicker .cancelBtn {
+	line-height: 25px !important;
+	color: #00b1eb !important;
+	padding: 0 !important;
+}
+.daterangepicker .applyBtn {
+	line-height: 25px !important;
+	background-color: #00b1eb !important;
+	padding: 0 !important;
+}
+.daterangepicker td, .daterangepicker th {
+	cursor: default !important;
+}
+.daterangepicker td,
+.daterangepicker .calendar th.prev,
+.daterangepicker .calendar th.next {
+	cursor: pointer !important;
+}
+.daterangepicker td.week,
+.daterangepicker th.week {
+	font-size: 12px !important;
+	font-style: italic !important;
+	color: rgb(182, 182, 182) !important;
+}
+.daterangepicker .ranges .input-mini {
+	font-size: 12px !important;
+	text-align: left !important;
+	padding-left: 6px !important;
+}
+/*END: TB Overrides*/

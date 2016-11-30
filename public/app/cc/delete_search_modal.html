@@ -1,0 +1,16 @@
+<div class="modal-content pop-up save-search-modal">
+    <div class="pop-up-header">
+        <h2 class="pop-up-title">Delete Search</h2>
+    </div>
+    <div class="pop-up-content clearfix">
+        <div class="search-result">
+            <p class="rerult-label delete-result-label">Please confirm that you would like to delete:</p>
+
+            <p class="delete-item">{{payload.searchName}}</p>
+        </div>
+        <div class="wrap-button clearfix">
+            <button type="button" data-dismiss="modal" class="btn btn-cancel-save btn-rollover" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-ok-save btn-rollover" ng-click="ok(saveSearchForm)" ng-disabled="saveSearchForm.$invalid">OK</button>
+        </div>
+    </div>
+</div>

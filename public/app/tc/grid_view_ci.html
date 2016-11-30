@@ -1,0 +1,36 @@
+<!-- AgilityIO guide: add ".pendding-revision" class to enable ci in progress with conditions: Potential revision, Stuck and Matched-->
+<!-- AgilityIO guide: add ".confirmed-revision" class to enable ci in progress with conditions: Potential revision, Stuck-->
+<!-- AgilityIO guide: add ".highlight" class to enable ci active mode in progress when "All Advertiser" list is selected-->
+<!--<div class="ci" ng-click="gotoCI(ci)" ng-controller="CopyCoordinatorCICtrl" ng-class="{'confirmed-revision': ci.possible_revision, 'pendding-revision': ci.pending_revision }">-->
+<div class="ci-status"></div>
+<div class="wrapper-info">
+  <div class="advertiser-info text-uppercase" tooltip-append-to-body="true" tooltip="{{ (ci.advertiser|uppercase) || (ci.ingest.metadata.advertiser|uppercase) || '---' }}">
+    <!-- AgilityIO guide: add ".is-email" class to lowercase email sender-->
+    <div class="advertiser-network">
+      <div class="advertiser-name">{{ ci.advertiser || ci.ingest.metadata.advertiser || '---' | characters:14:true }}</div>
+    </div>
+    <div class="advertiser-brand">{{ ci.brand || ci.ingest.metadata.brand || '---' | characters:14:true }}</div>
+  </div>
+  <div class="program">
+    <div class="program-name">{{ ci.program || ci.ingest.metadata.program || '---' | characters:14:true }}</div>
+    <div class="network-flight-dates">
+      <time ng-click="getCIId(ci,0)" class="start-date">{{ ci.air_date_start || ci.ingest.metadata.air_date_start | amDateFormat:'MM/DD/YYYY' }}</time>
+      <span class="dash"> - </span>
+      <time class="end-date">{{ ci.air_date_end || ci.ingest.metadata.air_date_end | amDateFormat:'MM/DD/YYYY' }}</time>
+    </div>
+  </div>
+</div>
+<div class="type">{{ (ci.type || '' | nameFromKey) || (ci.ingest.metadata.type || '' | nameFromKey) || '---' }}</div>
+<div class="owner">{{ ci.owner || '---' }}</div>
+<!-- AgilityIO guide: add ".active" class to enable menu active mode-->
+<div class="condition">
+  <a href="javascript:void(0)" class="indicator icons-stuck" ng-class="{'active': ci.stuck}"></a>
+  <a href="javascript:void(0)" class="indicator icons-match" ng-class="{'active': ci.uninstructed_match}"></a>
+  <!--This is temporary!-->
+  <button type="button" class="btn btn-default btn-xs" ng-click="openCIModal($event, ci)" ng-hide="(ci.status === 'delivered' || ci.possible_revision)">
+    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+  </button>
+  <!--<a href="javascript:void(0)" class="indicator icons-message" ng-class="{'active': ci.has_new_messages}"></a>-->
+  <div class="status">{{ ci.status | nameFromKey }}</div>
+</div>
+<!--</div>-->

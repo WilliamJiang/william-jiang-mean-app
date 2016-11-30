@@ -1,0 +1,29 @@
+.pagination > .active > a, 
+.pagination > .active > a:hover, 
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+	@extend .white;
+	@extend .bg-very-dark-blue;
+
+	z-index: 2;
+	cursor: default;
+}
+
+.pagination > .active > a:focus:hover {
+	@extend .white;
+}
+
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+	@extend .bg-transparent;
+
+	color: #777777;
+	border-color: transparent;
+	cursor: not-allowed;
+}

@@ -1,0 +1,93 @@
+/* color variables */
+$black:															#000;
+
+$dark-blue:													#004f7b;
+$darkness-blue:											#004576;
+$darken-blue:												#096fa7;
+$dark-grayish-blue:									#86929a;
+$darkness-grayish-blue:							#66737c;
+$darken-grayish-blue:								#899aa8;
+$dark-ness-grayish-blue:						#71767a;
+$dark-pink:													#ae045e;
+$dark-cyan-green:                   #00a651;
+
+$light-gray:												#c1c1c1;
+$light-grayish-blue:								#d5dbe1;
+$light-grayish-blueness:						#ececf2;
+$light-grayish-cyan:                #e4e5e5;
+$lighten-grayish-blue:							#d6dce1;
+$lightness-grayish-blue:						#ecf0f4;
+$lighting-grayish-blue:							#f5f7f9;
+
+
+$mostly-pure:												#00b1eb;
+$mostly-black-blue:									#001b30;
+$mostly-pure-orange:								#f5b300;
+$mostly-soft-blue:									#8f83fc;
+
+$soft-blue:													#8c80f7;
+$soft-cyan:													#6ed0f0;
+$soften-cyan:												#62d6fc;
+$strong-pink:												#cc026d;
+
+$pure-cyan:                 				#00a9e0;
+$pure-orange:												#ffa800;
+$pure-red:													#ff0000;
+
+$gray-blue:													#c6ccd1;
+$gray-ness-blue: 										#adb9c5;
+$grayish-blue:											#c4cdd3;
+$grayish-blueness:									#c0c9d1;
+$grayish-blue-dark:									#c9cfd4;
+$grayish-ness-blue:									#b4bec7;
+$grayishting-blue:									#b5bcc3;
+$grayish-light-blue:								#acb8c2;
+$grayish-lightness-blue:						#c2c8cd;
+$grayish-blue-light:								#a6afb5;
+$grayish-blue-ness:                 #c3c9ce;
+$grayish-blue:                      #c5cbd1;
+
+$very-dark-blue:										#001b2f;
+$very-dark-grayish-blue:    				#485662;
+$very-dark-desaturated-orange: 			#2b4151;
+$very-darken-blue:            			#13466b;
+$very-darkness-blue:        				#013357;
+
+
+$very-light-gray:										#e8e8e8;
+$very-lighting-gray:								#ededed;
+$vivid-orange:											#f75704;
+$very-soft-pink:										#f0b3d3;
+
+$white:                     				#fff;
+
+
+/* padding and margin */
+$medium-space:					20;
+$x-medium-space:				22;
+$xx-medium-space:				25;
+$xxx-medium-space:			30;
+$large-space:						35;
+
+/* font family */
+$Lato-Regular: 	"Lato-Regular";
+$Lato-Bold: 		"Lato-Bold";
+$Lato-Black: 		"Lato-Black";
+$Lato-Medium:		"Lato-Medium";
+$Lato-Light:		"Lato-Light";
+
+$tpIcon2:				"tpIcon2";
+
+/* base font-size variables */
+$baseFontSize: 10;
+
+// $body-fontsize: 5.5;
+$body-fontsize: 10;
+
+/* screen size*/
+$screen: 1500px;
+$screen-md: $screen - 1;
+$screen-lg: $screen + 1;
+
+/* resolution */
+$resolution:  0.24;

@@ -1,0 +1,400 @@
+.group-conditions .annotation-dropdown {
+	@extend .float-right;
+}
+
+.annotation-search {
+	@extend .float-left;
+	input {
+		@include size(px2rem(104), px2rem(25));
+		@include rem-calc(padding-left, 8);
+
+		@extend .f-13;
+		@extend .font-Lato-Regular;
+		@extend .cl-dark-grayish-blue;
+
+		border: 0;
+	}
+}
+
+.annotation-dropdown {
+	.dropdown-menu.annotation-dropdown-menu {
+		@include box-shadow($grayish-blue-ness 0 px2rem(4) px2rem(5));
+		@include rem-calc(padding, 0);
+		@include rem-calc(min-width, 353);
+
+
+		@extend .bg-light-grayish-blue;
+
+		right: px2rem(-11);
+		left: auto;
+
+		border: 0;
+
+		&::before {
+			@extend .absolute;
+
+			bottom: 100%;
+			right: 7%;
+
+			border: solid transparent;
+			content: " ";
+			pointer-events: none;
+
+			border-bottom-color: $light-grayish-blue;
+			border-width: px2rem(15);
+		}
+	}
+
+	.view-annotation {
+		@extend .text-right;
+	} 
+
+	.select-annotation {
+		@include size(px2rem(106), px2rem(25));
+		@include rem-calc(line-height, 25);
+
+		@extend .f-13;
+		@extend .font-Lato-Regular;
+		@extend .cl-dark-grayish-blue;
+
+		padding: 0 px2rem(12);
+		border: 1px solid $grayish-lightness-blue;
+	}
+
+	.annotation-close {
+		@include rem-calc(margin-top, 3);
+
+		@extend .float-right;
+		@extend .cl-mostly-pure;
+
+		cursor: pointer;
+	}
+
+	.filter-title {
+		@include rem-calc(line-height, 26);
+
+		@extend .cl-very-dark-grayish-blue;
+
+		margin: 0 px2rem(10) 0 0;
+	}
+
+	.group-conditions {
+		height: auto;
+		padding:0;
+		background: none;
+	}
+}
+
+.view-annotation-header {
+	padding: px2rem(10) px2rem(12);
+	border-bottom: px2rem(1) solid $gray-blue;
+	
+	.btn-dropdown .caret {
+		@include rem-calc(top, 8);
+		@include rem-calc(border-width, 6);
+	}
+
+	.btn-primary,
+	.btn-primary:hover {
+		@extend .cl-mostly-pure;
+		@extend .bg-none;
+	}
+
+	.btn-go {
+		@extend .btn-very-small-xs;
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@extend .white;
+		@extend .bg-mostly-pure;
+		@extend .float-left;
+
+		padding: 0;
+
+		&:focus {
+			@extend .white;
+			@extend .bg-darken-grayish-blue;
+		}
+	}
+
+	.dropdown-menu {
+		@include rem-calc(min-width, 106);
+	}
+
+	.select-annotation-category {
+		margin: 0 px2rem(10);
+	}
+}
+
+.wrap-annotation-list {
+	@extend .overflow-hidden;
+
+	max-height: px2rem(785);
+
+	box-shadow: px2rem(-15) 0 0 0 $lightness-grayish-blue inset;
+	border-bottom-right-radius: px2rem(4);
+}
+
+.annotation-panel-list,
+.annotation-list {
+	height: auto;
+	padding: px2rem(10) 0;
+}
+
+.annotation-list {
+	@include rem-calc(width, 353);
+}
+
+.annotation-item {
+	@include border-radius(px2rem(4));
+
+	@extend .cl-very-dark-grayish-blue;
+	@extend .bg-lightness-grayish-blue;
+
+	padding: px2rem(12) px2rem(12);
+	cursor: pointer;
+
+	.annotation-header {
+		margin: 0 0 px2rem(6) 0;
+		line-height: px2rem(11);
+	}
+
+	.annotation-category {
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+		@extend .capitalize;
+
+		color: $dark-cyan-green;
+		margin: 0;
+	}
+
+	.user-and-date {
+		span {
+			@include rem-calc(margin-right, 10);
+
+			@extend .f-12;
+			@extend .font-Lato-Regular;
+		}
+
+		.annotation-user {
+			@extend .font-Lato-Bold;
+			@extend .capitalize;
+		}
+	}
+
+	.annotation-deal {
+		margin: px2rem(6) 0;
+
+		span {
+			@extend .f-12;
+			@extend .font-Lato-Bold;
+		}
+
+		input {
+			@include size(px2rem(174), px2rem(25));
+			@include border-radius(px2rem(3));
+			@include rem-calc(margin-left, 7);
+			@include rem-calc(padding-left, 5);
+
+			@extend .f-14;
+			@extend .font-Lato-Regular;
+			@extend .cl-very-dark-grayish-blue;
+
+			border: 1px solid $grayish-lightness-blue;
+		}
+	}
+
+	.annotation-comment {
+		p {
+			@extend .f-12;
+			@extend .font-Lato-Regular;
+
+			line-height: px2rem(16);
+			margin: px2rem(6) 0 0 0;
+		}
+	}
+} 
+
+.annotation-medium {
+	.annotation-item {
+		width: px2rem(318);
+		margin: px2rem(10) px2rem(10) 0 px2rem(10);
+
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.is-mark-list {
+	border: px2rem(2) solid $dark-cyan-green;
+
+	.annotation-category {
+		color: $dark-cyan-green;
+	}
+
+	.applied-date-review {
+		@include rem-calc(margin-top, 6);
+
+		.applied-label {
+			@include rem-calc(margin-right, 7);
+			@include rem-calc(line-height, 12);
+
+			@extend .f-14;
+			@extend .font-Lato-Bold;
+			@extend .inline-block;
+			@extend .capitalize;
+
+			vertical-align: initial;
+		}
+		
+		.user-and-date {
+			@include rem-calc(line-height, 12);
+			@include rem-calc(margin-top, -2);
+
+			@extend .inline-block;
+
+			vertical-align: initial;
+		}
+
+	}
+}
+
+.is-note-list {
+	border: px2rem(2) solid $mostly-pure-orange;
+
+	.annotation-category {
+		color: $mostly-pure-orange;
+	}
+}
+
+.is-stuck-list {
+	border: px2rem(2) solid $mostly-soft-blue;
+	
+	.annotation-category {
+		@extend .inline-block;
+
+		color: $mostly-soft-blue;
+	}
+
+	.stuck-reason {
+		color: $pure-red;
+	}
+}
+
+.is-clearstuck-list {
+	border: px2rem(2) solid $very-dark-grayish-blue;
+	
+	.annotation-category,
+	.stuck-reason {
+		@extend .inline-block;
+		@extend .cl-very-dark-grayish-blue;
+	}
+
+	.stuck-clear {
+		@include rem-calc(line-height, 12);
+		@include rem-calc(margin-top, 6);
+
+		.annotation-category {
+			@include rem-calc(margin-right, 7);
+			@extend .f-14;
+			@extend .font-Lato-Bold;
+			@extend .inline-block;
+			@extend .capitalize;
+
+			vertical-align: initial;
+		}
+
+		.user-and-date {
+			@include rem-calc(margin-top, -2);
+
+			@extend .inline-block;
+
+			margin-top: px2rem(-2);
+		}
+	}
+}
+
+.is-stuck-list .stuck-reason,
+.is-clearstuck-list .stuck-reason {
+	@include rem-calc(margin-left, 7);
+
+	@extend .f-14;
+	@extend .font-Lato-Bold;
+	@extend .inline-block;
+	@extend .capitalize;
+}
+
+
+
+.annotation-dropdown .wrap-annotation-list.jspScrollable {
+	box-shadow: none;
+} 
+
+.annotation-panel-content {
+	@extend .display-block;
+
+	width: 100%;
+}
+
+.annotation-small {
+	.wrap-panel-list {
+		@extend .overflow-hidden;
+
+		max-height: px2rem(705);
+
+		box-shadow: px2rem(-15) 0px 0px 0px $lightness-grayish-blue inset;
+		border-radius: 0;
+	}
+
+	.wrap-panel-list.jspScrollable {
+		box-shadow: none;
+	}
+
+	.annotation-panel-list {
+		@include rem-calc(width, 244);
+	}
+
+	.annotation-item {
+		@extend .relative;
+		@extend .overflow-hidden;
+
+		width: px2rem(244);
+		margin: px2rem(10) px2rem(8) 0 px2rem(8);
+
+		&:first-child {
+			margin-top: 0;
+		}
+		
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.annotation-deal input {
+		@include rem-calc(width, 159);
+	}
+	
+	.edit-annotation {
+		@include square(px2rem(28));
+		@include rem-calc(top right, 0);
+
+		@extend .bg-light-grayish-blue;
+		@extend .absolute;
+
+		border: 0;
+		background-image: url("../images/buttons/annotation-edit.png");
+		background-repeat: no-repeat;
+		background-position: 50%;
+
+		&:focus {
+			outline: 0;
+		}
+	}
+}
+
+.annotation-panel-header {
+	border-bottom: px2rem(1) solid $gray-blue;
+}

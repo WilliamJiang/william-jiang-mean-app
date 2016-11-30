@@ -1,0 +1,34 @@
+<div style="float: left;">
+  <div class="ci" ng-click="gotoCI(ci)" ng-controller="CopyCoordinatorCICtrl" ng-class="{'confirmed-revision': ci.possible_revision, 'pendding-revision': ci.pending_revision }">
+    <div class="ci-status"></div>
+    <div class="advertiser-info" tooltip="{{ci.note || ci.advertiser || '---' | characters:14 }}">
+      <!-- AgilityIO guide: add ".is-email" class to lowercase email sender-->
+      <div class="advertiser-network">
+        <div class="advertiser-name">{{ ci.advertiserSlot || '---' | characters:14 }}</div>
+      </div>
+      <div class="advertiser-brand">{{ ci.brandSlot || '---' | characters:14 }}</div>
+    </div>
+    <div class="program">
+      <div class="program-name">{{ ci.programSlot || '---' | characters:14 }}</div>
+      <div class="network-flight-dates">
+        <time  ng-click="getCIId(ci,1)" class="start-date">{{ ci.airDateStartSlot | amDateFormat:'MM/DD/YYYY' }}</time>
+        <span class="dash"> - </span>
+        <time class="end-date">{{ ci.airDateEndSlot | amDateFormat:'MM/DD/YYYY' }}</time>
+      </div>
+    </div>
+    <!-- AgilityIO guide: add ".active" class to enable menu active mode-->
+    <div class="condition">
+      <a href="javascript:void(0)" class="indicator icons-stuck" ng-class="{'active': ci.stuck}"></a>
+      <a href="javascript:void(0)" class="indicator icons-match" ng-class="{'active': ci.uninstructed_match}"></a>
+      <!--<a href="javascript:void(0)" class="indicator icons-message" ng-class="{'active': ci.has_new_messages}"></a>-->
+    </div>
+  </div>
+  <div class="text-center" style="padding: 16px 0px;">
+    <form name="matchForm" class="form-horizontal">
+      <input type="radio" ng-model="match[ci._id]" ng-value="true">
+      <label for="is_match">Is Match</label>
+      <input type="radio" ng-model="match[ci._id]" ng-value="false">
+      <label for="not_match">Not a Match</label>
+    </form>
+  </div>
+</div>

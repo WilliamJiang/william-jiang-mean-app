@@ -1,0 +1,99 @@
+<div class="container">
+  <h1 style="color: #ffffff;">Traffic Bridge</h1>
+  <div class="well">
+    <form name="signupForm" class="form-horizontal" autocomplete="off">
+      <fieldset>
+        <legend>Sign Up</legend>
+        <div class="form-group">
+          <label for="email" class="col-md-2 control-label">Email</label>
+
+          <div class="col-md-4">
+            <input id="email" name="email" type="email" placeholder="Email" ng-model="email" required="required" class="form-control" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"/>
+          </div>
+          <div class="col-md-4" ng-show="signupForm.$submitted || signupForm.email.$touched">
+            <span class="invalid-field" ng-show="signupForm.email.$error.required">Email is required.</span>
+            <span class="invalid-field" ng-show="signupForm.email.$error.email">This is not a valid email.</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-md-2 control-label">Password</label>
+
+          <div class="col-md-4">
+            <input id="password" type="password" style="display: none;"/>
+            <input name="password" type="password" placeholder="Password" ng-model="password"
+                   required="required" class="form-control"/>
+          </div>
+          <div class="col-md-4" ng-show="signupForm.$submitted || signupForm.password.$touched">
+            <span class="invalid-field" ng-show="signupForm.password.$error.required">Password is required.</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fname" class="col-md-2 control-label">First Name</label>
+
+          <div class="col-md-4">
+            <input id="fname" name="fname" type="text" placeholder="First Name" ng-model="fname" required="required" class="form-control"/>
+          </div>
+          <div class="col-md-4" ng-show="signupForm.$submitted || signupForm.fname.$touched">
+            <span class="invalid-field" ng-show="signupForm.fname.$error.required">First Name is required.</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lname" class="col-md-2 control-label">Last Name</label>
+
+          <div class="col-md-4">
+            <input id="lname" name="lname" type="text" placeholder="Last Name" ng-model="lname" required="required" class="form-control"/>
+          </div>
+          <div class="col-md-4" ng-show="signupForm.$submitted || signupForm.lname.$touched">
+            <span class="invalid-field" ng-show="signupForm.lname.$error.required">Last Name is required.</span>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Affiliation</legend>
+        <div class="form-group">
+          <label for="affiliation" class="col-md-2 control-label">Type</label>
+
+          <div class="col-md-10">
+            <label class="radio-inline">
+              <input id="affiliation" type="radio" name="affiliation.type" ng-model="affiliation.type" value="agency" ng-change="onChangeAffiliationType()"> Agency
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="affiliation.type" ng-model="affiliation.type" value="media_company" ng-change="onChangeAffiliationType()"> Media Company
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="company" class="col-md-2 control-label">Company</label>
+
+          <div class="col-md-4">
+            <select id="company" name="selectedCompany" ng-options="company.name for company in company_dropdown" ng-model="selectedCompany" ng-change="onChangeCompany()" class="form-control" ng-disabled="!allowCompanySelection" required="required"/>
+          </div>
+          <div class="col-md-4" ng-show="signupForm.$submitted || signupForm.selectedCompany.$touched">
+            <span class="invalid-field" ng-show="signupForm.selectedCompany.$error.required">Company is required.</span>
+          </div>
+        </div>
+        <div class="form-group" ng-show="allowNetworkSelection">
+          <label for="network" class="col-md-2 control-label">Network</label>
+
+          <div class="col-md-4">
+            <select id="network" name="network" ng-options="network.name for network in network_dropdown" ng-model="selectedNetwork" ng-change="onChangeNetwork()" class="form-control"
+                    ng-disabled="!allowNetworkSelection" ng-required="allowNetworkSelection"/>
+          </div>
+          <div class="col-md-4" ng-show="signupForm.$submitted || signupForm.selectedCompany.$touched">
+            <span class="invalid-field" ng-show="signupForm.selectedCompany.$error.required">Company is required.</span>
+          </div>
+        </div>	
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-2">
+            <div class="pull-right">
+              <button ng-click="signup()" ng-disabled="signupForm.$invalid" class="btn btn-primary">
+                Submit
+              </button>
+              &nbsp;<a href="/" class="btn btn-default">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

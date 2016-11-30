@@ -1,0 +1,14 @@
+<div class="wrapper clearfix" ng-controller="CopyCoordinatorHomeCtrl">
+    <div class="sidebar-wrapper" ng-controller="CopyCoordinatorLeftNavCtrl">
+        <div ng-include="'/partials/cc/leftnav.html'"></div>
+    </div>
+    <div ng-include="'/partials/common/header.html'"></div>
+    <div class="content">
+        <div class="main-content">
+            <div style="font-size: 36px; font-weight: bold; color: white; padding: 8px 0px;">Debug</div>
+            <pre>{{currentUser | json}}</pre>
+            <div ng-include="'/partials/cc/tabs.html'"></div>
+        </div>
+    </div>
+</div>
+

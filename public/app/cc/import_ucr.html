@@ -1,0 +1,148 @@
+<style>
+ .progress-wrapper {
+     position: relative;
+     margin: 20px auto;
+     font-size: 40px;
+ }
+
+ .progress2 {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     line-height: 6em;
+     font-size: 1em;
+     text-align: center;
+     color: #bbb;
+     font-weight: 100;
+ }
+
+ .drop-box {
+     background: #f8f8f8;
+     color: #dddddd;
+     border: 5px dashed #ddd;
+     height: 4em;
+     padding-top: 1em;
+     text-align: center;
+ }
+
+ .dragover {
+     border: 5px dashed #ddf;
+ }
+
+ table {
+     background-color: white;
+     border: 1px solid #555555;
+ }
+ th,td {
+     padding: 4px;
+     border: 1px solid #888888;
+ }
+</style>
+<div class="wrapper clearfix">
+
+  <div class="sidebar-wrapper" ng-controller="CopyCoordinatorLeftNavCtrl">
+    <div ng-include="'/partials/cc/leftnav.html'"></div>
+  </div>
+
+  <div class="content">
+
+    <div class="content-header" style="margin-bottom: 12px;">
+
+      <div class="option">
+        <span style="font-size: 24px; color: white;">Import Uninstructed Copy Report</span>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+      <div ng-controller="CopyCoordinatorImportUCRCtrl">
+	
+        <div ng-show="showUpload" class="text-center" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
+          <h5>Please click on Choose File or drag a file to select UCR to upload</h5>
+          <div style="padding: 12px 0px;">
+            <div ng-file-drop ng-model="upload.files" class="drop-box" drag-over-class="dragover" allow-dir="false" accept="{{::upload_file_drop_accept}}">Drop CSV file here</div>
+            <div ng-no-file-drop="ng-no-file-drop">File Drag/Drop is not supported for this browser</div>
+          </div>
+          <div class="text-center" style="padding: 12px 0px;">
+            <div ng-file-select ng-model="upload.files" class="btn btn-default" accept="{{::upload_file_select_accept}}">Choose File</div>
+          </div>
+          <div style="padding: 12px 0px;">
+            <div class="alert alert-warning" role="alert"><strong>Note:</strong> Currently, we only accept XLS and CSV for upload.</div>
+          </div>
+          <form method="get" action="/data/sample_ucr.csv">
+            <button type="submit" class="btn btn-default">Download Sample CSV UCR</button>
+          </form>
+          &nbsp;
+          <form method="get" action="/data/Viacom_UCR.xls">
+            <button type="submit" class="btn btn-default">Download Sample Viacom XLS UCR</button>
+          </form>
+          &nbsp;	  
+	  <form method="get" action="/data/NBCU_UCR.xls">
+            <button type="submit" class="btn btn-default">Download Sample NBCU XLS UCR</button>
+          </form>
+        </div>
+
+        <div ng-show="showProgress" class="text-center" style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
+          <div ng-repeat="file in upload.files">
+            <div class="progress-wrapper">
+              Uploading and processing...
+              <div class="progress2">{{file.progress}}/100</div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showComplete" style="width: 75%; display: block; margin-left: auto; margin-right: auto;">
+          <h3 class="text-center">Upload complete</h3>
+          <div style="font-size: 14px;">
+            <div class="alert alert-danger" ng-if="response.processingResult.fatalErrors.length > 0">
+              Errors were found that prevented us from processing your UCR:
+              <ul ng-repeat="fatalError in response.processingResult.fatalErrors">
+                <li>{{::fatalError}}</li>
+              </ul>
+            </div>
+            <div ng-if="response.processingResult.fatalErrors.length === 0">
+              <div class="alert alert-warning" nf-if="response.processingResult.messages.length > 0" style0="background-color: white; padding: 4px; margin: 6px 0px;">
+                Messages:
+                <ul ng-repeat="message in response.processingResult.messages">
+                  <li>{{::message}}</li>
+                </ul>
+              </div>
+              <div ng-if="response.processingResult.rowStatuses">
+                <table width="100%">
+                  <tr>
+                    <th>Network</th>
+                    <th>Advertiser</th>
+                    <th>Brand</th>
+                    <th>Program</th>
+                    <th>Type</th>
+                    <th>Air Date</th>
+                    <th>Note</th>
+                    <th>Errors</th>
+                  </tr>
+                  <tr ng-repeat="rowStatus in response.processingResult.rowStatuses">
+                    <td>{{rowStatus.obj.network}}</td>
+                    <td>{{rowStatus.obj.advertiser}}</td>
+                    <td>{{rowStatus.obj.brand}}</td>
+                    <td>{{rowStatus.obj.program}}</td>
+                    <td>{{rowStatus.obj.type}}</td>
+                    <td>{{rowStatus.obj.airDate}}</td>
+                    <td>{{rowStatus.obj.note}}</td>
+                    <td>
+                      <span ng-if="rowStatus.errors.length === 0">No Errors</span>
+                      <ul ng-repeat="error in rowStatus.errors">
+                        <li>{{::error}}</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <p/>
+            <div class="text-center"><button class="btn btn-primary" ng-click="onClickContinue()">Continue</button></div>
+            <p/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

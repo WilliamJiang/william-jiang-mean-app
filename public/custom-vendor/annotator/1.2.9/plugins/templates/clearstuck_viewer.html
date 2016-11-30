@@ -1,0 +1,25 @@
+<li class='annotator-item annotator-radio-fields'>
+	<div>
+		<div class="stuck-header">
+			<h4 class="category-name">Cleared:</h4>
+			<p class="stuck-reason"><%=fldStuckReason%></p>
+		</div>
+		<div class="user-date">
+			<p class="annotation-author"><%=createdUser%></p>
+			<p class="annotation-date"><%=createdDate%></p>
+		</div>
+		<div class="wrap-comment">
+			<p><%=readOnlyAnnotationText%></p>
+		</div>
+		<div class="cleared-stuck-infor">
+			<label class="category-name">Cleared</label>
+			<label class="annotation-author"><%=fldClearStuckUser%></label>
+			<label class="annotation-date"><%=fldClearStuckTime%></label>
+		</div>
+		<% if (fldClearStuckComments !=="") { %>
+		<div class="clear-stuck-comment">
+			<p class=''><%=fldClearStuckComments%></p>
+		</div>
+		<% } %>
+	</div>
+</li>

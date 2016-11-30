@@ -1,0 +1,176 @@
+<form name="userForm" class="user-form">
+    <div class="modal-header">
+        <h4 class="modal-title">{{bNewUser? 'Add' : 'Edit'}} User</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label class="control-label pull-right pull-right" for="firstName">First Name(*)</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
+                       ng-model="user.firstName" ng-required="true" ng-minlength="2" ng-maxlength="50">
+                <div role="alert" ng-show="userForm.firstName.$touched || userForm.$submitted">
+                    <span class="error" ng-show="userForm.firstName.$error.required">Required!</span>
+                    <span class="error" ng-show="userForm.firstName.$error.minlength">Min length is 2</span>
+                    <span class="error" ng-show="userForm.firstName.$error.maxlength">Max length is 50</span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label class="control-label pull-right" for="lastName">Last Name(*)</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name"
+                       ng-model="user.lastName" ng-required="true" ng-minlength="2" ng-maxlength="50">
+                <div role="alert" ng-show="userForm.lastName.$touched || userForm.$submitted">
+                    <span class="error" ng-show="userForm.lastName.$error.required">Required!</span>
+                    <span class="error" ng-show="userForm.lastName.$error.minlength">Min length is 2</span>
+                    <span class="error" ng-show="userForm.lastName.$error.maxlength">Max length is 50</span>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label class="control-label pull-right" for="userName">Username(*)</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="userName" name="userName" placeholder="Username"
+                       ng-model="user.userName" ng-required="true" ng-minlength="6" ng-maxlength="285">
+                <div role="alert" ng-show="userForm.userName.$touched || userForm.$submitted">
+                    <span class="error" ng-show="userForm.userName.$error.required">Required!</span>
+                    <span class="error" ng-show="userForm.userName.$error.minlength">Min length is 6</span>
+                    <span class="error" ng-show="userForm.userName.$error.maxlength">Max length is 285</span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label class="control-label pull-right" for="email">Email(*)</label>
+            </div>
+            <div class="col-md-4">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"
+                       ng-model="user.email" ng-required="true" ng-maxlength="285">
+                <div role="alert" ng-show="userForm.email.$touched || userForm.$submitted">
+                    <span class="error" ng-show="userForm.email.$error.required">Required!</span>
+                    <span class="error" ng-show="!userForm.email.$error.required && userForm.email.$invalid && ! userForm.email.$error.maxlength">Invalid email format <span style="font-style: italic;">(aa@aa.com)</span></span>
+                    <span class="error" ng-show="!userForm.email.$error.required && userForm.email.$error.maxlength">Max length is 285</span>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6">
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label class="control-label pull-right">Company(*)</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="dropdown" dropdown>
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown">
+                                {{selectedCompany.name}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li role="presentation" ng-repeat="company in companiesList">
+                                    <a href="#" role="menu-item" ng-click="onChangeCompany($event, company)">{{company.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label class="control-label pull-right">Role</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="dropdown" dropdown>
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-class="{'empty-dropdown-item': selectedRole.value === ''}">
+                                {{selectedRole.name}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li role="presentation" ng-repeat="role in rolesList">
+                                        <a href="#" role="menu-item" ng-click="onChangeRole($event, role)" ng-class="{'empty-dropdown-item': role.value === ''}">{{role.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label class="control-label pull-right">Admin Type</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="dropdown" dropdown>
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-class="{'empty-dropdown-item': selectedAdminRole.value === ''}">
+                                {{selectedAdminRole.name}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li role="presentation" ng-repeat="role in adminRolesList">
+                                    <a href="#" role="menu-item" ng-click="onChangeAdminRole($event, role)" ng-class="{'empty-dropdown-item': role.value === ''}">{{role.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label pull-right">Group <span style="font-style: italic;">(optional)</span></label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="well dag-well">
+                            <label class="dag-label" ng-repeat="group in groupsList">
+                                <input type="checkbox" checklist-model="selectedGroups" checklist-value="group._id" checklist-change="onChangeGroup($event, group)"> {{group.name}}
+                            </label>
+                        </div>
+                        <!--<select class="form-control" multiple id="data_access_group" name="data_access_group" style="height: 150px;"
+                                ng-options="item._id as item.name for item in groupsList" ng-model="selectedGroups">
+                        </select>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label class="control-label pull-right" for="start_date">Start Date(*)</label>
+            </div>
+            <div class="col-md-4">
+                <input type="date" class="form-control" id="start_date" name="start_date" ng-model="user.start_date" placeholder="MM/DD/YYYY" required="required">
+            </div>
+            <div class="col-md-2">
+                <label class="control-label pull-right" for="end_date">End Date</label>
+            </div>
+            <div class="col-md-4">
+                <input type="date" class="form-control" id="end_date" name="end_date" ng-model="user.end_date" placeholder="MM/DD/YYYY" min="{{userForm.start_date.$viewValue}}">
+            </div>
+        </div>
+        <div class="row form-group" ng-show="false"> <!--This is not needed-->
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label" for="comment">Comment <span style="font-style: italic;">(optional)</span></label>
+                    <textarea id="comment"  name="comment" class="form-control" ng-model="user.comment" ng-maxlength="140"
+                              ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" rows="5">
+                    </textarea>
+                    <div role="alert" ng-show="userForm.comment.$touched || userForm.$submitted">
+                        <span class="error" ng-show="userForm.comment.$error.maxlength">Max length is 140</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="well" ng-show="false">
+            <tt>userForm.comment = {{userForm.comment}}</tt><br/>
+            <!--<tt>userForm.firstName.$valid = {{userForm.firstName.$valid}}</tt><br/>
+            <tt>userForm.firstName.$error = {{userForm.firstName.$error}}</tt><br/>
+            <tt>userForm.$valid = {{userForm.$valid}}</tt><br/>
+            <tt>userForm.$error.required = {{userForm.$error.required}}</tt><br/>
+            <tt>userForm.firstName.$error.minlength = {{userForm.firstName.$error.minlength}}</tt><br/>
+            <tt>userForm.firstName.$error.maxlength = {{userForm.firstName.$error.maxlength}}</tt><br/>-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary pull-left" ng-click="resetPassword()" ng-hide="bNewUser">Reset Password</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <button type="submit" class="btn btn-success" ng-click="saveUser()">Save</button>
+    </div>
+</form>

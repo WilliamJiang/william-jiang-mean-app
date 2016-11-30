@@ -1,0 +1,51 @@
+.ci-message {
+	@include rem-calc(height line-height, 24);
+
+	@extend .bg-very-dark-blue;
+
+	margin: px2rem(52) px2rem(31) 0 px2rem(20);
+	padding-left: px2rem(10);
+	
+	@extend .none;
+
+	p {
+		@extend .f-12;
+		@extend .white;
+		@extend .font-Lato-Regular;
+	}
+
+	a {
+		@extend .font-Lato-Bold;
+		@extend .cl-mostly-pure;
+	}
+}
+
+.is-message {
+	@extend .block;
+}
+
+#msg-arrived {
+	@include rem-calc(height line-height, 24);
+
+	@extend .bg-very-dark-blue;
+
+	margin: 0 px2rem(20) px2rem(10);
+	padding-left: px2rem(10);
+	
+	@extend .none;
+
+	p {
+		@extend .f-12;
+		@extend .white;
+		@extend .font-Lato-Regular;
+	}
+
+	a {
+		@extend .font-Lato-Bold;
+		@extend .cl-mostly-pure;
+	}
+}
+
+#msg-arrived.is-message {
+	@extend .block;
+}

@@ -1,0 +1,259 @@
+.filter-group {
+	@extend .bg-lightness-grayish-blue;
+
+	border-bottom: 1px solid $grayish-blueness;
+}
+
+.filter-expanded {
+	padding-top: px2rem(13);
+	margin-bottom: px2rem(20);
+}
+
+.filter-list {
+	.filter-item {
+		@extend .relative;
+
+		margin-left: px2rem(17);
+	}
+
+	.btn-dropdown {
+		@include size(px2rem(190), px2rem(35));
+
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		@extend .cl-dark-grayish-blue;
+
+		border-color: transparent;
+
+		.caret {
+			top: px2rem(15);
+			right: px2rem(10);
+		}
+
+		.ci-calendar {
+			@include rem-calc(top right, 10);
+
+			@extend .absolute;
+
+			cursor: pointer;
+		}
+	}
+
+	.wrapper-search {
+		@extend .relative;
+	}
+
+	.search-icon {
+		@extend .absolute;
+
+		top: px2rem(10);
+		right: px2rem(10);
+	}
+
+	.search-box {
+		@include size(px2rem(400), px2rem(35));
+
+		@extend .inline-block;
+
+		border: 1px solid $grayish-lightness-blue;
+		
+	}
+
+	.dropdown-menu {
+		@include rem-calc(border-top-left-radius border-top-right-radius border margin-top, 0);
+  	@include rem-calc(border-bottom-left-radius border-bottom-right-radius, 10);
+
+  	@extend .bg-lightness-grayish-blue;
+  	@extend .overflow-hidden;
+
+		width: px2rem(190);
+		padding: 0;
+
+		li {
+			@extend .f-14;
+			@extend .font-Lato-Regular;
+
+			height: px2rem(30);
+
+			&:hover {
+				@extend .bg-mostly-pure;
+				
+				a {
+					@extend .white;
+					@extend .bg-transparent;
+				}
+			}
+		}
+
+		a {
+			@extend .cl-very-dark-grayish-blue;
+			
+			padding: 0 px2rem(12);
+
+			&:focus {
+				@extend .bg-transparent;
+			}
+		}
+	}
+
+	.caret-wrapper {
+		@extend .bg-white;
+	}
+
+	.sort-by {
+		@extend .none;
+	}
+}
+
+.filter-title {
+	@extend .f-12;
+	@extend .font-Lato-Bold;
+	@extend .cl-very-dark-grayish-blue;
+	
+	line-height: px2rem(14);
+	margin-bottom: px2rem(2);
+}
+
+.more-filters {
+	@include rem-calc(padding-left padding-bottom, px2rem(20));
+
+	@extend .f-14;
+	@extend .font-Lato-Regular;
+	@extend .cl-mostly-pure;
+
+	width: px2rem(1255);
+	line-height: px2rem(14);
+	
+	.more {
+		@extend .float-right;
+	}
+
+	.show-ignored {
+		@extend .is-hidden;
+	}
+
+	a {
+		@extend .cl-mostly-pure;
+	}
+}
+
+/* dropdown advertiser*/
+.dropdown-menu.dropdown-advertiser {
+	@include border-bottom-radius(px2rem(10));
+
+	width: px2rem(230);
+
+	padding: 0;
+	margin: 0;
+
+	right: 0;
+	left: inherit;
+
+	border: none;
+
+	.search {
+		@extend .none;
+
+		height: px2rem(51);
+		border: px2rem(8) solid $very-dark-grayish-blue;
+
+		input {
+			@extend .f-14;
+			@extend .font-Lato-Regular;
+			@extend .cl-dark-grayish-blue;
+
+			border-radius: 0;
+			height: px2rem(36);
+		}
+
+		a {
+			@extend .display-inline-block;
+		}
+
+		.search-icon {
+			top: px2rem(16);
+			right: px2rem(19);
+		}
+	}
+
+	.list-select {
+		@extend .overflow-hidden;
+		
+		height: px2rem(213);
+		// overflow: auto;
+	}
+
+	.search-list {
+		@extend .bg-lightness-grayish-blue;
+		
+		li {
+			@extend .clear-both;
+		}
+		.active {
+			a {
+				@extend .white;
+				@extend .bg-mostly-pure;
+			}	
+		}
+
+		a {
+			@extend .block;
+			@extend .cl-very-dark-grayish-blue;
+			@extend .f-14;
+			@extend .font-Lato-Regular;
+
+			@include rem-calc(padding-left padding-bottom, 8);
+			
+			padding-top: px2rem(7);
+			// padding-left: px2rem(8);
+			// padding-bottom: px2rem(8);
+
+			line-height: px2rem(11);
+
+			&:hover {
+				@extend .white;
+				@extend .bg-mostly-pure;
+			}
+		}
+		input {
+			@extend .float-left;
+
+			margin-top: 0;
+			margin-right: px2rem(10);
+		}
+	}
+	.close-search {
+		@include border-bottom-radius(px2rem(10));
+		@include rem-calc(padding-top padding-bottom, 10);
+
+		@extend .text-right;
+		@extend .bg-lightness-grayish-blue;
+
+		padding-right: px2rem(12);
+		border-top: 1px solid $lighten-grayish-blue;
+
+		.btn {
+			@include size(px2rem(56), px2rem(30));
+
+			@extend .f-14;
+			@extend .font-Lato-Regular;
+			@extend .text-center;
+			@extend .white;
+			@extend .bg-mostly-pure;
+
+			padding: 0;
+			line-height: px2rem(30);
+		}
+	}
+}
+
+.dropdown-menu.dropdown-advertiser.is-search {
+	.search {
+		@extend .block;
+	}
+}
+
+.dropdown-menu > li > a {
+	padding: 0 px2rem(20);
+	line-height: px2rem(30);
+}

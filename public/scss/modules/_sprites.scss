@@ -1,0 +1,31 @@
+/* list left-side icon */
+/* $social-layout: layout of images sprite (horizontal/smart/...) */
+/* $social-sprite-dimensions: width and height will be set auto  */
+
+$sidebars-spacing: 10px;
+$sidebars-layout: horizontal;
+$sidebars-sprite-dimensions: (true);
+@import "../images/sidebars/*.png";
+@include all-sidebars-sprites;
+
+/*----------------------------------------------------------------------------------------*/
+
+/* $button-layout: layout of images sprite (horizontal/smart/...) */
+/* $button-sprite-dimensions: width and height will be set auto  */
+$buttons-spacing: 5px;
+$buttons-layout: horizontal;
+$buttons-sprite-dimensions: (true);
+
+@import "../images/buttons/*.png";
+@include all-buttons-sprites;
+
+/*----------------------------------------------------------------------------------------*/
+/* sprite for background-image */
+/* indicator icon */
+/* icons-layout: layout of images sprite (horizontal/smart/...) */
+/* icons-sprite-dimensions: width and height will be set auto  */
+
+$icons-layout: horizontal;
+$icons-sprite-dimensions: (true);
+@import "../images/icons/*.png";
+@include all-icons-sprites;

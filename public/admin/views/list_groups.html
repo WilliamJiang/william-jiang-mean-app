@@ -1,0 +1,55 @@
+<div class="well" ng-show="false">
+    <div class="filter-group">
+        <div class="filter-expanded">
+            <ul class="filter-list list-inline">
+                <li class="filter-item">
+
+                    <companies-multi-select></companies-multi-select>
+                </li>
+                <li class="filter-item">
+
+                    <roles-multi-select></roles-multi-select>
+                </li>
+                <li class="filter-item">
+
+                    <admins-multi-select></admins-multi-select>
+                </li>
+                <li class="filter-item">
+
+                    <groups-multi-select></groups-multi-select>
+                </li>
+                <li class="filter-item">
+
+                    <input type="search" placeholder="Search" class="form-control search-box"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="match-ci">
+    <div class="affix-matching">
+        <div class="number-matching" ng-show="false">
+            <span class="number-ci">{{groupsList.length}} </span>
+            <span>Matching Groups</span>
+        </div>
+        <div class="filter-date">
+            <div class="pull-right" style="padding:5px;">
+                <button type="button" class="btn btn-default" ng-click="editGroup();">Edit Group</button>
+                <button type="button" class="btn btn-primary" ng-click="addGroup();">Create Group</button>
+            </div>
+        </div>
+        <div class="selected-filters">
+            <div class="filter-title">&nbsp;</div>
+        </div>
+    </div>
+</div>
+
+<section class="container-fluid">
+    <div class="row">
+        <div ui-grid="gridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns
+             class="groupsGrid" external-scopes="gridHandlers"></div>
+    </div>
+</section>
+
+<!--<div ui-view></div>-->

@@ -1,0 +1,40 @@
+<style>
+    .error {
+        padding: 5px 0 0;
+        margin-left: 100px;
+    }
+
+    .error span {
+        color: red;
+        font-size: 12px;
+    }
+</style>
+<div class="modal-content pop-up save-search-modal">
+    <div class="pop-up-header">
+        <h2 class="pop-up-title">Save Search</h2>
+    </div>
+    <div class="pop-up-content clearfix">
+        <div class="search-result">
+            <p class="rerult-label">Saved Searches will appear in the navigation bar below the Library link</p>
+            <form class="form-inline" name="saveSearchForm">
+                <div class="form-group">
+                    <label>Search Name</label>
+                    <input type="text" id="searchName" name="searchName" placeholder="Harvey's Saved Search 1" ng-required="true" ng-model="data.searchName"
+                           class="form-control" ng-minlength="5" ng-maxlength="40" autofocus />
+
+                    <div class="error">
+                        <div ng-show="saveSearchForm.searchName.$touched && saveSearchForm.searchName.$invalid">
+                            <span ng-show="saveSearchForm.searchName.$error.required">Required!</span>
+                            <span ng-show="saveSearchForm.searchName.$error.minlength">Minimum of 5 characters required!</span>
+                            <span ng-show="saveSearchForm.searchName.$error.maxlength">Search name can not exceed 40 characters!</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="wrap-button clearfix">
+            <button type="button" data-dismiss="modal" class="btn btn-cancel-save btn-rollover" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-ok-save btn-rollover" ng-click="ok(saveSearchForm)" ng-disabled="saveSearchForm.$invalid">OK</button>
+        </div>
+    </div>
+</div>

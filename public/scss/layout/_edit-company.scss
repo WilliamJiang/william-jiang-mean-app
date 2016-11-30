@@ -1,0 +1,243 @@
+.edit-company.modal {
+	padding-left: 0;
+	z-index: 99999999;
+
+	.modal-dialog {
+		@include rem-calc(width, 630);
+		@include rem-calc(margin-top, 138);
+	}
+
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+
+	.pop-up-header {
+		@include rem-calc(height, 45);
+		@include rem-calc(padding-top padding-left, 15);
+	}
+
+	.pop-up-content {
+		padding: px2rem(10) px2rem(15) px2rem(15) px2rem(15);
+	}
+}
+
+.edit-company {
+	.group-buttons {
+		clear: both;
+	}
+
+	.btn-save,
+	.btn-cancel {
+		@extend .float-right;
+	}
+	
+	/* button save*/
+	.btn-save {
+		@include rem-calc(margin-left, 10);
+		@include rem-calc(line-height, 25);
+
+		@extend .btn-nomal-xs;
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@extend .white;
+		@extend .bg-mostly-pure;
+
+		padding: 0;
+
+		&:hover {
+			@extend .white;
+		}
+	}
+
+	/* alert notify */
+	.alert-notify {
+		@include rem-calc(margin-bottom, 11);
+
+		@extend .none;
+		@extend .overflow-hidden;
+
+		img {
+			@extend .float-left;
+		}
+
+		p {
+			@include rem-calc(line-height, 18);
+			@include rem-calc(margin-left, 5);
+
+			@extend .float-left;
+			@extend .font-Lato-Bold;
+			@extend .f-14;
+
+			color: $pure-red;
+		}
+	}
+
+	.cols-right {
+		@include rem-calc(width, 310);
+
+		.form-group {
+			@extend .float-right;
+		}
+	}
+
+	.form-edit {
+		clear: both;
+	}
+
+	.form-group {
+		@include rem-calc(margin-bottom, 10);
+
+		.label-name {
+			@extend .f-14;
+			@extend .font-Lato-Bold;
+			@extend .cl-very-dark-grayish-blue;
+			@extend .text-right;
+
+			@include rem-calc(margin-right, 7);
+		}
+
+		.optional {
+			@extend .font-Lato-Regular;
+			@extend .cl-dark-grayish-blue;
+		}
+		
+		input[type="text"] {
+			@extend .font-Lato-Regular;
+			@extend .cl-very-dark-grayish-blue;
+		}
+
+		.input-name {
+			@include size(px2rem(504), px2rem(30));
+		}
+
+		.input-password {
+			@include size(px2rem(35), px2rem(30));
+			@include rem-calc(margin-right, 6);
+
+			padding: px2rem(6) px2rem(4);
+		}
+
+		.btn-dropdown {
+			@include size(px2rem(190), px2rem(30));
+
+			border: 1px solid $grayish-lightness-blue;
+		}
+
+		.btn-attempts {
+			@include size(px2rem(75), px2rem(30));
+		}
+
+		.caret-wrapper {
+			@include size(px2rem(30), px2rem(28));
+
+			@extend .bg-white;
+
+			.caret {
+				@include rem-calc(top, 13);
+				right: px2rem(11) !important;
+			}
+		}
+
+		.calendar-icon {
+			@extend .absolute;
+
+			top: px2rem(0);
+			right: px2rem(5);
+		}
+
+		.icon-tpIcons02-09 {
+			@extend .f-28;
+			@extend .cl-very-dark-grayish-blue;
+		}
+	}
+
+	.basic-info {
+		.form-group {
+			@extend .float-right;
+		}
+	}
+	
+	.advance-info {
+		clear: both;
+	}
+
+	.form-group.typeOf {
+		@include rem-calc(margin-right, 314);
+
+		.dropdown {
+			@extend .float-right;
+		}
+
+		.dropdown-menu {
+			@include rem-calc(width, 190);
+
+			padding: 0;
+		}
+	}
+	
+	.form-group.effect-date {
+		.label-name{
+			@include rem-calc(margin-right, 4);
+		}
+
+		
+	}
+
+	.form-group.attempts {
+		@include rem-calc(margin-right, 114);
+
+		.dropdown {
+			@extend .float-right;
+		}
+
+		.dropdown-menu {
+			@include rem-calc(width min-width, 75);
+			
+			padding: 0;
+		}
+	}
+
+	.form-group.termination .btn-dropdown {
+		padding: 0 px2rem(6);
+
+		color: $dark-grayish-blue;
+	}
+
+	.form-group.comment {
+		@include rem-calc(margin-bottom, 15);
+		@include rem-calc(margin-top, 10);
+
+		@extend .float-right;
+		clear: both;
+
+		.label-name {
+			@include rem-calc(padding-top, 6);
+
+			@extend .float-left;
+		}
+
+		textarea {
+			@include size(px2rem(504), px2rem(91));
+
+			resize: none;
+		}
+	}
+	
+	/* add '.is-alert' class to display notify */
+	.pop-up-content.is-alert {
+		.alert-notify {
+			@extend .block;
+		}
+		
+		.form-group.company-name {
+			.label-name {
+				color: $pure-red;
+			}
+
+			.input-name {
+				border-color: $pure-red;
+			}	
+		}
+	}
+}

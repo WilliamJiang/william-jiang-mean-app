@@ -1,0 +1,356 @@
+/*-------------- .revision-version ----------------*/
+.revision-version-wrapper {
+	@include rem-calc(padding-left, 20);
+	@include rem-calc(margin-right, 10);
+
+	@extend .bg-light-grayish-blue;
+	@extend .float-left;
+}
+
+.revision-version {
+	background-blend-mode: multiply;
+	-webkit-box-shadow: 0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+	box-shadow:         0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+
+	.revision-fixed-bottom {
+		@extend .absolute;
+
+		bottom: 0;
+	}
+
+	.mutiple-version {}
+}
+
+/*-------------- revision-fixed-top ----------------*/
+.revision-fixed-top {
+	.label-collapse {
+		@include rotate(90deg);
+		@include rem-calc(width, 180);
+		@include rem-calc(left, -67);
+		@include rem-calc(top, 132);
+
+		@extend .f-16;
+		@extend .font-Lato-Bold;
+		@extend .none;
+		@extend .absolute;
+		@extend .cl-dark-grayish-blue;
+		@extend .clear-both;
+	}
+
+	.label-expand {
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		@extend .float-left;
+		@extend .cl-very-dark-grayish-blue;
+	}
+
+	.group-active {
+		@include rem-calc(height, 40);
+
+		@extend .bg-light-grayish-blue;
+	}
+}
+
+/*-------------- revision-fixed-bottom -------------------*/
+.revision-fixed-bottom {
+	.group-option {
+		@include rem-calc(height, 46);
+
+		@extend .bg-light-grayish-blue;
+	}
+}
+
+/*----------------- list-revision-version -----------------*/
+.list-revision-version {
+	.version-item {
+		@include rem-calc(height, 80);
+		@include rem-calc(padding-left, 15);
+		@include rem-calc(padding-top, 12);
+
+		@extend .cl-very-dark-grayish-blue;
+		@extend .f-12;
+		border-bottom: 1px solid $darken-grayish-blue;
+		// border-bottom: 1px solid $lightness-grayish-blue;
+		
+		&:hover {
+			@include rem-calc(padding-left, 10);
+			@include rem-calc(padding-top, 7);
+
+			cursor: pointer;
+
+			border-bottom: none;
+			border: px2rem(5) solid $darken-blue;
+
+			.version-detail {
+				padding-right: px2rem(10);
+			}
+
+			.version-action {
+				@include rem-calc(padding-right, 6);
+			}
+		}
+	}
+
+	.version-detail {
+		@include rem-calc(padding-right, 15);
+		@include rem-calc(padding-top, 10);
+		@include rem-calc(line-height, 12);
+
+		@extend .font-Lato-Regular;
+	}
+
+	.version-action {
+		@include rem-calc(padding-right, 11);
+		@include rem-calc(line-height, 12);
+
+		@extend .font-Lato-Bold;
+	}
+	
+	.sidebars-stuck-ci {
+		@include size(auto, auto);
+		@include rem-calc(line-height, 12);
+
+		@extend .inline-block;
+		@extend .float-right;
+
+		background-image: none;
+	}
+
+	.icon-tpIcons02-03 {
+		@extend .f-19;
+		
+		color: $mostly-soft-blue;
+	}
+
+	.check-box {
+		@include rem-calc(margin-right, 5);
+
+		@extend .float-left;
+		@extend .none;
+
+		input {
+			margin: 0;
+		}
+	}
+}
+
+/*------------------- group active --------------------*/
+.group-active {
+	.check-box {
+		@include rem-calc(margin-top, 9);
+		@include rem-calc(margin-left, 11);
+
+		@extend .float-left;
+	}
+
+	.active-only {
+		@include rem-calc(padding-top, 9);
+		@include rem-calc(margin-left, 7);
+
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		@extend .cl-very-dark-grayish-blue;
+	}
+
+	.revision-collapse {
+		@include square(px2rem(40));
+		@include rem-calc(line-height, 40);
+
+		@extend .float-right;
+		@extend .text-center;
+	}
+
+	.buttons-collapsed-ci {
+		@extend .inline-block;
+		@extend .rotate180;
+	}
+	
+}
+
+/*-------------------- group option --------------------*/
+.group-option {
+	@include rem-calc(padding-top padding-left, 10);
+
+	.btn {
+		@include rem-calc(height line-height, 25);
+
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@extend .bg-white;
+		@extend .cl-mostly-pure;
+		
+		padding: 0;
+
+		&:focus {
+			@extend .white;
+		}
+	}
+}
+
+/*---- button ----*/
+.revision-version {
+	.btn-up,
+	.btn-down {
+		@include rem-calc(line-height, 10);
+		@include rem-calc(width, 170);
+
+		@extend .bg-lightness-grayish-blue;
+
+		border-radius: 0;
+	}
+
+	.btn-up {
+		@include rem-calc(padding-top, 20);
+		@include rem-calc(padding-bottom, 15);
+
+		.up-select {
+			@extend .none;
+		}
+	}
+
+	.btn-down {
+		@include rem-calc(padding-top, 15);
+		@include rem-calc(padding-bottom, 20);
+
+		img {
+			@extend .rotate180;
+		}
+		.down-select {
+			@extend .none;
+		}
+	}
+
+	.btn-cancel {
+		@extend .none;
+	}
+
+	.btn-upload,
+	.btn-cancel {
+		@include rem-calc(width, 62);
+		@include rem-calc(margin-right, 15);
+	}
+
+	.btn-compare {
+		width: px2rem(72);
+	}
+}
+
+/************************************************************************************/
+/*--- add class '.is-selected' to active version is selected ---*/
+.list-revision-version {
+	.version-item.is-selected {
+		border: px2rem(5) solid $very-dark-blue;
+
+		padding-left: px2rem(10);
+		padding-top: px2rem(7);
+
+		.version-action {
+			padding-right: px2rem(6);
+		}
+
+		.version-detail {
+			padding-right: px2rem(10);
+		}
+	}
+}
+
+/*---------------- add class '.in-active' to inactive version ---------------------*/
+.list-revision-version {
+	.version-item.in-active {
+		color: $grayish-blue-light;
+		background-color: $lighting-grayish-blue;
+	}
+}
+
+/*--------------- add class 'collapsed' to change style when revison-version collapse -----------------*/
+.revision-version.collapsed {
+	@extend .bg-lightness-grayish-blue;
+
+	width: px2rem(40);
+
+	.revision-collapse {
+		@extend .bg-light-grayish-blue;
+	}
+
+	.buttons-collapsed-ci {
+		-webkit-transform: rotate(360deg) !important;
+		-moz-transform: rotate(360deg) !important;
+		-ms-transform: rotate(360deg) !important;
+		-o-transform: rotate(360deg) !important;
+	}
+
+	.label-collapse {
+		@extend .block;
+	}
+	
+	.check-box,
+	.btn-up,
+	.mutiple-version,
+	.revision-fixed-bottom,
+	.active-only {
+		@extend .none;
+	}
+}
+
+/************************************************************************************/
+/* add '.select-mode' class select mode of Revision Version*/
+.revision-version.select-mode {
+	.check-box {
+		@extend .display-inline-block;
+	}
+
+	.group-active,
+	.btn-up,
+	.btn-down,
+	.group-option {
+		background-color: $dark-blue !important;
+	}
+
+	.btn-up {
+		.up {
+			@extend .none;
+		}
+		.up-select {
+			@extend .display-inline-block;
+		}
+	}
+
+	.btn-down {
+		.down {
+			@extend .none;
+		}
+		.down-select {
+			@extend .display-inline-block;
+		}
+	}
+
+	.active-only {
+		color: $white !important;
+	}
+
+	.btn-compare {
+		@extend .white;
+
+		background-color: $mostly-pure !important;
+	}
+
+	.btn-cancel {
+		@extend .display-inline-block;
+	}
+
+	.btn-upload {
+		@extend .none;
+	}
+}
+
+.revision-version.collapsed {
+	.check-box {
+		display: none !important;
+	}
+}
+.revision-version .select-mode .collapsed {
+	.check-box {
+		display: none !important;
+	}
+}

@@ -1,0 +1,79 @@
+/*--- annotation ---*/
+.annotation-wrapper {
+	@include rem-calc(padding-right, 20);
+	@include rem-calc(margin-left, 10);
+
+	@extend .float-right;
+	@extend .bg-light-grayish-blue;
+}
+.annotation {
+	@extend .relative;
+	
+	background-blend-mode: multiply;
+	-webkit-box-shadow: 0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+	box-shadow:         0 px2rem(3) px2rem(10) 0 rgba(0, 0, 0, 0.2);
+
+	.annotation-collapse {
+		@include square(px2rem(40));
+		@include rem-calc(line-height, 40);
+
+		@extend .float-right;
+		@extend .text-center;
+	}
+
+	.label-collapse {
+		@include rotate(90deg);
+		@include rem-calc(width, 276);
+		@include rem-calc(top, 181);
+		@include rem-calc(right, -120);
+
+		@extend .f-16;
+		@extend .font-Lato-Bold;
+		@extend .none;
+		@extend .absolute;
+		@extend .cl-dark-grayish-blue;
+		@extend .clear-both;
+	}
+
+	.label-expand {
+		@include rem-calc(padding-left, 10);
+		@include rem-calc(padding-top, 11);
+
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		@extend .float-left;
+		@extend .cl-very-dark-grayish-blue;
+	}
+	
+	.buttons-collapsed-ci {
+		@extend .inline-block;
+	}
+}
+
+/*--- add class '.collapsed' to change style when collapse annotation ---*/
+.annotation.collapsed {
+	@include rem-calc(width, 40);
+
+	@extend .bg-lightness-grayish-blue;
+
+	.label-expand {
+		@extend .none;
+	}
+
+	.label-collapse {
+		display: block !important;
+	}
+
+	.annotation-collapse {
+		@extend .bg-light-grayish-blue;
+	}
+
+	.buttons-collapsed-ci {
+		@extend .rotate180;
+	}
+
+	.annotation-panel-content {
+		@extend .none;
+	}
+}

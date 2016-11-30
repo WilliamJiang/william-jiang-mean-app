@@ -1,0 +1,10 @@
+{% extends 'layout.server.view.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h2><a ui-sref="admin.list_companies"><i class="fa fa-home"></i>Traffic Bridge Admin</a></h2>
+    </div>
+
+    <div ui-view></div>
+</div>
+{% endblock %}

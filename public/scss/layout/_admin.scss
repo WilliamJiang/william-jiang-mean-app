@@ -1,0 +1,265 @@
+.admin.modal {
+	z-index: 9999999;
+
+	.modal-dialog {
+		width: 100%;
+
+		min-width: px2rem(1280);
+		max-width: px2rem(1500);
+		
+		margin: 0 auto;
+	}
+}
+
+.admin {
+	z-index: 9999999;
+
+	.modal-dialog {
+		width: 100%;
+		min-width: px2rem(1280);
+		
+		margin: 0 auto;
+	}
+
+	.modal-content {
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		-o-box-shadow: none;
+		box-shadow: none;
+	}
+}
+
+.admin-header {
+	@include rem-calc(padding-left padding-right, 20);
+
+	@extend .bg-very-dark-blue;
+	@extend .overflow-hidden;
+
+	.btn-close-modal {
+		@include rem-calc(margin-top, 20);
+		@include rem-calc(margin-bottom, 30);
+
+		@extend .float-right;
+		@extend .bg-mostly-pure;
+		@extend .white;
+	}
+
+	.admin-header-tabs {
+		@include rem-calc(margin-bottom, 22);
+
+	 clear: both;
+	}
+}
+
+.logo-site {
+	@include rem-calc(padding-top, 15);
+
+	@extend .float-left;
+
+	.logo-admin {
+		@include replace-text-with-dimensions("../images/logos/logo-admin.png", true);
+		@include rem-calc(margin-right, 10);
+		@include rem-calc(margin-top, -7);
+
+		@extend .inline-block;
+	}
+
+	.label-admin {
+		@extend .f-25;
+		@extend .font-Lato-Light;
+		@extend .white;
+	}
+}
+
+.admin-header-tabs {
+	.nav-tabs {
+		border-bottom: none;
+	}
+	
+	.nav-tabs {
+		& > li {
+			margin-bottom: 0;
+			width: 12.5%;
+			border-right: 1px solid $very-dark-blue;
+
+			&:last-child {
+				border-right: none;
+			}
+		}
+
+		& > li > a {
+			@include rem-calc(height, 35);
+			@include rem-calc(line-height, 35);
+		
+			@extend .f-15;
+			@extend .font-Lato-Bold;
+			@extend .white;
+			@extend .bg-darken-grayish-blue;
+			@extend .text-center;
+			@extend .block;
+
+			margin-right: 0;
+			border-radius: 0;
+			border: none;
+			padding: 0;
+
+			&:hover {
+				border: none;
+			}
+		}
+
+		& > li.active > a {
+			@extend .bg-white;
+			@extend .cl-very-dark-grayish-blue;
+
+			border: none;
+		}
+	}
+}
+
+
+.admin-container-header {
+	@include rem-calc(padding-left padding-right, 20);
+	@include rem-calc(height, 58);
+
+	@extend .bg-light-grayish-blue ;
+	@extend .overflow-hidden;
+
+	.number-user {
+		@include rem-calc(margin-top, 15);
+
+		@extend .float-left;
+		@extend .f-18;
+		@extend .font-Lato-Bold;
+		@extend .cl-very-dark-grayish-blue;
+	}
+
+	.group-btn {
+		@include rem-calc(margin-top, 10);
+
+		@extend .float-right;
+	}
+
+	.btn-excel {
+		@include rem-calc(margin-left, 20);
+	}
+}
+
+.admin-chart {
+	@include rem-calc(padding, 20);
+
+	@extend .bg-darken-grayish-blue;
+}
+
+.table-chart {
+	@extend .overflow-hidden;
+	
+	border: 1px solid $grayish-blue;
+	box-sizing: border-box;
+	
+	.list-columns {
+		overflow: hidden;
+	}
+
+	.column {
+		@extend .float-left;
+		
+		border-right: 1px solid $grayish-blue;
+		box-sizing: border-box;
+
+		&:last-child {
+			border: none;
+		}
+	}
+	
+	.column.name {
+		// @include rem-calc(width, 226);
+		width: 18.25%;
+	}
+
+	.column.username {
+		// @include rem-calc(width, 140);
+		width: 11.31%;
+
+	}
+
+	.column.email {
+		// @include rem-calc(width, 222);
+		width: 17.93%;
+	}
+
+	.column.company {
+		// @include rem-calc(width, 255);
+		width: 20.5%;
+	}
+
+	.column.role {
+		// @include rem-calc(width, 155);
+		width: 12.5%;
+	}
+
+	.column.admin {
+		// @include rem-calc(width, 85);
+		width: 6.8%;
+	}
+
+	.column.group {
+		// @include rem-calc(width, 155);
+		width: 12.71%;
+	}
+
+	.column-header {
+		@include rem-calc(padding, 10);
+
+		@extend .bg-white;
+		
+		border-bottom: 1px solid $grayish-blue;
+		box-sizing: border-box;
+	}
+	
+	.title {
+		@include rem-calc(line-height, 10);
+		@include rem-calc(padding-bottom, 8);
+	}
+
+	.label-name {
+		@extend .f-16;
+		@extend .font-Lato-Bold;
+		@extend .cl-very-dark-grayish-blue;
+
+		padding: 0;
+	}
+
+	.drop {
+		@extend .float-right;
+	}
+
+	.form-control {
+		@include rem-calc(height, 23);
+
+		border-radius: 0;
+		border: 1px solid #c4ccd3;
+	}
+
+	.list-data {
+		@extend .bg-white;
+	}
+
+	.data {
+		@include rem-calc(height line-height, 30);
+		@include rem-calc(padding-left padding-right, 10);
+
+		@extend .f-16;
+		@extend .font-Lato-Regular;
+		@extend .cl-very-dark-grayish-blue;
+		@extend .overflow-hidden;
+
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		cursor: pointer;
+
+		&:nth-child(2n) {
+			@extend .bg-lightness-grayish-blue;
+		}
+	}
+}

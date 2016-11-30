@@ -1,0 +1,89 @@
+<style>
+    .network-name a {
+        color: #FFFFFF;
+    }
+</style>
+
+<div class="sidebar-header">
+    <div class="brand"><a href="/tc/home/now" class="logo">Logo</a><a href="/tc/home/now"
+                                                                      class="logo-collapsed">Logo</a></div>
+</div>
+
+<div class="sidebar-nav">
+
+    <ul class="menu">
+        <!-- AgilityIO guide: add ".active" class to enable menu active mode-->
+        <!-- AgilityIO guide: add ".change-cl-delivered" class to change color when a new Copy Instructed has been delivered-->
+        <li class="nav-size" ng-class="{'active': newActive}">
+            <a href="/tc/home/new" class="nav-link">
+                <span class="new">New</span>
+                <span class="number">{{counts.new}}</span>
+            </a>
+        </li>
+        <li class="nav-size" ng-class="{'active': nowActive}">
+            <a href="/tc/home/now" class="nav-link">
+                <span class="now">Now</span>
+                <span class="number">{{counts.now}}</span>
+            </a>
+        </li>
+        <!-- AgilityIO guide: add ".active" class to enable menu active mode-->
+        <li class="nav-size" ng-class="{'active': libraryActive}">
+            <a href="/tc/home/library" class="nav-link">
+                <span class="library">Library</span>
+                <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+            </a>
+        </li>
+        <li class="saved-search">
+            <ul class="list-result">
+                <li class="result-item">
+                    <div class="close-item">
+                        <button type="button" class="btn-close"><img src="../../images/buttons/close-btn.png"
+                                                                     alt="button close"/></button>
+                    </div>
+                    <div class="result">Harvey's saved search 1</div>
+                </li>
+                <li class="result-item">
+                    <div class="close-item">
+                        <button type="button" class="btn-close"><img src="../../images/buttons/close-btn.png"
+                                                                     alt="button close"/></button>
+                    </div>
+                    <div class="result">Hershey's 2014</div>
+                </li>
+                <li class="result-item">
+                    <div class="close-item">
+                        <button type="button" class="btn-close"><img src="../../images/buttons/close-btn.png"
+                                                                     alt="button close"/></button>
+                    </div>
+                    <div class="result">August 2015 Big Bang Theory CIs only</div>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-size" ng-show="false">
+            <a href="" ng-click="triggerImap()" style="font-size: 16px; color: #428BCA;">+ More emails type
+                {{imapMode}}</a>
+        </li>
+        <li class="nav-size" ng-show="false">
+            <a href="" ng-click="chImapMode()" style="font-size: 16px; color: #428BCA;">* * *</a>
+        </li>
+    </ul>
+</div>
+<div class="user-info">
+    <div class="user-data">
+        <div class="data-show" ng-click="GotoUserProfile()">
+            <img src="/images/users/user.png" alt="user" class="user-avatar"/>
+            <span class="user-name">{{mvIdentity.currentUser.firstName}}</span>
+        </div>
+        <!-- AgilityIO guide: add ".rotate180" class to rotate 180 deg-->
+        <a data-toggle="collapse" href=".user-name-collapsed" aria-expanded="false" aria-controls="collapseExample"
+           class="data-expanded">
+            <img src="/images/users/down.png" alt=""/>
+        </a>
+        <span class="collapse user-name-collapsed">{{mvIdentity.currentUser.firstName}}</span>
+    </div>
+    <div class="user-collapsed">
+        <a href="javascript:void(0)" class="buttons-collapsed"></a>
+    </div>
+    <div class="text-center">
+        <a href="/debug">Debug</a>&nbsp;|&nbsp;<a href="" ng-click="signout()">Logout</a>
+    </div>
+</div>

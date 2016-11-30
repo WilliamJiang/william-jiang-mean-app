@@ -1,0 +1,27 @@
+<style type="text/css">
+ /*This is a temporary fix for the height issue*/
+ .main-content {
+     min-height: 1000px !important;
+ }
+</style>
+<div class="wrapper clearfix">
+  <div class="sidebar-wrapper" ng-controller="CopyCoordinatorLeftNavCtrl">
+    <div ng-include="'/partials/cc/leftnav.html'"></div>
+  </div>
+  <div class="content">
+    <div class="content-header" style="margin-bottom: 12px;">
+      <div class="option">
+        <span style="font-size: 24px; color: white;">History</span>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="alert alert-info" role="alert">This is a placeholder page</div>      
+      <div ng-repeat="item in parsed_history">
+        <div style="background-color: white; padding: 8px; margin-bottom: 8px;">
+          <p ng-bind-html="item.text"/>
+          <div class="text-right" style="font-size: 12px; color: #777777">{{item.timestamp}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

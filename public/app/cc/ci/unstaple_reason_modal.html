@@ -1,0 +1,40 @@
+<style>
+    .error {
+        padding: 5px 0 0;
+        margin-left: 100px;
+    }
+
+    .error span {
+        color: red;
+        font-size: 12px;
+    }
+</style>
+<div class="modal-content pop-up save-search-modal">
+    <div class="pop-up-header">
+        <h2 class="pop-up-title">Unstaple Reason</h2>
+    </div>
+    <div class="pop-up-content clearfix">
+        <div class="search-result">
+            <p class="rerult-label">Please explain the reason why you want to unstaple this version.</p>
+            <form class="form-inline" name="unstapleReasonForm">
+                <div class="form-group">
+                    <label>Reason</label>
+                    <input type="text" id="reason" name="reason" placeholder="(required)" ng-required="true" ng-model="payload.reason"
+                           class="form-control" ng-minlength="5" ng-maxlength="100" autofocus />
+
+                    <div class="error">
+                        <div ng-show="unstapleReasonForm.reason.$touched && unstapleReasonForm.reason.$invalid">
+                            <span ng-show="unstapleReasonForm.reason.$error.required">Required!</span>
+                            <span ng-show="unstapleReasonForm.reason.$error.minlength">Minimum of 5 characters required!</span>
+                            <span ng-show="unstapleReasonForm.reason.$error.maxlength">Search name can not exceed 100 characters!</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="wrap-button clearfix">
+            <button type="button" data-dismiss="modal" class="btn btn-cancel-save btn-rollover" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-ok-save btn-rollover" ng-click="ok(unstapleReasonForm)" ng-disabled="unstapleReasonForm.$invalid || OKbuttonClicked">OK</button>
+        </div>
+    </div>
+</div>

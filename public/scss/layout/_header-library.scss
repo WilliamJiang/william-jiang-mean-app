@@ -1,0 +1,69 @@
+.content-header.content-header-library {
+	height: auto;
+	border-bottom: none;
+}
+
+.header-library {
+	@include rem-calc(padding-left padding-right, 20);
+
+	@extend .bg-darken-grayish-blue;
+	@extend .overflow-hidden;
+}
+
+.title-library {
+	@extend .float-left;
+	@extend .font-Lato-Regular;
+	@extend .f-28;
+	@extend .white;
+
+	line-height: px2rem(22);
+
+	padding-top: px2rem(68);
+	padding-bottom: px2rem(20);
+
+	.back,
+	.ignored {
+		@extend .none;
+	}
+
+	.back {
+		@extend .f-15;
+		@extend .cl-dark-blue;
+	}
+}
+
+.group-button {
+	@extend .float-right;
+
+	margin-top: px2rem(19);
+}
+
+.group-btn-library {
+	@extend .float-right;
+
+	margin-right: px2rem(30);
+}
+
+
+/* add '.show-more' class to expanded */
+.show-more {
+	.title-library {
+		padding-top: px2rem(27) !important;
+		padding-bottom: px2rem(25) !important;
+	}
+
+	.filter-expanded {
+		margin-bottom:px2rem(19) !important;
+	}
+
+	.more-filters {
+		padding-top: px2rem(12);
+		padding-bottom: px2rem(13) !important;	
+	}
+	
+	.show-ignored {
+		@extend .is-show;
+	}
+}
+
+

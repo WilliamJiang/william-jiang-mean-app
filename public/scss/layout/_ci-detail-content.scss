@@ -1,0 +1,33 @@
+/*---------- ci-content ------------*/
+.ci-content {
+	.revision-version {
+		@include rem-calc(width, 170);
+		// @include rem-calc(margin-right, 10);
+
+		@extend .float-left;
+		@extend .relative;
+		@extend .bg-white;
+	}
+
+	.revision-content {
+		@extend .float-left;
+		@extend .bg-white;
+		
+		width: percentage(774 / 1240);
+	}
+	.annotation {
+		@extend .float-right;
+		@extend .bg-light-grayish-blue ;
+	
+		width: px2rem(276);
+	}
+
+	.ci-message {
+		// @include rem-calc(margin-left margin-right, 20)
+		// @include rem-calc(margin-bottom, 10);
+
+		// margin-top: 0;
+
+		margin: 0 px2rem(20) px2rem(10);
+	}
+}

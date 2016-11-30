@@ -1,0 +1,196 @@
+<div class="modal-content">
+    <div class="compare-header">
+        <div class="compare-header-info">
+            <div class="advertiser-network">{{selectedCandidateCI.advertiser}}</div>
+            <div class="type">{{selectedCandidateCI.brand | bracketize}}</div>
+        </div>
+        <div class="button-group">
+            <button type="button" class="btn btn-default btn-rollover btn-cancel" ng-click="cancel()">Cancel</button>
+            <button type="button" class="btn btn-default btn-rollover btn-save" ng-disabled="!isDecisionMadeForAll()" ng-click="onSaveRevisionsClick()">Save</button>
+        </div>
+    </div>
+    <div class="compare-notify-wrapper">
+        <div class="compare-notify">
+            <div class="compare-title">
+                <p class="title">The Copy Instruction below may revise previously filed Copy Instruction.</p>
+            </div>
+            <div class="compare-option">
+                <div class="question">
+                    <p>Do you want to staple the potential revision and the candidate together?</p>
+                    <a target="_blank" class="btn btn-default btn-rollover btn-system-compare" ng-click="onSystemCompareClick($event)">System Compare</a>
+                </div>
+                <div class="option-yes">
+                    <span class="chose">Yes, it is a</span>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" value="REVISION" ng-model="revisionOption.option" ng-click="onRadioOptionSelect($event, 'REVISION')"/>revision
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" value="DUPLICATE" ng-model="revisionOption.option" ng-click="onRadioOptionSelect($event, 'DUPLICATE')"/>duplicate
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" value="ATTACHMENT" ng-model="revisionOption.option" ng-click="onRadioOptionSelect($event, 'ATTACHMENT')"/>attachment
+                    </label>
+                </div>
+                <!-- AgilityIO guide: add ".is-reason" class to display input-->
+                <div class="option-no" ng-class="{'is-reason': revisionOption.staple === 'NO'}">
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" value="NO" ng-model="revisionOption.staple" ng-click="onRadioOptionSelect($event, 'NO')"/>No thanks
+                    </label>
+                    <input type="text" id="reason" name="reason" placeholder="You must type a reason here" class="form-control enter-reason"
+                           ng-show="revisionOption.staple" ng-model="revisionOption.reason" ng-change="onReasonChange($event)"
+                           ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" />
+                </div>
+                <div class="pagination-compare-version" ng-hide="candidate_cis.length <= 1">
+                    <ul class="pagination-compare">
+                        <li><a href="javascript:void(0)" class="previous" ng-click="onPreviousClick($event)"></a></li>
+                        <li ng-repeat="candidate in candidate_cis">
+                            <!-- AgilityIO guide: add ".active" class to active revision version current-->
+                            <a href="javascript:void(0)" class="number" ng-click="onRevisionClick(candidate._id)" ng-class="{'active': selectedCandidateCI._id === candidate._id}">
+                                <span ng-class="isDecisionMadeForRevision(candidate._id) ? 'icon-tpIcons02-12': 'icon-tpIcons02-13'"></span> <!--icon-tpIcons02-12-->
+                            </a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="next" ng-click="onNextClick($event)"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="compare-content">
+        <div class="compare-version-next">
+            <div class="compare-revision-version">
+                <div class="revision-content-wrapper">
+                    <div class="version-info">
+                        <div class="potential-revision-title"><span>Potential Revision</span></div>
+                        <div class="wrapper-data">
+                            <div class="meta-data">
+                                <div class="program">
+                                    <div class="network-flight-dates">
+                                        <time class="start-date">{{selectedCI.air_date_start | amDateFormat:'MMM DD'}}</time><span class="dash"> - </span>
+                                        <time class="end-date">{{selectedCI.air_date_end | amDateFormat:'MMM DD'}},</time>
+                                    </div>
+                                </div>
+                                <div class="advertiser-info">
+                                    <div class="advertiser-brand">{{selectedCI.brand}},</div>
+                                </div>
+                                <div class="program-name">{{selectedCI.program}}</div>
+                            </div>
+                            <div class="revision-content">
+                                <div class="revision-meta">
+                                    <div class="data-sender">
+                                        <div class="sender">
+                                            <span class="label-name">Sender</span>
+                                            <span class="label-info name">{{selectedCI.ingest.sender || selectedCI.ingest.created_by}}</span>
+                                            <span class="email"> {{selectedCI.email | bracketize}}</span></div>
+                                        <div class="received"><span class="label-name">Recevied</span>
+                                            <time class="label-info start-date">{{selectedCI.created_at | amDateFormat:'MMM DD h:mm A'}}</time>
+                                        </div>
+                                        <div class="notes"><span class="label-name">Notes</span>
+                                            <div class="label-info">{{selectedCI.note}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-content-wrapper">
+                        <pdf-view view-side="left" pdf-doc="PDFDOC.Left"></pdf-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="compare-version-current">
+            <!-- AgilityIO guide: add ".collapsed" class to collapse Revision Version-->
+            <!-- AgilityIO guide: add ".select-mode" class change to "select mode"-->
+            <div class="compare-revision-version">
+                <div class="revision-content-wrapper">
+                    <div class="version-info">
+                        <div class="candidate-revision-title"><span>Candidate</span></div>
+                        <div class="wrapper-data">
+                            <div class="meta-data">
+                                <div class="bundle"> <span>Bundle</span></div>
+                                <div class="program">
+                                    <div class="network-flight-dates">
+                                        <time class="start-date">{{selectedCandidateCI.air_date_start | amDateFormat:'MMM DD'}}</time><span class="dash"> - </span>
+                                        <time class="end-date">{{selectedCandidateCI.air_date_end | amDateFormat:'MMM DD'}},</time>
+                                    </div>
+                                </div>
+                                <div class="advertiser-info">
+                                    <div class="advertiser-brand">{{selectedCandidateCI.brand}},</div>
+                                </div>
+                                <div class="program-name">{{selectedCandidateCI.program}}</div>
+                            </div>
+                            <div class="revision-content">
+                                <div class="revision-meta">
+                                    <div class="data-sender">
+                                        <div class="sender">
+                                            <span class="label-name">Version</span>
+                                            <span class="label-info name">{{selectedCandidateStaple.ingest.sender || selectedCandidateStaple.ingest.created_by || selectedCandidateCI.ingest.sender || selectedCandidateCI.ingest.created_by}}</span>
+                                            <span class="email"> {{selectedCandidateStaple.email || selectedCandidateCI.email | bracketize}}</span></div>
+                                        <div class="received"><span class="label-name">Recevied</span>
+                                            <time class="label-info start-date">{{selectedCandidateStaple.created_at || selectedCandidateCI.created_at | amDateFormat:'MMM DD h:mm A'}}</time>
+                                        </div>
+                                        <div class="notes"><span class="label-name">Notes</span>
+                                            <div class="label-info">{{selectedCandidateStaple.note || selectedCandidateCI.note}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="revision-version collapsed" ng-if="selectedCandidateCI.staple.length > 0">
+                        <div class="revision-fixed-top">
+                            <div class="group-active">
+                                <div class="check-box">
+                                    <input type="checkbox"/>
+                                </div>
+                                <label class="active-only">Active Only</label>
+                                <div class="revision-collapse"><a href="javascript:void(0)" class="buttons-collapsed-ci"></a></div>
+                            </div>
+                            <div class="label-collapse"><span>Show Revision Versions</span></div>
+                            <button type="button" class="btn btn-default btn-up">
+                                <img src="/images/buttons/up.png" alt="up" class="up"/>
+                                <img src="/images/buttons/up-select.png" alt="up" class="up-select"/>
+                            </button>
+                        </div>
+                        <div class="mutiple-version version-list">
+                            <div class="scrolling-list">
+                                <ul class="list-revision-version">
+                                    <!-- AgilityIO guide: add ".is-selected" class to active Revision Version is selected-->
+                                    <!-- AgilityIO guide: add ".in-active" class to inactive Revision Version-->
+                                    <li class="version-item" ng-repeat="ci in currentCandidateStaples"
+                                        ng-class="{ 'in-active' : !ci.active, 'is-selected' : ci._id === selectedCandidateStaple._id }"
+                                        ng-click="onCandidateStapleClick($event, ci)">
+                                        <div class="version-action">
+                                            <div class="check-box">
+                                                <input type="checkbox" ng-click="onCandidateStapleCheckboxClick($event, ci)"/>
+                                            </div>
+                                            <time class="start-date">{{::ci.created_at | amDateFormat:'MMM DD, h:mm:ss a'}}</time>
+                                            <span class="sidebars-stuck-ci" ng-show="ci.stuck"></span>
+                                        </div>
+                                        <div class="version-detail">
+                                            <p style="overflow: hidden !important; height: 25px;">{{ci.note}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="revision-fixed-bottom">
+                            <button type="button" class="btn btn-default btn-down">
+                                <img src="/images/buttons/up.png" alt="down" class="down"/>
+                                <img src="/images/buttons/up-select.png" alt="down" class="down-select"/>
+                            </button>
+                            <div class="group-option">
+                                <button type="button" class="btn btn-default btn-upload btn-rollover">Upload</button>
+                                <button type="button" class="btn btn-default btn-upload btn-cancel">Cancel</button>
+                                <button type="button" data-toggle="modal" data-target=".compare-revision" class="btn btn-default btn-compare btn-rollover">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-content-wrapper">
+                        <pdf-view view-side="right" pdf-doc="PDFDOC.Right"></pdf-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+<div class="modal-content">
+    <div class="instruction-header">
+        <h2>New Copy Instruction for Network: </h2><span class="ci-network">{{::ci.network}}</span>
+
+        <div class="button-group">
+            <button type="button" data-dismiss="modal" class="btn btn-default btn-close-instruction btn-rollover" ng-click="cancel()">
+                <span sr-only="sr-only" class="closed">Close</span>
+                <span aria-hidden="true" class="close-icon glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+    <!--METADATA-->
+    <div class="instruction-meta clearfix">
+        <!--FIELDS-->
+        <div class="filter-group">
+            <div class="filter-expanded">
+                <ul class="filter-list list-inline">
+                    <!--ADVERTISER-->
+                    <li class="filter-item dropdown-advertiser">
+                        <div class="filter-title">Advertiser<span class="optional required">(required)</span></div>
+                        <div class="dropdown">
+                            <input type="text" id="advertiser" name="advertiser" ng-required="true" ng-change="onChangeAdvertiser()" placeholder="Type for advertisers"
+                                   ng-model="ci.advertiser" typeahead-editable="false" typeahead="advertiser.advertiser for advertiser in getAdvertisers($viewValue)"
+                                   typeahead-on-select='onSelectAdvertiser($item, $model, $label)' class="form-control metadata-typeahead">
+                        </div>
+                    </li>
+                    <!--AIR DATES-->
+                    <li class="filter-item">
+                        <div class="filter-title">Air Dates<span class="optional required">(required)</span></div>
+                        <date-range-select class="cc-filing" id="date-range-airdates" ng-required="true"></date-range-select>
+                    </li>
+                    <!--TYPE-->
+                    <li class="filter-item">
+                        <div class="filter-title">Type<span class="optional required">(required)</span></div>
+                        <div class="dropdown">
+                            <button type="button" ng-disabled="disableTypeSelection" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown btn-rollover">
+                                {{ selectedType.label }}
+                                <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li role="presentation" ng-repeat="type in types">
+                                    <a href role="menu-item" ng-click="onChangeType(type)">{{::type.label}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--BRAND-->
+                    <li class="filter-item dropdown-brand">
+                        <div class="filter-title">Brand<span class="optional required" ng-if="files_by_brand">(required)</span><span class="optional" ng-if="!files_by_brand">(optional)</span></div>
+                        <div class="dropdown" tooltip-append-to-body="true" tooltip="{{ ci.brand }}">
+                            <input type="text" id="brand" name="brand" placeholder="Type for brands" class="form-control metadata-typeahead"
+                                   ng-model="ci.brand" ng-disabled="disableBrand" typeahead-editable="false" ng-required="files_by_brand"
+                                   ng-focus="onFocusBrand()" ng-change="onChangeBrand()" ng-blur="onBlurBrand()"
+                                   typeahead="brand.name for brand in brands | filter:$viewValue" typeahead-on-select='onSelectBrand($item, $model, $label)'>
+                        </div>
+                    </li>
+                    <!--PROGRAM-->
+                    <li class="filter-item">
+                        <div class="filter-title">Program<span class="optional required" ng-if="files_by_program">(required)</span><span class="optional" ng-if="!files_by_program">(optional)</span>
+                        </div>
+                        <div class="dropdown" tooltip-append-to-body="true" tooltip="{{ ci.program }}">
+                            <input type="text" id="program" name="program" placeholder="Type for programs" class="form-control metadata-typeahead"
+                                   ng-model="ci.program" typeahead-editable="true" ng-required="files_by_program" ng-change="onChangeProgram()"
+                                   typeahead="program.name for program in programs | filter:$viewValue" typeahead-on-select='onSelectProgram($item, $model, $label)'>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="wrap-owner">
+            <div class="select-owner-ci">
+                <!--OWNER-->
+                <p class="owner-label">Owner </p>
+
+                <div class="dropdown keep-open" tooltip="{{ currentOwner ? currentOwner.firstName + ' ' + currentOwner.lastName : '---' }}">
+                    <span data-toggle="dropdown" aria-expanded="true" class="btn-dropdown select-owner">{{currentOwner.fullName}}</span>
+                    <!-- AgilityIO guide: add ".is-search" class to show/hide the "Search" text box-->
+                    <ul role="menu" class="dropdown-menu dropdown-advertiser is-search owner-dropdow">
+                        <li class="list-select">
+                            <div class="scroll-select">
+                                <ul class="search-list">
+                                    <!-- AgilityIO guide: add ".active" class to active item when is selected-->
+                                    <li role="presentation" ng-repeat="user in users" tooltip-append-to-body="true" tooltip="{{::(user.firstName + ' ' + user.lastName)}}" tooltip-placement="right">
+                                        <a href role="menu-item" ng-click="onChangeOwner(user)">{{::user.fullName}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- AgilityIO guide: add ".is-adding-note" class to show text box to enter note-->
+            <!--AgilityIO guide: add ".is-showing" class to show input tag -->
+            <div class="ci-note">
+                <span class="add-ci-note">{{ci.note || 'Add CI Note'}}</span>
+                <a href="javascript:void(0)" class="wrap-enter-note">
+                    <span class="add-note-label">{{ci.note || 'Add CI Note (optional)'}}</span>
+                    <!--<span class="option-label">(optional)</span>-->
+                </a>
+                <input type="text" class="enter-note" ng-model="ci.note" ng-model-options="{ updateOn: 'blur' }"/>
+            </div>
+        </div>
+
+        <!--BUTTONS-->
+        <div class="instruction-button">
+            <div class="wrap-button clearfix">
+                <!-- PavaniKa - Cancel button is hidden for now-->
+                <button type="button" data-dismiss="modal" class="btn btn-default btn-instruction-cancel btn-rollover" ng-click="cancel()" style="visibility: hidden;"><span
+                        sr-only="sr-only">Cancel</span></button>
+                <button type="button" class="btn btn-default btn-instruction-ignore btn-rollover" ng-click="onIgnoreClick()">
+                    <span sr-only="sr-only">Ignore</span>
+                </button>
+                <!-- AgilityIO guide: add ".is-file" class to changes label of button from Save to File-->
+                <button type="button" data-target=".new-copy-instruction" class="btn btn-default btn-instruction-save btn-rollover"
+                        ng-click="onSaveClick()" ng-disabled="!isMetadataValid() || saveButtonClicked" ng-class="{'is-file': isMetadataValid() && isFilingAllowed() }">
+                    <span sr-only="sr-only" class="instruction-save">Save</span>
+                    <span sr-only="sr-only" class="instruction-file">File</span>
+                </button>
+            </div>
+            <div class="wrap-add-parking">
+                <div class="wrap-checkbox">
+                    <input type="checkbox" ng-model="$parent.add_to_parking_lot" ng-disabled="!isMetadataValid() || !isFilingAllowed()"/>
+                </div>
+                <label class="add-to-parking" ng-class="{'is-disabled-label': !isMetadataValid() || !isFilingAllowed()}">Add to Parking Lot when filed</label>
+            </div>
+        </div>
+    </div>
+    <div class="progress-bar-container">
+        <progress-bar name="new_ci_modal_progress" class="progress__container_color_pink"></progress-bar>
+    </div>
+
+    <div class="group-action">
+        <div class="group-btn-page">
+            <a href="javascript:void(0)" class="buttons-first btn-first-page" ng-click="onFirstPage()"></a>
+            <a href="javascript:void(0)" class="buttons-up btn-previous" ng-click="onPrevPage()"></a>
+            <input type="number" placeholder="1" min="1" max="{{PDFDOC.pageCount}}" required
+                   ng-model="PDFDOC.pageNum" ng-change="gotoPage($event)" class="current-number"/>
+            <label class="total-number">/ {{PDFDOC.pageCount}}</label>
+            <a href="javascript:void(0)" class="buttons-up btn-next" ng-click="onNextPage()"></a>
+            <a href="javascript:void(0)" class="buttons-first btn-last-page" ng-click="onLastPage()"></a>
+            <button type="button" class="btn btn-default btn-view btn-rollover" ng-click="onViewEmailClick($event)" ng-if="::showViewSelectButton">
+                <span sr-only="sr-only" class="closed">View {{bShowEmail ? 'CI' : 'Email'}}</span>
+            </button>
+        </div>
+        <zoom-in-out></zoom-in-out>
+    </div>
+    <div class="instruction-pdf">
+        <!--PDF-->
+        <div class="pdf-content" style="height: inherit;" ng-show="!bShowEmail">
+            <div class="pdf-placeholder" ng-hide="bShowEmail" style="width: inherit; height: inherit;">
+                <div id="pdfWrapper" style="left:0;top:0; width: inherit; height: inherit; overflow: auto;"></div>
+            </div>
+        </div>
+        <!--EMAIL-->
+        <div class="email-placeholder" ng-if="::hasEmail" ng-show="bShowEmail" style="height: inherit; width: inherit;">
+            <iframe ng-src="{{::ci.ingest.files.email.url | trusted}}" style="width: 100%; height: 100%; background-color: #ffffff;"></iframe>
+        </div>
+    </div>
+</div>

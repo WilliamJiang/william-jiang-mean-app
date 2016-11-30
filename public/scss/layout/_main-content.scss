@@ -1,0 +1,31 @@
+.wrapper {
+	padding-left: px2rem(215);
+	-webkit-transition: all 0.05s ease;
+  -moz-transition: all 0.05s ease;
+  -o-transition: all 0.05s ease;
+  transition: all 0.05s ease;
+}
+
+.content {
+	@extend .bg-darken-grayish-blue;
+}
+
+.main-content {
+	@include rem-calc(padding-top padding-left, 20);
+
+	@extend .relative;
+
+	height: auto;
+}
+
+/* style for scroll */
+#scroller {
+	@extend .absolute;
+
+	width: 100%;
+
+	z-index: 1;
+	padding: 0;
+	
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}

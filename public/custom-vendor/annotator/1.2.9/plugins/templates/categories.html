@@ -1,0 +1,19 @@
+<li class='annotator-item annotator-radio'>
+<% if (categoriesToRender) { %>
+<% categoriesToRender.forEach(function (val) { %>
+<input id='radio-<%=val.category%>' type='radio'
+	placeholder='<%=val.category%>' name='categories-annotation'
+	value='<%=val.category%>'
+	class='cat-radio' />
+
+
+<label class='cat-cb-label'>
+	<!--AgilityIO comment: Should remove .square-->
+	<!-- <div class='<%=val.catStyle%> square cat-category'></div> -->
+	<span class='radio-<%=val.category%>'><%=val.categoryName%> </span>
+</label>
+&nbsp;&nbsp;
+ <% });} %>
+</li>
+
+

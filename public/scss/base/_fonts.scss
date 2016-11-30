@@ -1,0 +1,93 @@
+.font-Lato-Regular {
+	font-family: $Lato-Regular;
+}
+
+.font-Lato-Bold {
+	font-family: $Lato-Bold;
+}
+
+.font-Lato-Black {
+	font-family: $Lato-Black;
+}
+
+.font-Lato-Medium {
+	font-family: $Lato-Regular;
+}
+
+.font-Lato-Light {
+	font-family: $Lato-Light;
+}
+
+.icon-tpIcons02 {
+	font-family: $tpIcon2;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	@extend .icon-tpIcons02;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tpIcons02-08:before {
+	content: "\21";
+}
+
+.icon-tpIcons02-09:before {
+	content: "\22";
+}
+
+.icon-tpIcons02-01:before {
+	content: "\23";
+}
+
+.icon-tpIcons02-10:before {
+	content: "\24";
+}
+
+.icon-tpIcons02-11:before {
+	content: "\25";
+}
+
+.icon-tpIcons02-04:before {
+	content: "\26";
+}
+
+.icon-tpIcons02-05:before {
+	content: "\27";
+}
+
+.icon-tpIcons02-06:before {
+	content: "\28";
+}
+
+.icon-tpIcons02-07:before {
+	content: "\29";
+}
+
+.icon-tpIcons02-02:before {
+	content: "\2a";
+}
+
+.icon-tpIcons02-03:before {
+	content: "\2b";
+}
+
+.icon-tpIcons02-13:before {
+	content: "\2c";
+}
+
+.icon-tpIcons02-12:before {
+	content: "\2d";
+}
+
+.icon-TBicons4-02:before {
+	content: "\2e";
+}

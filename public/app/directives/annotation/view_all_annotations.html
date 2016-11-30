@@ -1,0 +1,97 @@
+
+          <div class="annotation-dropdown dropdown keep-open"><a href="javascript:void(0)" type="button" data-toggle="dropdown" class="view-annotation btn-dropdown" ng-click="onClickViewAllAnnotations()">
+          View Annotations <span class="number-anootation">({{ciAnnotationsCount}})</span></a>
+            <div role="menu" class="dropdown-menu annotation-dropdown-menu">
+              <div class="view-annotation-header">
+                <div class="group-conditions clearfix">
+<!--                   <div class="annotation-search">
+                    <input type="text" placeholder="Search"/>
+                  </div> -->
+                  <div class="filter-status">
+                    <div class="dropdown select-annotation-category">
+                      <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown btn-rollover select-annotation">{{selectedConditionsLabel}}<span class="caret"></span></button>
+                      <!-- AgilityIO guide: add ".is-scroll" class after ".dropdown-menu" class to display up, down button when display scroll-->
+                      <ul role="menu" class="dropdown-menu">
+                        <li role="presentation" data-ng-repeat='option in filterOptions' data-ng-class='isChecked(option.id)'> 
+                        <a href="javascript:void(0)" data-ng-click='setSelectedFilter(option.id)' role="menu-item" tabindex="-1">{{option.name}}
+                        <span></span>
+                        </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-default btn-go btn-rollover" data-ng-click='filter()' >Go</button>
+                  <div class="annotation-close close-search"><span aria-hidden="true" class="btn-primary glyphicon glyphicon-remove" data-ng-click='onClose()'></span></div>
+                </div>
+              </div>
+              <div class="view-annotation-content">
+                <!-- <button type="button" class="btn btn-default btn-up"><img src="images/buttons/up.png" alt="up" class="up"/></button> -->
+                <div class="wrap-annotation-list wrap-annotation-list-min-height">
+                  <div class="annotation-list">
+                    <div class="annotation-item" ng-class="{'is-mark-list': annotation.category ==='destacat', 'is-note-list': annotation.category ==='subratllat',
+                    'is-stuck-list': annotation.category ==='errata', 'is-clearstuck-list': annotation.category ==='clearstuck'}" ng-repeat="annotation in ciAnnotations"
+                     ng-click="onAnnotationClick(annotation)">
+                        <div ng-switch="annotation.category">                        
+    					<span ng-switch-when="subratllat">
+	    					<div class="annotation-header">
+	                        	<h4 class="annotation-category">Note</h4>
+	                      	</div>
+	                        <div class="user-and-date"><span class="annotation-user">{{annotation.customFields.markedUser}}</span><span class="annotation-date">{{annotation.customFields.markedDate | date: "MMM dd  hh:mm a"}}</span></div>
+			                <div class="annotation-comment">
+			                    <p>{{annotation.text}}</p>
+			                </div>
+    					</span>
+    					<span ng-switch-when="destacat">
+	    				  <div class="annotation-header">
+	                        <h4 class="annotation-category">Applied</h4>
+	                      </div>
+	                      <div class="user-and-date"><span class="annotation-user">{{annotation.customFields.markedUser}}</span><span class="annotation-date">{{annotation.customFields.markedDate | date: "MMM dd  hh:mm a"}}</span></div>
+	                      <div class="annotation-deal"><span>Deal #(s)</span>
+	                        <p>{{annotation.fldDealIDs}}</p>
+	                      </div> 
+	                      <div class="annotation-comment">
+	                        <p>{{annotation.text}}</p>
+	                      </div>
+ 	                      <div ng-if="annotation.fldMarkEndDatedUser && annotation.fldMarkEndDatedTime" class="applied-date-review">
+	                        <p class="applied-label">End dated:</p>
+	                        <div class="user-and-date"><span class="annotation-user">{{annotation.fldMarkEndDatedUser}}</span><span class="annotation-date">{{annotation.fldMarkEndDatedTime | date: "MMM dd  hh:mm a"}}</span></div>
+	                      </div>
+ 	                      <div ng-if="annotation.fldMarkReviewedUser && annotation.fldMarkReviewedTime" class="applied-date-review">
+	                        <p class="applied-label">Reviewed:</p>
+	                        <div class="user-and-date"><span class="annotation-user">{{annotation.fldMarkReviewedUser}}</span><span class="annotation-date">{{annotation.fldMarkReviewedTime | date: "MMM dd  hh:mm a"}}</span></div>
+	                      </div>
+ 	                      <div ng-if="annotation.fldMarkEndDateReviewedUser && annotation.fldMarkEndDateReviewedTime" class="applied-date-review">
+	                        <p class="applied-label">End date Reviewed:</p>
+	                        <div class="user-and-date"><span class="annotation-user">{{annotation.fldMarkEndDateReviewedUser}}</span><span class="annotation-date">{{annotation.fldMarkEndDateReviewedTime | date: "MMM dd  hh:mm a"}}</span></div>
+	                      </div>
+    					</span>
+    					<span ng-switch-when="errata">
+	    				  <div class="annotation-header">
+	                        <h4 class="annotation-category">Stuck:</h4><span class="stuck-reason">{{annotation.fldStuckReason}}</span>
+	                      </div>
+	                      <div class="user-and-date"><span class="annotation-user">{{annotation.customFields.markedUser}}</span><span class="annotation-date">{{annotation.customFields.markedDate | date: "MMM dd  hh:mm a"}}</span></div>
+	                      <div class="annotation-comment">
+	                        <p>{{annotation.text}}</p>
+	                      </div>
+    					</span>
+    					<span ng-switch-when="clearstuck">
+	    				  <div class="annotation-header">
+	                        <h4 class="annotation-category">Cleared:</h4><span class="stuck-reason">{{annotation.fldStuckReason}}</span>
+	                      </div>
+	                      <div class="user-and-date"><span class="annotation-user">{{annotation.customFields.markedUser}}</span><span class="annotation-date">{{annotation.customFields.markedDate | date: "MMM dd  hh:mm a"}}</span></div>
+	                      <div class="annotation-comment">
+	                        <p>{{annotation.text}}</p>
+	                      </div>
+ 	                      <div class="stuck-clear">
+	                        <h4 class="annotation-category">Cleared:</h4>
+	                        <div class="user-and-date"><span class="annotation-user">{{annotation.fldClearStuckUser}}</span><span class="annotation-date">{{annotation.fldClearStuckTime | date: "MMM dd  hh:mm a"}}</span></div>
+	                      </div>
+    					</span>
+						</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <button type="button" class="btn btn-default btn-down"><img src="images/buttons/up.png" alt="down" class="down"/></button> -->
+              </div>
+            </div>
+          </div>

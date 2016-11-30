@@ -1,0 +1,191 @@
+
+
+/* color of result when saved search*/
+.result-color {
+	color: $dark-grayish-blue;
+}
+
+/* The "new" text and number indicator turns blue when a new Copy Instructed has been delivered */
+.is-delivered {
+	span {
+		color: $mostly-pure;
+	}
+}
+
+/* */
+// .is-network {
+// 	color: $soften-cyan !important;
+// }
+
+.nav-size.active {
+	background-color: $pure-cyan;
+}
+
+.new-specific.active-sub {
+	background-color: $very-darkness-blue;
+}
+
+.sub-nav.active-sub {
+	background-color: $very-darkness-blue;
+}
+
+.new-specific.active {
+	& > a {
+		background-color: $pure-cyan;
+	}
+}
+
+.active-sub-nav {
+	background-color: $very-darkness-blue;
+}
+
+/* change color when button "advertisers" is clicked*/
+.dropdown.active {
+	.btn-adv,
+	.btn-date {
+		background-color: $very-darkness-blue;
+		color: $white !important;
+		border-color: $very-darkness-blue;
+		
+		span {
+			color: #ccd6dd;
+		}
+	}
+}
+
+/* change color when button is hover*/
+.btn-adv:hover,
+.btn-date:hover {
+	background-color: $very-darkness-blue !important;
+	color: $white !important;
+	border-color: $very-darkness-blue;
+
+	span {
+		color: #ccd6dd;
+	}
+	.caret-wrapper {
+		background-color: $very-darkness-blue !important;
+		color: $white !important;
+		span {
+			color: $white !important;
+		}
+	}
+}
+
+
+/* background color when revision navigaion is clicked*/
+.revision.active {
+	background-color: $strong-pink;
+}
+
+/* background color when stuck navigaion is clicked*/
+.stuck.active {
+	background-color: $soft-blue;
+}
+
+/* background color when match navigaion is clicked*/
+.match.active {
+	background-color: $vivid-orange;
+}
+
+/* background color when messages navigaion is clicked*/
+.message.active {
+	background-color: $pure-orange;
+}
+
+/* define class for background color */
+
+.bg-none {
+	background: none;
+}
+
+.bg-white {
+	background-color: $white;
+}
+
+.bg-transparent {
+	background-color: transparent;
+}
+
+.bg-dark-blue {
+	background-color: $dark-blue;
+}
+
+/* #899aa8 */
+.bg-darken-grayish-blue {
+	background-color: $darken-grayish-blue;
+}
+
+/* #00b1eb */
+.bg-mostly-pure {
+	background-color: $mostly-pure;
+}
+
+/* #adb9c5 */
+.bg-gray-ness-blue {
+	background-color: $gray-ness-blue;
+}
+
+/* #ecf0f4 */
+.bg-lightness-grayish-blue {
+	background-color: $lightness-grayish-blue;
+}
+
+/* #d5dbe1 */
+.bg-light-grayish-blue {
+	background-color: $light-grayish-blue;
+}
+
+.bg-very-dark-blue {
+	background-color: $very-dark-blue;
+}
+
+.bg-very-darken-blue {
+	background-color: $very-darken-blue;	
+}
+
+.bg-very-darkness-blue {
+	background-color: $very-darkness-blue;	
+}
+
+.bg-very-dark-grayish-blue {
+	background-color: $very-dark-grayish-blue;	
+}
+
+
+/* #fff */
+.white {
+	color: $white;
+}
+
+.cl-soften-cyan {
+	color: $soften-cyan;
+}
+
+.cl-mostly-pure {
+	color: $mostly-pure;
+}
+
+.cl-very-dark-blue {
+	color: $very-dark-blue;
+}
+
+/*#485662*/
+.cl-very-dark-grayish-blue {
+	color: $very-dark-grayish-blue;
+}
+
+.cl-dark-blue {
+	color: $dark-blue;
+}
+
+.cl-darken-blue {
+	color: $darken-blue;
+}
+
+/*#86929a*/
+.cl-dark-grayish-blue {
+	color: $dark-grayish-blue;
+}
+
+

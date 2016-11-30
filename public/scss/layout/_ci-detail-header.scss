@@ -1,0 +1,285 @@
+/*-------------- ci-header ----------------*/
+.ci-header {
+	.meta-data {
+		@include rem-calc(padding-left, 5);
+		@include rem-calc(margin-top, 10);
+		@include rem-calc(margin-bottom, 13);
+		@include rem-calc(height, 66);
+
+		@extend .float-left;
+
+		border: 1px solid transparent;
+
+		&:hover {
+			// @extend .bg-white;
+			border: 1px dashed $darken-grayish-blue;
+			background-color: $very-darkness-blue;
+			
+
+			.edit-data {
+				@extend .display-inline-block;
+			}
+		}
+	}
+
+	.button-group {
+		@include rem-calc(padding-top, 20);
+		// @include rem-calc(padding-bottom, 30);
+
+		@extend .float-right;
+	}
+
+	.btn-close-modal {
+		@extend .white;
+		@extend .bg-mostly-pure;
+	}
+}
+
+.meta-data {
+	.type {
+		@extend .block;
+	}
+
+	.network {
+		@include rem-calc(line-height, 9);
+		@include rem-calc(padding-top, 5);
+		@include rem-calc(padding-bottom, 10);
+		// @include rem-calc(padding-top, 10);
+
+		@extend .f-13;
+		@extend.font-Lato-Regular;
+		@extend .cl-dark-grayish-blue;
+
+		letter-spacing: 0.05em;
+		// @extend .cl-very-dark-grayish-blue;
+
+		// &:hover {
+		// 	@extend .cl-very-dark-grayish-blue;
+		// }
+	}
+
+	.advertiser-info {
+		@extend .bg-transparent;
+
+		height: auto;
+	}
+
+	.advertiser-network {
+		@include rem-calc(line-height, 12);
+		@include rem-calc(padding-top, 0);
+		@include rem-calc(padding-bottom, 9);		
+		// @include rem-calc(padding-bottom, 10);
+
+		@extend .float-left;
+	}
+
+	.advertiser-name {
+		@include rem-calc(line-height, 12);
+		@include rem-calc(padding-top padding-bottom, 0);
+
+		@extend .float-left;
+		@extend .f-18;
+		@extend .font-Lato-Bold;
+		@extend .white;
+	}
+
+	.advertiser-brand {
+		@include rem-calc(padding-bottom, 0);
+		@include rem-calc(margin-left, 5);
+
+		@extend .float-left;
+		@extend .f-16;
+		@extend .font-Lato-Regular;
+		@extend .white;
+	}
+
+	.program {
+		@extend .f-14;
+		@extend .float-left;
+		@extend .bg-transparent;
+		@extend .clear-both;
+
+		height: auto;
+	}
+
+	.network-flight-dates {
+		@include rem-calc(line-height, 13);
+		@include rem-calc(padding-bottom, 12);
+
+		@extend .float-left;
+		@extend .font-Lato-Regular;
+		@extend .cl-dark-grayish-blue;
+	}
+
+	.program-name {
+		@include rem-calc(line-height, 13);
+		@include rem-calc(padding-top, 0);
+		@include rem-calc(padding-left, 7);
+		// @include rem-calc(margin-left, 5);
+
+		@extend .float-left;
+		@extend .font-Lato-Regular;
+		@extend .cl-dark-grayish-blue;
+	}
+
+	.type {
+		@include rem-calc(line-height, 13);
+		@include rem-calc(padding-top, 0);
+		@include rem-calc(margin-left, 5);
+
+		@extend .f-14;
+		@extend .cl-dark-grayish-blue;
+		@extend .font-Lato-Regular;
+
+		width: auto;
+	}
+
+	.edit-data {
+		@include rem-calc(padding-left, 103);
+		@include rem-calc(margin-right, 5);
+		@include rem-calc(margin-top, 2);
+
+		@extend .none;
+		@extend .float-right;
+		@extend .f-10;
+		@extend .font-Lato-Bold;
+		@extend .cl-mostly-pure;
+	}
+}
+
+/*--- group-conditions ---*/
+.group-conditions {
+	.conditions {
+		@include rem-calc(margin-top, 15);
+
+		@extend .clear-both;
+
+		.conditions-icon {
+			@include size(px2rem(400), px2rem(42));
+			@include rem-calc(line-height, 42);
+			@include rem-calc(padding-left, 10);
+			@include rem-calc(margin-right, 20);
+
+			@extend .float-left;
+			@extend .white;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			.status {
+				@include rem-calc(padding-left, 9);
+
+				@extend .f-15;
+				@extend .font-Lato-Bold;
+			}
+
+			.status-icon {
+				@include size(auto, auto);
+				@include rem-calc(margin-top, -7);
+
+				@extend .f-28;
+
+				background-image: none;
+			}
+
+			.note {
+				@include rem-calc(padding-left, 7);
+
+				@extend .f-13;
+				@extend .font-Lato-Regular;
+			}
+		}
+
+		.revision {
+			background-color: $strong-pink;
+		}
+
+		.match {
+			background-color: $vivid-orange;
+		}
+
+		.stuck {
+			background-color: $soft-blue;
+		}
+
+		.status-icon {
+			@extend .inline-block;
+		}
+	}
+
+	.owner {
+		@include rem-calc(line-height, 35);
+		@include rem-calc(margin-left, 20);
+		@include rem-calc(margin-right, 33);
+		@include rem-calc(padding-top, 0);
+
+		@extend .float-left;
+		@extend .block;
+	}
+
+	.owner-label {
+		@include rem-calc(padding-right, 15);
+
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@extend .cl-dark-grayish-blue;
+	}
+
+	.owner-name {
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		@extend .white;
+		// @extend .cl-very-dark-grayish-blue;
+	}
+
+	.filter-title {
+		@include rem-calc(line-height, 35);
+		@include rem-calc(margin-right, 15);
+
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@extend .float-left;
+		@extend .cl-dark-grayish-blue;
+	}
+
+	.filter-status {
+		@extend .float-left;
+	}
+	
+	/*---------- button dropdown ----------*/
+	.dropdown {
+		@extend .float-left;
+	}
+
+	.btn-dropdown {
+		@include size(px2rem(189), px2rem(35));
+
+		.caret {
+			@include rem-calc(top, 14);
+			@include rem-calc(right, 10);
+		}
+	}
+
+	.dropdown-menu {
+		@include rem-calc(min-width, 189);
+	}
+
+	/*----------link----------*/
+	.view-annotation {
+		@extend .float-right;
+	}
+
+	.view-history,
+	.view-annotation {
+		@include rem-calc(line-height, 35);
+
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+		@extend .cl-mostly-pure;
+
+		&:hover {
+			@extend .cl-soften-cyan;
+		}
+	}
+}

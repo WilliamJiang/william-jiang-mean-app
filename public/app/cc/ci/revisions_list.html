@@ -1,0 +1,14 @@
+<!--this uses the CopyCoordinatorCIModalCtrl from it's parent view-->
+<li class="version-item" ng-repeat="ci in displayed_stapled_cis" ng-class="{ 'in-active' : !ci.active, 'is-selected' : ci._id === active_ci._id }">
+    <div class="version-action">
+        <div class="check-box">
+            <input type="checkbox"/>
+        </div>
+        <time class="start-date">{{::active_ci.created_at | amDateFormat:'MMM DD, h:mm:ss a'}}</time>
+        <!--<time class="start-time">12:15 PM</time>-->
+        <span class="sidebars-stuck-ci" ng-show="ci.stuck"></span>
+    </div>
+    <div class="version-detail">
+        <p>{{ci.note}}</p>
+    </div>
+</li>

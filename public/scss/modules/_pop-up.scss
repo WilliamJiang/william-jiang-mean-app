@@ -1,0 +1,23 @@
+.pop-up {
+	.pop-up-title {
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+		@extend .white;
+		
+		margin: 0;
+		line-height: px2rem(12);
+	}
+
+	.pop-up-header {
+		@extend .bg-darken-grayish-blue;
+	} 
+
+	.pop-up-content {
+		@extend .bg-light-grayish-blue;
+	}
+}
+
+.modal-content {
+	border-radius: 0;
+	border: none;
+}

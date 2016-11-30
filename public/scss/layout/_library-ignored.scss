@@ -1,0 +1,110 @@
+.content.is-ignored {
+	.view-mode,
+	.filter-group,
+	.btn-save-search,
+	.selected-filters,
+	.matching,
+	.ci-status,
+	.condition,
+	.type,
+	.owner {
+		@extend .none;
+	}
+
+	.title-library {
+		padding-top: px2rem(24);
+
+		.library {
+			@extend .none;
+		}
+
+		.back,
+		.ignored {
+			@extend .block;
+		}
+
+		.back {
+			padding-bottom: px2rem(21);
+		}
+	}
+	
+	.group-btn-library {
+		margin-right: px2rem(5);
+	}
+	
+	.affix-matching {
+		// overflow: hidden;
+	}
+
+	.number-matching {
+		padding-top: px2rem(26);
+		padding-bottom: px2rem(52);
+
+		span {
+			@extend .cl-very-dark-grayish-blue;
+		}
+
+		.ignored {
+			@extend .display-inline-block;
+		}
+	}	
+
+	.filter-date .ignored {
+		@extend .display-inline-block;
+	}
+
+	.list-view {
+		.wrapper-info {
+			width: px2rem(360);
+
+			margin-left: px2rem(20);
+		}
+
+		.program-name {
+			@extend .text-left;
+			
+			width: px2rem(240);
+	
+			margin-right: 0;
+		}
+
+		.network-flight-dates {
+			@extend .f-15;
+		}
+
+		.ci {
+			&:hover {
+				.wrapper-info {
+					margin-left: px2rem(16);
+				}
+
+				.ignored-sender .sender {
+					padding-top: px2rem(11);
+				}
+
+				.missing-network {
+					padding-top: px2rem(46);
+				}
+			}
+
+			&:first-child:hover {
+				.ignored-sender .sender {
+					padding-top: px2rem(10);
+				}
+
+				.missing-network {
+					padding-top: px2rem(45);
+				}
+			}
+		}
+	} 
+	
+	.ignored-sender {
+		@extend .block;
+	}
+
+	.missing-network {
+		@extend .block;
+	}
+}
+

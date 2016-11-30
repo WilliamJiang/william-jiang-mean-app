@@ -1,0 +1,40 @@
+<section data-ng-controller="networkCtrl">
+    <div class="row">
+        <div class="col-md-2"><a href="#" class="logo">Logo</a></div>
+        <div class="col-md-8">
+            <form>
+                <div class="form-group">
+                    <label for="call_letters">Call letters (*)</label>
+                    <input type="text" class="form-control" id="call_letters" placeholder="call letters"
+                           required="required">
+                </div>
+                <div class="form-group">
+                    <label for="network_name">Network name (*)</label>
+                    <input type="text" class="form-control" id="network_name" placeholder="network name"
+                           required="required">
+                </div>
+                <div class="form-group">
+                    <label for="effective_date">Effective Date (*)</label>
+                    <input type="date" class="form-control" id="effective_date" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="termination_date">Termination Date</label>
+                    <input type="date" class="form-control" id="termination_date">
+                </div>
+                <div class="form-group">
+                    <label for="email_for_ingest">Email for ingest (*)</label>
+                    <input type="email" class="form-control" id="email_for_ingest"
+                           placeholder="Email address for ingest"
+                           required="required">
+                </div>
+                <div class="form-group">
+                    <label for="industry_id">Industry ID</label>
+                    <input type="text" class="form-control" id="industry_id" placeholder="Industry ID">
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</section>

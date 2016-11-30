@@ -1,0 +1,103 @@
+/* modal edit-meta-data */
+.edit-meta-data.modal {
+	padding-left: 0;
+	z-index: 99999999;
+
+	.modal-dialog {
+		width: px2rem(639);
+
+		margin: 0 auto;
+		margin-top: px2rem(75);
+	}
+
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+}
+
+.edit-meta-data {
+	.modal-title {
+		@include rem-calc(padding-left padding-top, 15);
+
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+		@extend .white;
+		@extend .bg-darken-grayish-blue;
+
+		line-height: px2rem(10);
+
+		padding-bottom: px2rem(20);
+	}
+
+	.modal-body {
+		@extend .bg-light-grayish-blue;
+
+		padding: 0 px2rem(15);
+	}
+
+	.filter-list {
+		.filter-item {
+			margin-top: px2rem(10);
+			margin-left: 0;
+		}
+
+		.dropdown-advertiser,
+		.dropdown-brand{
+			@include rem-calc(margin-left margin-right, 18);
+		}
+
+		.btn-dropdown {
+			width: px2rem(189);
+		}
+
+		.optional {
+			@extend .font-Lato-Regular;
+
+			margin-left: px2rem(5);
+		}
+
+		.required {
+			color: $pure-red;
+		}
+	}
+
+	.icon-tpIcons02-09 {
+		@extend .cl-very-dark-grayish-blue;
+		@extend .f-28;
+	}
+
+	.calendar-icon {
+		@extend .absolute;
+		@extend .float-right;
+		@extend .inline-block;
+		
+		top: 0;
+		right: px2rem(4);
+
+		margin-top: px2rem(3);
+	}
+
+	.modal-footer {
+		@extend .bg-light-grayish-blue;
+		@extend .text-right;
+
+		border: none;
+		
+		.btn + .btn {
+			margin-left: px2rem(20);
+		}
+	}
+
+	.btn-cancel,
+	.btn-ok {
+		padding: 0;
+		line-height: px2rem(25);
+	}
+
+	.btn-network:hover {
+		background-color: $lightness-grayish-blue !important;
+		color: $dark-grayish-blue !important;
+		cursor: not-allowed;
+	}
+}

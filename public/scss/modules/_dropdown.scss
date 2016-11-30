@@ -1,0 +1,16 @@
+.dropdown-menu {
+	width: px2rem(189);
+}
+
+.btn-adv,
+.btn-date {
+	@include size(px2rem(189), px2rem(35));
+	@extend .f-14;
+	@extend .font-Lato-Regular;
+	color: $very-dark-grayish-blue;
+	background-color: $lightness-grayish-blue;
+	.caret {
+		top: px2rem(15);
+		right: px2rem(10);
+	}
+}

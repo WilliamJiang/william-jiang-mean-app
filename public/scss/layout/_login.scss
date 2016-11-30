@@ -1,0 +1,138 @@
+.wrapper-login {
+	@extend .relative;
+	@extend .bg-very-dark-blue;
+
+	min-height: 100%;
+}
+
+.header-login {
+	@include rem-calc(width, 370);
+	@include rem-calc(min-height, 595);
+
+	margin: 0 auto;
+}
+
+.logo-login .logo-page {
+	@include replace-text-with-dimensions("../images/logos/logo-login.png", true);
+
+	@extend .inline-block;
+}
+
+.content-login {
+	@extend .absolute;
+
+	top: 50%;
+	margin-top: px2rem(-218);
+}
+
+.form-login {
+	@include border-right-radius(px2rem(4));
+	@include border-left-radius(px2rem(4));
+	@include rem-calc(width, 290);
+
+	@extend .bg-light-grayish-blue;
+
+	margin: px2rem(63) auto px2rem(20);
+
+	.notify {
+		@extend .none;
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+
+		color: $pure-red;
+
+		line-height: px2rem(18);
+		padding: px2rem(16) px2rem(20) 0 px2rem(20);
+	}
+
+	.form {
+		padding: px2rem(16) px2rem(20) px2rem(20) px2rem(20);
+	}
+
+	.form-group {
+		@include rem-calc(margin-bottom, 10);
+	}
+
+	.form-group .form-control {
+		@include size(px2rem(250), px2rem(40));
+
+		@extend .f-16;
+		@extend .font-Lato-Regular;
+		@extend .cl-very-dark-grayish-blue;
+	}
+
+	.btn {
+		@include size(px2rem(250), px2rem(40));
+		@include rem-calc(margin-top, 10);
+
+		@extend .f-18;
+		@extend .font-Lato-Bold;
+		@extend .white;
+		@extend .bg-mostly-pure;
+	}
+
+	label {
+		@include rem-calc(min-height, 18);
+
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		@extend .cl-very-dark-grayish-blue;
+	}
+}
+
+.form-login.error-state {
+	.notify {
+		@extend .display-inline-block;
+	}
+}
+
+.forgot-info {
+	@include rem-calc(padding-left padding-right, 20);
+	@include rem-calc(width, 290);
+	@include rem-calc(line-height, 12);
+	
+	margin: 0 auto;
+
+	a {
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+		@extend .cl-mostly-pure;
+	}
+}
+
+.forgot-username {
+	@extend .text-left;
+}
+
+.forgot-password {
+	@extend .float-right;
+}
+
+.footer-login {
+	@include size(100%, px2rem(60));
+	@include rem-calc(padding-top, 15);
+
+	@extend .absolute;
+	@extend .bg-very-dark-blue;
+
+	bottom: 0;
+	border-top: 1px solid $darken-grayish-blue;
+}
+
+.copyright {
+	p {
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+		@extend .text-center;
+	}
+
+	span {
+		@extend .font-Lato-Regular;
+		@extend .white;
+	}
+
+	a {
+		@extend .cl-mostly-pure;
+	}
+}
+

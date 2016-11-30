@@ -1,0 +1,16 @@
+<div class="text-left" style="margin-top: 24px;">
+  <a href="/profile" style="color: white;">
+    <table width="100%" border="0">
+      <tr>
+        <td><img src="http://lorempixel.com/40/40/cats/0" style="border-radius: 28px;"/></td>
+        <td>
+          {{mvIdentity.currentUser.firstName}} {{mvIdentity.currentUser.lastName}}
+          <br/>
+          <span style="color: #aaaacc; font-size: 11px;">{{mvIdentity.currentUser.affiliation.company.name}}</span>
+          <br/>
+          <span style="color: #aaaacc; font-size: 11px;">{{timezone.name()}}</span>	  
+        </td>
+      </tr>
+    </table>
+  </a>
+</div>

@@ -1,0 +1,19 @@
+/* jshint node:true */
+'use strict';
+
+var logger = require('../../utilities/logger');
+
+////////////////////////////////////////////////////////////////////////////////
+
+module.exports = function(app) {
+
+    ////
+    var db = app.locals.db;
+    var config = app.locals.config;
+    ////    
+
+    ////////////////////////////////////////////////////////////////////////////////    
+
+    return {
+    };
+};

@@ -1,0 +1,94 @@
+.upload-document.modal {
+	padding-left: 0;
+
+	.modal-dialog {
+		margin: px2rem(82) auto 0 auto;
+		width: px2rem(438);
+	}
+	
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+}
+
+//  Upload document
+.upload-document {
+	@extend .f-14;
+	@extend .font-Lato-Bold;
+
+	.upload-header {
+		@extend .bg-darken-grayish-blue;
+
+		width: 100%;
+		padding: px2rem(15) 0 px2rem(16) px2rem(15);
+	}
+
+	h2 {
+		@extend .f-14;
+		@extend .font-Lato-Bold;
+		@extend .white;
+
+		margin: 0;
+	}
+	
+	.upload-content {
+		@include rem-calc(padding, 20);
+
+		@extend .bg-light-grayish-blue;
+	}
+
+	.drap-and-drop {
+		@include size(px2rem(397),px2rem(155));
+		@include rem-calc(padding-top, 58);
+		@include border-top-radius(px2rem(5));
+		@include border-bottom-radius(px2rem(5));
+
+		@extend .bg-white;
+
+		border: 1px dashed $grayishting-blue;
+		margin: 0 auto;
+
+		p {
+			@include rem-calc(line-height, 18);
+
+			@extend .text-center;
+			@extend .cl-dark-grayish-blue;
+		}
+	}
+
+	.add-file {
+		@include rem-calc(margin-top, 10);
+		@include rem-calc(line-height, 11);
+
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@extend .cl-mostly-pure;
+
+		cursor: pointer;
+
+		input {
+			@extend .none;
+		}
+	}
+
+	.wrap-button {
+	  @include rem-calc(margin-top, 15);
+	}
+
+	.btn {
+		@extend .white;
+	}
+
+	.btn-upload-cancel {
+		@extend .float-right;
+		@extend .bg-darken-grayish-blue;
+	}
+
+	.btn-upload-continue {
+		@include rem-calc(margin-left, 10);
+
+		@extend .float-right;
+		@extend .bg-mostly-pure;
+	}
+}

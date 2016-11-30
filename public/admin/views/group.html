@@ -1,0 +1,75 @@
+<form name="groupForm" class="group-form" novalidate>
+    <div class="modal-header">
+        <h4 class="modal-title">{{bNewGroup ? 'Add' : 'Edit'}} Data Access Groups</h4>
+    </div>
+    <div class="modal-body">
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label class="control-label pull-right">Company(*)</label>
+            </div>
+            <div class="col-md-10">
+                <div class="dropdown" dropdown>
+                    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown">
+                        {{selectedCompany.name}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu">
+                        <li role="presentation" ng-repeat="company in companies">
+                            <a href="#" role="menu-item" ng-click="onChangeCompany($event, company)">{{company.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label class="control-label pull-right" for="name">Name</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="name" name="name"
+                       placeholder="Group Name" ng-model="group.name" ng-required="true"
+                       ng-minlength="2" ng-maxlength="90">
+
+                <div role="alert" ng-show="groupForm.name.$touched || groupForm.$submitted">
+                    <span class="error" ng-show="groupForm.name.$error.required">Required!</span>
+                    <span class="error" ng-show="groupForm.name.$error.minlength">Min length is 2</span>
+                    <span class="error" ng-show="groupForm.name.$error.maxlength">Max length is 90</span>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label class="control-label pull-right">Networks</label>
+            </div>
+            <div class="col-md-10">
+                <div class="well dag-well">
+                    <label class="dag-label" ng-repeat="network in networks">
+                        <input type="checkbox" checklist-model="group.networks" checklist-value="network.name"
+                               checklist-change="onChangeNetwork($event, network)"> {{network.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <span><a href="" ng-click="checkAll();">Select all</a> | <a href="" ng-click="unCheckAll();">Select none</a></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label class="control-label pull-right" for="termination_date">Termination Date</label>
+            </div>
+            <div class="col-md-10">
+                <input type="date" class="form-control" ng-model="group.termination_date" id="termination_date"/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!--<button class="btn btn-primary pull-left" ng-click="deleteGroup()" ng-hide="">Delete Group</button>-->
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <button type="submit" class="btn btn-success" ng-click="saveGroup()">Save</button>
+    </div>
+</form>

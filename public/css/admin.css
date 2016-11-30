@@ -1,0 +1,71 @@
+
+/*=====================================================*/
+/**** START: TRAFFIC BRIDGE ADMIN overrides****/
+/* these styles are overridden because they are
+   not working as expected due to conflicts with the way
+   the HTMLs are constructed with AngularJS */
+/*=====================================================*/
+
+body {
+    font-size: 14px; /*This is to fix the default font size of the body*/
+    background-color: #FFFFFF !important;
+}
+
+.error {
+    color: #FF0000;
+}
+
+.btn-default {
+    border: 1px solid !important;
+    border-color: #CCC !important;
+}
+
+.user-form .control-label{
+    text-align:left;
+    font-weight: bold;
+}
+
+.user-form .btn-dropdown {
+    width: 27rem;
+    height: 3.4rem;
+    border-color: transparent;
+}
+.user-form .btn-dropdown .caret {
+    right: 1.1rem;
+    top: 1.4rem;
+}
+
+.empty-dropdown-item {
+    font-style: italic !important;
+    color: #CCC !important;
+}
+
+.dag-well {
+    height: 150px !important;
+    padding: 5px 10px !important;
+    overflow-y: scroll !important;
+    background: transparent !important;
+}
+
+.dag-well .dag-label {
+    display: block !important;
+}
+.dag-well .selected-label {
+    background-color: #fff;
+}
+
+.multi-group-cell {
+    color: #286090;
+    font-weight: bold;
+}
+/**/
+.groupsGrid {
+    height: 500px;
+}
+.editIcon {
+    padding-left: 20px;
+    padding-top: 5px;
+}
+.header-filtered {
+    color: blue;
+}

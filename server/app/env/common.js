@@ -1,0 +1,68 @@
+/* jshint node:true */
+'use strict';
+
+module.exports = {
+    app: {
+        jsFiles: [
+            '/vendor/jquery/dist/jquery.js',
+            '/vendor/lodash/lodash.js',
+            '/vendor/moment/moment.js',
+            '/vendor/moment-timezone/moment-timezone.js',
+            //'/vendor/moment-timezone/moment-timezone-utils.js',
+            '/vendor/bootstrap/dist/js/bootstrap.js',
+            '/vendor/toastr/toastr.js',
+            '/vendor/angular/angular.js',
+            '/vendor/angular-resource/angular-resource.js',
+            '/vendor/angular-moment/angular-moment.js',
+            '/vendor/angular-route/angular-route.js',
+            '/vendor/angular-poller/angular-poller.js',
+            '/vendor/angular-deferred-bootstrap/angular-deferred-bootstrap.js',
+            '/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
+            '/vendor/angular-truncate/src/truncate.js',
+            '/vendor/angular-animate/angular-animate.js',
+            '/vendor/restangular/dist/restangular.js',
+            '/vendor/ng-file-upload/angular-file-upload.js',
+            '/vendor/ng-file-upload/angular-file-upload-shim.js',
+            '/vendor/ngprogress/build/ngProgress.js',
+            '/vendor/pg.progress-bars/dist/pg.progress-bars.js',
+            '/vendor/ng-tags-input/ng-tags-input.min.js',
+            '/custom-vendor/multi-select/isteven-multi-select.js',
+            '/custom-vendor/multi-select/advertiser-multi-select.js',
+            '/custom-vendor/annotator/1.2.9/annotator-full.1.2.9.js',
+            '/custom-vendor/annotator/1.2.9/js/jquery.dateFormat.js',
+            '/custom-vendor/annotator/1.2.9/js/jquery.slimscroll.js',
+            '/custom-vendor/annotator/1.2.9/plugins/SideViewer.js',
+            '/custom-vendor/annotator/1.2.9/plugins/Categories.js',
+            '/custom-vendor/annotator/1.2.9/plugins/AnnotatorMarker.js',
+            '/custom-vendor/annotator/1.2.9/plugins/AnnotationStore.js',
+            '/custom-vendor/annotator/plugins/message-plugin.js',
+            '/custom-vendor/annotorious/annotorious.okfn.custom.js',
+            '/custom-vendor/xml2json/xml2json.js',
+            '/custom-vendor/pdfjs/build/pdf_js.js',
+            '/custom-vendor/pdfjs/web/compatibility.js',
+            '/custom-vendor/pdfjs/web/textlayerbuilder.js',
+            '/custom-vendor/bootstrap-daterangepicker/daterangepicker.js',
+            '/custom-vendor/node-uuid/uuid.js',	    
+            //'/scripts/iscroll.js',
+            '/scripts/dropdowns-enhancement.js',
+            '/scripts/jquery.mousewheel.js',
+            '/scripts/jquery.jscrollpane.js',
+            '/scripts/main.js',
+            '/scripts/home.js',
+            '/scripts/library.js',
+            '/scripts/compare.js',
+            '/scripts/dropdowns-enhancement.js'
+        ],
+        cssFiles: [
+            '/vendor/toastr/toastr.css',
+            '/vendor/ngprogress/ngProgress.css',
+            '/vendor/ng-tags-input/ng-tags-input.css',
+            '/custom-vendor/multi-select/isteven-multi-select.css',
+            '/custom-vendor/annotator/1.2.9/css/annotator.css',
+            '/custom-vendor/annotator/1.2.9/css/style.css',
+            '/custom-vendor/annotorious/css/annotorious.css',
+            '/custom-vendor/annotorious/transparent.gif',
+            '/custom-vendor/bootstrap-daterangepicker/daterangepicker-bs3.css'
+        ]
+    }
+};

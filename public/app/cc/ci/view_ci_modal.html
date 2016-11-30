@@ -1,0 +1,294 @@
+<!--<script type="text/ng-template" id="view_ci_modal.html">-->
+<!--CIModalCtrl is the controller-->
+<!--HEADER-->
+<div class="ci-header">
+  <div class="meta-data">
+
+    
+        <div class="network"><span class="network-name">{{ci.network}}</span></div>
+        <div class="advertiser-info">
+            <div class="advertiser-network">
+                <div class="advertiser-name">{{ci.advertiser}}</div>
+            </div>
+            <div class="advertiser-brand">{{ci.brand | bracketize}}</div>
+        </div>
+        <div class="program">
+            <div class="network-flight-dates">
+                <time class="start-date">{{ ci.air_date_start | amDateFormat:'MMM DD' }}</time>
+                <span class="dash"> - </span>
+                <time class="end-date">{{ ci.air_date_end | amDateFormat:'MMM DD' | appendComma }}</time>
+            </div>
+            <div class="program-name">{{ ci.program | appendComma }}</div>
+        </div>
+        <div class="type">{{ ci.type | nameFromKey }}</div>
+        <a href="javascript:void(0)" data-toggle="modal" class="edit-data" ng-click="editCIMedatadata()" ng-if="stapled_cis.length <= 0">Edit data</a>
+    </div>
+    <div class="button-group">
+        <button type="button" class="btn btn-default btn-add-parking btn-rollover" ng-click="editCIMedatadata()"
+                ng-hide="true">
+            <span sr-only="sr-only">Edit Metadata</span>
+        </button>
+        <button type="button" class="btn btn-default btn-add-parking btn-rollover" ng-if="!isInParkingLot"
+                ng-click="addCIToParkingLot()">
+            <span sr-only="sr-only">Add to Parking Lot</span>
+        </button>
+        <button type="button" class="btn btn-default btn-remove-parking btn-rollover" ng-if="isInParkingLot"
+                ng-click="removeCIFromParkingLot()">
+            <span sr-only="sr-only">Remove from Parking Lot</span>
+        </button>
+        <button type="button" data-dismiss="modal" class="btn btn-default btn-close-modal btn-rollover"
+                ng-click="cancel()">
+            <span sr-only="sr-only" class="closed">Close</span>
+            <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+</div>
+<!--CONDITIONS-->
+<div class="group-conditions">
+    <div class="filter-status">
+        <div class="filter-title">Status</div>
+        <!--<select ng-options="status.name for status in statuses" ng-model="selectedStatus" ng-change="onChangeStatus()"></select>-->
+        <div class="dropdown keep-open">
+            <button type="button" data-toggle="dropdown"
+                    class="btn btn-default dropdown-toggle btn-dropdown btn-rollover">{{selectedStatus.name}}<span
+                    class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+                <li role="presentation" ng-repeat="status in statuses">
+                    <a href="#" role="menu-item" href ng-click="onChangeStatus(status)">{{::status.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="filter-status" style="padding-left: 25px;">
+        <div class="filter-title">Owner</div>
+        <div class="dropdown keep-open" tooltip-append-to-body="true"
+             tooltip="{{ currentOwner ? currentOwner.firstName + ' ' + currentOwner.lastName : '---' }}">
+            <button type="button" data-toggle="dropdown"
+                    class="btn btn-default dropdown-toggle btn-dropdown btn-rollover">
+                {{ currentOwner.fullName }}
+                <span class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu metadata-dropdown-menu">
+                <li role="presentation" ng-repeat="user in users">
+                    <a href role="menu-item" ng-click="onChangeOwner(user)">{{::user.fullName}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="owner">&nbsp;
+        <!--<span class="owner-label">Owner</span>
+        <span class="owner-name">
+            {{ci.owner}}
+        </span>-->
+    </div>
+    <a href="javascript:void(0)" class="view-history" ng-click="onClickViewHistory()">View History</a>
+    <!--VIEW ALL ANNOTATIONS-->
+    <view-all-annotations></view-all-annotations>
+    
+    <div class="conditions">
+        <div class="conditions-icon revision" ng-show="ci.pending_revision">
+            <span class="status-icon sidebars-revision icon-tpIcons02-02"></span>
+            <span class="status">Uncleared Revision</span>
+            <button type="button" class="btn btn-default btn-clear btn-rollover" ng-click="clearRevision()">Clear
+            </button>
+        </div>
+        <div class="conditions-icon match" ng-show="ci.uninstructed_match">
+            <span class="status-icon sidebars-match-ci icon-tpIcons02-04"></span>
+            <span class="status">Uninstructed Match</span>
+            <button type="button" class="btn btn-default btn-clear btn-rollover" ng-click="clearUninstructedMatch()">
+                Clear
+            </button>
+        </div>
+        <div class="conditions-icon stuck" ng-show="ci.stuck">
+            <span class="status-icon sidebars-stuck icon-tpIcons02-03"></span>
+            <span class="status">Stuck</span>
+            <span class="note"></span>
+            <button type="button" class="btn btn-default btn-clear btn-rollover" ng-click="clearStuck()" ng-hide="true">
+                Clear
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="progress-bar-container-dark">
+    <progress-bar name="ci_modal_progress" class="progress__container_color_pink"></progress-bar>
+</div>
+
+<div class="ci-content" ng-class="{'no-revision': stapled_cis.length <= 0}">
+    <!-- AgilityIO guide: add ".is-message" class to display "New CI Messages"-->
+    <!-- and using .removeAttr("class") to hide it.-->
+    <!-- We're checking the DOM change to update Revision, Annotation height.-->
+    <!-- Because we don't handle show/hide event for message.-->
+    <!-- So we can't put the update height function callback after show/hide message.-->
+    <div id="msg-arrived">
+        <p>A new copy instruction has just arrived. <a href="javascript:void(0)" class="new-queue">Go to your New Queue</a></p>
+    </div>
+    <!-- AgilityIO guide: add ".collapsed" class to collapse Revision Version-->
+    <!-- AgilityIO guide: add ".select-mode" class change to "select mode"-->
+    <div class="revision-version-wrapper" ng-show="stapled_cis.length > 0">
+        <div class="revision-version">
+            <!--REVISION HEADER-->
+            <div class="revision-fixed-top">
+                <div class="group-active">
+                    <div class="check-box"><input type="checkbox" ng-model="activeRevisionsOnly"
+                                                  ng-click="onClickActiveOnly($event, activeRevisionsOnly)"/></div>
+                    <label class="active-only">Active Only</label>
+
+                    <div class="revision-collapse"><a href="javascript:void(0)" class="buttons-collapsed-ci"></a></div>
+                </div>
+                <div class="label-collapse"><span>Show Revision Versions</span></div>
+                <button type="button" class="btn btn-default btn-up"><img src="/images/buttons/up.png" alt="up" class="up"/><img
+                        src="/images/buttons/up-select.png" alt="up" class="up-select"/>
+                </button>
+            </div>
+            <!--REVISION LIST-->
+            <div class="mutiple-version version-list">
+                <div class="scrolling-list">
+                    <ul class="list-revision-version">
+                        <!-- AgilityIO guide: add ".is-selected" class to active Revision Version is selected-->
+                        <!-- AgilityIO guide: add ".in-active" class to inactive Revision Version-->
+                        <li class="version-item" ng-repeat="ci in displayed_stapled_cis"
+                            ng-class="{ 'in-active' : !ci.active, 'is-selected' : ci._id === active_ci._id }"
+                            ng-click="onRevisionClick($event, ci)">
+                            <div class="version-action">
+                                <div class="check-box">
+                                    <input type="checkbox" ng-click="onRevisionCheckboxClick($event, ci)"/>
+                                </div>
+                                <time class="start-date">{{::ci.created_at | amDateFormat:'MMM DD, h:mm:ss A'}}</time>
+                                <!--<time class="start-time">12:15 PM</time>-->
+                                <span class="sidebars-stuck-ci icon-tpIcons02-03" ng-show="ci.stuck"></span>
+                            </div>
+                            <div class="version-detail">
+                                <p style="overflow: hidden !important; height: 25px;">{{ci.note}}</p>
+                            </div>
+                        </li>
+                        <!--<div ng-controller="CIRevisionsCtrl" ng-include src="'/partials/cc/ci/revisions_list.html'"></div>-->
+                        <!--<ng-include src="'/partials/cc/ci/revisions_list.html'"></ng-include>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="revision-fixed-bottom">
+                <button type="button" class="btn btn-default btn-down"><img src="/images/buttons/up.png" alt="down"
+                                                                            class="down"/><img
+                        src="/images/buttons/up-select.png" alt="down"
+                        class="down-select"/></button>
+                <div class="group-option">
+                    <button type="button" class="btn btn-default btn-upload btn-rollover" ng-click="onClickUpload()">
+                        Upload
+                    </button>
+                    <button type="button" class="btn btn-default btn-upload btn-cancel">Cancel</button>
+                    <button type="button" class="btn btn-default btn-compare btn-rollover" ng-click="onClickCompare()">
+                        Compare
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="revision-content" ng-class="{'revision-content-margin': stapled_cis.length <= 0}">
+        <!--REVISION HEADER-->
+        <div class="revision-meta">
+            <div class="data-sender">
+                <div class="sender">
+                    <span class="label-name">Sender</span>
+                    <span class="label-info name">{{active_ci.ingest.sender || active_ci.ingest.created_by}}</span>
+                    <span class="email"> {{active_ci.email | bracketize}}</span>
+                </div>
+                <!-- AgilityIO guide: add ".is-editing" class to enable text-area to edit-->
+                <div class="notes"><span class="label-name">Notes</span>
+
+                    <div class="label-info">
+                        <p>{{active_ci.note}}
+                        <a href="javascript:void(0)" class="edit" ng-click="onVersionNotesEditClick($event)">Edit</a></p>
+                    </div>
+                    <div class="edit-notes">
+                        <textarea id="edit-notes-textarea" ng-model="active_ci.note"></textarea>
+
+                        <div class="group-btn-note">
+                            <button type="button" class="btn btn-cancel" ng-click="onVersionNotesCancelClick($event)">
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-ok" ng-click="onVersionNotesSaveClick($event)">Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="time-sender">
+                <div class="flight-date"><span class="label-name">Flight Dates</span>
+                    <time class="label-info start-date">{{active_ci.air_date_start | amDateFormat:'MMM DD'}}</time>
+                    <span class="label-info dash"> - </span>
+                    <time class="label-info end-date">{{active_ci.air_date_end | amDateFormat:'MMM DD'}}</time>
+                </div>
+                <div class="received"><span class="label-name">Received</span>
+                    <time class="label-info start-date">{{active_ci.created_at | amDateFormat:'MMM DD h:mm A'}}</time>
+                    <!--<time class="label-info time-recevied">12:15 PM</time>-->
+                </div>
+            </div>
+        </div>
+        <!--PDF PAGING, EMAIL, ZOOM, ACTIONS-->
+        <div class="group-action">
+            <div class="group-btn-page">
+                <a href="javascript:void(0)" class="buttons-first btn-first-page" ng-click="onFirstPage()"></a>
+                <a href="javascript:void(0)" class="buttons-up btn-previous" ng-click="onPrevPage()"></a>
+                <input type="number" placeholder="1" min="1" max="{{PDFDOC.pageCount}}" required class="current-number"
+                       ng-model="PDFDOC.pageNum" ng-change="gotoPage($event)"/>
+                <label class="total-number" style="width:35px;">/ {{PDFDOC.pageCount}}</label>
+                <a href="javascript:void(0)" class="buttons-up btn-next" ng-click="onNextPage()"></a>
+                <a href="javascript:void(0)" class="buttons-first btn-last-page" ng-click="onLastPage()"></a>
+                <button type="button" class="btn btn-default btn-view btn-rollover" ng-click="onViewEmailClick($event)" ng-class="{'hideButton': !showViewSelectButton}">
+                    <span sr-only="sr-only" class="closed">View {{bShowEmail ? 'CI' : 'Email'}}</span>
+                </button>
+            </div>
+
+            <zoom-in-out></zoom-in-out>
+
+            <div class="group-btn-action">
+                <button ng-show="false" type="button" class="btn btn-default btn-find btn-rollover"><span
+                        sr-only="sr-only" class="closed">Find</span></button>
+                <div class="dropdown">
+                    <button type="button" data-toggle="dropdown"
+                            class="btn btn-default btn-lg dropdown-toggle btn-dropdown btn-rollover">Actions<span
+                            class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-action">
+                        <li role="presentation" ng-repeat="action in actionItems">
+                            <a href role="menu-item" ng-click="action.fn()">{{::action.label}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--<div class="pdf-placeholder" ng-hide="bShowEmail">
+            <div id="pdfWrapper" style=" overflow:inherit;"></div>
+        </div>-->
+        <div class="wrapper-pdf-placeholder" ng-hide="bShowEmail"> <!--parent height - (header height + zoom buttons height)-->
+            <div class="pdf-placeholder" ng-hide="bShowEmail" style="width: inherit; height: inherit;">
+                <div id="pdfWrapper" style="left:0;top:0; width: inherit; height: inherit; overflow: auto;"></div>
+            </div>
+        </div>
+        <!--EMAIL-->
+        <div class="wrapper-email-placeholder" ng-show="bShowEmail">
+            <div class="email-placeholder" ng-show="bShowEmail" style="height: inherit; width: inherit;" ng-if="hasEmail">
+                <iframe ng-src="{{active_ci.ingest.files.email.url | trusted}}" style="width: 100%; height: 100%; background-color: #ffffff;"></iframe>
+            </div>
+        </div>
+    </div>
+    <!--ANNOTATIONS-->
+    <div class="annotation-wrapper">
+        <div class="annotation">
+            <div class="label-expand"><span>Annotations</span></div>
+            <div class="annotation-collapse"><a href="javascript:void(0)" class="buttons-collapsed-ci"></a></div>
+            <div class="label-collapse"><span>Show Annotations</span></div>
+            <div class="annotation-side-viewer">
+                <div class="annotation-side-viewer-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--CI MODAL POPUP-->
+<script type="text/ng-template" id="EDIT_CI_METADATA_MODAL">
+    <div ng-include src="'/partials/cc/ci/edit_ci_metadata_modal.html'"></div>
+</script>
+<!--UNSTAPLE REASON MODAL POPUP-->
+<script type="text/ng-template" id="UNSTAPLE_REASON_MODAL">
+    <div ng-include src="'/partials/cc/ci/unstaple_reason_modal.html'"></div>
+</script>

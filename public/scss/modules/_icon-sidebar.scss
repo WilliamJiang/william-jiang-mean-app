@@ -1,0 +1,8 @@
+/* list left-side icon */
+/* $social-layout: layout of images sprite (horizontal/smart/...) */
+/* $social-sprite-dimensions: width and height will be set auto  */
+$sidebars-spacing: 10px;
+$sidebars-layout: horizontal;
+$sidebars-sprite-dimensions: (true);
+@import "../images/sidebars/*.png";
+@include all-sidebars-sprites;

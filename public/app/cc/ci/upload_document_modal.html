@@ -1,0 +1,33 @@
+<div class="modal-content">
+  <div class="upload-header">
+    <h2>Upload Document</h2>
+  </div>
+  <!--PROGRESSBAR-->
+  <div class="progress-bar-container1">
+    <progress-bar name="file_upload_progress" class="progress__container_color_pink"></progress-bar>
+  </div>
+  <div class="upload-content">
+    <div ng-show="showUpload">
+      <div class="drap-and-drop">
+        <div ng-file-drop ng-model="upload.files" class="drop-box" drag-over-class="dragover" allow-dir="false" accept="{{::upload_accept}}">
+          Drag and drop the <br/>copy instruction file here
+        </div>
+        <div ng-no-file-drop="ng-no-file-drop">File Drag/Drop is not supported for this browser</div>
+      </div>
+      <label class="add-file" ng-click="onServerAvailable()" ng-file-select ng-model="upload.files" class="btn btn-default" accept="{{::upload_accept}}">
+        or, click to browse for files.
+      </label>
+    </div>
+    <div class="upload-complete" ng-show="showComplete">
+      Upload Complete. Click Continue...
+    </div>
+    <div class="wrap-button clearfix">
+      <button type="button" ng-disabled="showUpload" ng-click="ok()" data-dismiss="modal" data-toggle="modal" data-target=".new-copy-instruction" class="btn btn-default btn-view btn-upload-continue btn-rollover">
+        <span sr-only="sr-only">Continue</span>
+      </button>
+      <button type="button" ng-click="cancel()" data-dismiss="modal" class="btn btn-default btn-view btn-upload-cancel btn-rollover">
+        <span sr-only="sr-only">Cancel</span>
+      </button>
+    </div>
+  </div>
+</div>

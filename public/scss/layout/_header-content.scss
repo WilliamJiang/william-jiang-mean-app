@@ -1,0 +1,88 @@
+.content-header {
+	height: px2rem(117);
+	border-bottom: 1px solid $grayish-blue;
+}
+
+/*--- option - button add ---*/
+.option {
+  @include rem-calc(padding-left padding-right, 20);
+
+  padding-top: px2rem(40);
+}
+
+.add-copy-instruction {
+	@extend .float-left;
+
+	height: px2rem(35);
+	
+	.btn-add {
+		@extend .float-left;
+	}
+
+	a {
+		@extend .f-15;
+		@extend .font-Lato-Regular;
+		@extend .white;
+		@extend .float-left;
+
+		line-height: px2rem(35);
+		margin-left: px2rem(10);
+	}
+
+	&:hover {
+		cursor: pointer;
+		
+		.btn-add {
+			@extend .white;
+			@extend .bg-dark-blue;
+		}
+
+		.add-copy {
+			@extend .cl-dark-blue;
+		}
+	}
+}
+
+/* group filter include dropdown 'All Advertisers' and 'All Active Air Dates' */
+.filter {
+	@extend .float-left;
+
+	.dropdown {
+		@extend .float-left;
+
+		margin-right: px2rem(20);
+	}
+
+	.dropdown-menu {
+		width: px2rem(189);
+	}
+
+	.dropdown-advertiser {
+		width: px2rem(230);
+	}
+
+	.search-icon {
+		@extend .absolute;
+	}
+
+	.dropdown-menu.dropdown-advertiser {
+		left: 0 !important;
+	}
+}
+
+/* group button view mode include 'grid' button and 'list' button*/
+.view-mode {
+	@extend .float-right;
+}
+
+/* style for dropdown-date */
+.dropdown-menu.dropdown-date {
+	width: auto;
+
+	padding: 0;
+	margin: 0;
+	
+	border-color: transparent;
+}
+
+

@@ -1,0 +1,100 @@
+<style>
+    .usersGrid {
+        height: 500px;
+    }
+    .editIcon {
+        padding-left: 20px;
+        padding-top: 5px;
+    }
+</style>
+<div class="well" ng-show="false">
+    <div class="filter-group">
+        <div class="filter-expanded">
+            <ul class="filter-list list-inline">
+                <li class="filter-item">
+
+                    <advertisers-multi-select></advertisers-multi-select>
+
+                </li>
+                <li class="filter-item">
+
+                    <brands-multi-select></brands-multi-select>
+
+                </li>
+                <li class="filter-item">
+
+                    <programs-multi-select></programs-multi-select>
+
+                </li>
+
+                <li class="filter-item">
+
+                    <status-multi-select></status-multi-select>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="match-ci">
+    <div class="affix-matching">
+        <div class="number-matching" ng-hide="hideTotals"><span
+                class="number-ci">{{usersList.length}} </span><span>Matching Users</span></div>
+        <div class="filter-date">
+            <div class="pull-right" style="padding:5px;">
+                <button type="button" class="btn btn-default" ng-click="editUser();">Edit User</button>
+                <button type="button" class="btn btn-primary" ng-click="addUser();">Create User</button>
+            </div>
+            <!--<div class="filter-title">Sort by</div>
+            <div class="dropdown">
+                <button type="button" data-toggle="dropdown"
+                        class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedSortBy">
+                    {{selectedSortBy.name}}<span
+                        class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                    <li role="presentation" ng-repeat="sortOption in sortBy">
+                        <a href="#" role="menu-item" ng-click="onChangeSortBy($event, sortOption)">{{sortOption.name}}</a>
+                    </li>
+                </ul>
+            </div>-->
+        </div>
+        <div class="selected-filters">
+            <div class="filter-title">Selected filters:</div>
+            <ul class="list-selected list-inline list-result">
+                <li class="result-item" ng-repeat="filterItem in selectedFiltersArray">
+                    <div class="close-item">
+                        <button type="button" class="btn-close"
+                                ng-click="ClearSelectedFilter($event, filterItem)"><img
+                                src="/images/buttons/close-btn.png" alt="button close"/>
+                        </button>
+                    </div>
+                    <div class="result">{{filterItem.filter.name}}</div>
+                </li>
+                <li class="result-item clear-filters" ng-show="selectedFiltersArray.length > 0">
+                    <div class="close-item">
+                        <button type="button" class="btn-close">
+                            <img src="/images/buttons/close-btn.png" alt="button close"/></button>
+                    </div>
+                    <div class="result"><a href="javascript:void(0)" ng-click="ClearAllFilters($event)">Clear
+                        Filters</a></div>
+                </li>
+                <!--This is to get rid of the DIV filckering when all filters are removed-->
+                <li class="result-item" ng-show="selectedFiltersArray.length <= 0">
+                    <br/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <!--<div class="row">
+        <div class="pull-right" style="padding:5px;">
+            <button type="button" class="btn btn-default" ng-click="editUser();">Edit User</button>
+            <button type="button" class="btn btn-primary" ng-click="addUser();">Create User</button>
+        </div>
+    </div>-->
+    <div class="row">
+        <div ui-grid="gridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-resize-columns class="usersGrid" external-scopes="gridHandlers"></div>
+    </div>
+</div>

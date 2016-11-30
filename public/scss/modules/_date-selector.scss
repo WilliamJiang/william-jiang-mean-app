@@ -1,0 +1,242 @@
+.date-wrapper {
+	@include size(px2rem(693), px2rem(297));
+	@include rem-calc(padding-left padding-right padding-top, 15);
+	@include border-bottom-radius(px2rem(4));
+	background-color: $lightness-grayish-blue;
+	.group-btn {
+		clear: both;
+		@extend .text-right;
+		padding-top: px2rem(15);
+		.btn-clear {
+			margin-top: 0;
+			margin-right: 0;
+			width: px2rem(60);
+			background-color: $white;
+			float: none;
+			&:hover {
+				color: $mostly-pure;
+			}
+		}
+		.btn-ok {
+			width: px2rem(60);
+			margin-left: px2rem(10);
+		}
+	}
+}
+
+.select-date,
+.calendar {
+	@extend .float-left;
+}
+
+.date-selected {
+	@extend .float-left;
+	margin-right: px2rem(10);
+	.date-input {
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		color: $dark-grayish-blue;
+		width: px2rem(80);
+		height: px2rem(30);
+		padding-left: px2rem(10);
+		border-radius: px2rem(3);
+		border: 1px solid $grayish-blue-dark;
+	}
+	.label-date-input {
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@include rem-calc(line-height padding-bottom, 8);
+		color: $very-dark-grayish-blue;
+		display: block;
+	}
+}
+
+.list-select-time {
+	clear: both;
+	li {
+		padding-top: px2rem(15);
+		line-height: px2rem(10);
+		a {
+			@extend .f-13;
+			@extend .font-Lato-Bold;
+			color: $mostly-pure;
+		}
+	} 
+}
+
+.calendar {
+	margin-top: px2rem(16);
+}
+
+.calendar-from {
+	margin-right: px2rem(10);
+}
+.calendar-to {
+	margin-right: 0;
+}
+
+.calendar-month {
+	@extend .float-left;
+	width: px2rem(235);
+	height: px2rem(210);
+	background-color: $white;
+	border-radius: px2rem(4);
+	padding-top: px2rem(15);
+	border: 1px solid $grayish-lightness-blue;
+	 
+	.list-month {
+		@include rem-calc(padding-left padding-right, 15);
+		@extend .text-center;
+		.previous-month {
+			@extend .float-left;
+			cursor: pointer;
+			margin-top: px2rem(2);
+		}
+		.next-month {
+			@extend .float-right;
+			cursor: pointer;
+			margin-top: px2rem(2);
+		}
+		.glyphicon.glyphicon-chevron-left,
+		.glyphicon.glyphicon-chevron-right {
+			color: $very-dark-grayish-blue;
+		}
+	}
+
+	.list-day {
+		@include rem-calc(padding-left padding-right, 14);
+		margin-top: px2rem(10);
+	}
+	
+	.day-container {
+		margin-top: px2rem(7);
+	}
+
+	.month-name {
+		@extend .f-16;
+		@extend .font-Lato-Bold;
+		color: $very-dark-grayish-blue;
+	}
+
+	/*--- day-week ---*/
+	.day-week {
+		@extend .f-14;
+		@extend .font-Lato-Black;
+		color: $very-dark-grayish-blue;
+		padding-right: px2rem(10);
+		cursor: pointer;
+	}
+	.sunday {
+		padding-left: 1px;
+	}
+	.saturday {
+		padding-right: 0;
+	}
+	.friday {
+		padding-right: px2rem(8);
+	}
+}
+
+.list-number-day {
+	margin-left: px2rem(11);
+	margin-right: px2rem(10);
+	list-style: none;
+	li {
+		@extend .float-left;
+		@extend .f-14;
+		@extend .font-Lato-Regular;
+		@extend .text-center;
+		@include size(px2rem(30), px2rem(25));
+		color: $very-dark-grayish-blue;
+		line-height: px2rem(25);
+		cursor: pointer;
+	}
+	.past {
+		color: $dark-grayish-blue;
+	}
+	.in-range {
+		background-color: $soften-cyan;
+	}
+	.timeline {
+		background-color: $mostly-pure;
+		color: $white;
+	}
+	.top-left-corner-timeline {
+		@extend .border-top-left-radius;
+		.day-number {
+			@extend .border-top-left-radius;
+			@extend .border-bottom-right-radius;
+			@extend .timeline;
+		}
+	}
+	.top-right-corner-timeline {
+		@extend .border-top-right-radius;
+		.day-number {
+			@extend .border-top-right-radius;
+			@extend .border-bottom-left-radius;
+			@extend .timeline;
+		}
+	}
+	.bottom-right-corner-timeline {
+		@extend .border-bottom-right-radius;
+		.day-number {
+			@extend .border-bottom-right-radius;
+			@extend .border-top-left-radius;
+			@extend .timeline;
+		}
+	}
+	.bottom-left-corner-timeline {
+		@extend .border-bottom-left-radius;
+		.day-number {
+			@extend .border-top-right-radius;
+			@extend .border-bottom-left-radius;
+			@extend .timeline;
+		}
+	}
+	.bottom-corner-timeline {
+		@extend .border-bottom-right-radius;
+		@extend .border-bottom-left-radius;
+		.day-number {
+			@extend .border-bottom-right-radius;
+			@extend .border-bottom-left-radius;
+			@extend .timeline;
+		}
+	}
+	.top-corner-timeline {
+		@extend .border-top-left-radius;
+		@extend .border-top-right-radius;
+		.day-number {
+			@extend .border-top-left-radius;
+			@extend .border-top-right-radius;
+			@extend .timeline;
+		}
+	}
+	.only-top-left-corner {
+		@extend .border-top-left-radius;
+	}
+	.only-top-right-corner {
+		@extend .border-top-right-radius;
+	}
+	.only-bottom-left-corner {
+		@extend .border-bottom-left-radius;
+	}
+	.only-bottom-right-corner {
+		@extend .border-bottom-right-radius;
+	}
+}
+
+.border-top-left-radius {
+	border-top-left-radius: px2rem(4);
+}
+
+.border-top-right-radius {
+	border-top-right-radius: px2rem(4);
+}
+
+.border-bottom-left-radius {
+	border-bottom-left-radius: px2rem(4);
+}
+
+.border-bottom-right-radius {
+	border-bottom-right-radius: px2rem(4);
+}

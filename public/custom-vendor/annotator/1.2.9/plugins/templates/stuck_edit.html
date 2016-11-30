@@ -1,0 +1,29 @@
+<li class='annotator-item annotator-radio-fields'>
+	<div>
+	    <% if (createdUser && createdDate) { %>
+	    <div class="stuck-header margin-bt-12">
+			<h4 class="category-name">Stuck: </h4>
+			<p class="stuck-reason"><%=fldStuckReason%></p>
+		</div>
+	    
+       <% } else { %>
+		<div class="select-reason">
+			<select id='<%=stuckReasonID%>' class='form-control'>
+			<% if (stuckReasons) { %> <% stuckReasons.forEach(function (reason) { %>
+			<option class="option-default" value='' disabled selected style='display:none;'>Select a Stuck Reason</option>
+	    	<option value="<%=reason.value%>"><%=reason.name%></option>
+	    	<% });} %>
+			</select>
+			<label class="reason-label">*Required</label>
+		</div>
+
+		<% } %>
+		<div class="wrap-textarea">
+			<textarea rows='2' id='<%=annotationTextID%>' placeholder='Comments ...'><%=annotationText%></textarea>
+		</div>
+		<div class="wrap-send-notification">
+			<input id='<%=sendNotificationID%>' type='checkbox' value=''> 
+			<label class="cat-checkbox" for='<%=sendNotificationID%>' >Send Notification</label>
+		</div>
+	</div>
+</li>

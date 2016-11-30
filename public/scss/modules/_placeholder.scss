@@ -1,0 +1,77 @@
+/*********** float ***********/
+
+%float-none {
+	float: none;
+}
+
+%float-left {
+	float: left;
+}
+
+%float-right {
+	float: right;
+}
+
+/*********** display ***********/
+%inline-block {
+	display: inline-block;	
+}
+
+%block {
+	display: block;
+}
+
+%none {
+	display: none;
+}
+
+%text-left {
+	text-align: left;
+}
+
+%text-right {
+	text-align: right;
+}
+
+%text-center {
+	text-align: center;
+}
+
+/*********** color ***********/
+%bg-white {
+	background-color: $white;
+}
+
+%very-dark-grayish-blue {
+	color: $very-dark-grayish-blue;
+}
+
+/*********** font size ***********/
+// %f-10 {
+// 	font-size: px2rem(10);
+// }
+
+// %f-14 {
+// 	font-size: px2rem(14);
+// }
+
+// %f-20 {
+// 	font-size: px2rem(20);
+// }
+
+// %f-22 {
+// 	font-size: px2rem(22);
+// }
+
+/*********** font family ***********/
+%font-Lato-Regular {
+	font-family: $Lato-Regular;
+	// font-family: "Lato";
+	// font-weight: 400;
+}
+
+%font-Lato-Bold {
+	font-family: $Lato-Bold;
+	// font-family: "Lato";
+	// font-weight: 700;
+}

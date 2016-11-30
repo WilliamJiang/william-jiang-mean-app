@@ -1,0 +1,263 @@
+<style>
+ .alert-info-library {
+     font-size: 16px;
+     font-weight: bold;
+     text-align: center;
+     margin: 5px 10px;
+ }
+
+ .alert-info-library-list {
+     font-size: 16px;
+     margin: 5px 10px;
+     cursor: pointer !important;
+ }
+
+ /* Simple progress bar styles */
+ .progress-bar-container {
+     margin: 30px 0;
+ }
+ .progress__container {
+     width: 100%;
+     height: 2px;
+ }
+ .progress__container .progress__bar {
+     display: none;
+     height: 2px;
+     background-color: #3d8ec1;
+     width: 0;
+ }
+ .progress__container_position_fixed {
+     position: fixed;
+     top: 0;
+     left: 0;
+ }
+ .progress__container_backgrounded {
+     background-color: #d8d8d8;
+ }
+ .progress__container_color_green .progress__bar {
+     background-color: #4dc84e;
+ }
+ .progress__container_color_red .progress__bar {
+     background-color: #c8482b;
+ }
+ .progress__container_showing .progress__bar {
+     display: block;
+ }
+</style>
+
+<div class="wrapper clearfix" ng-controller="TrafficCoordinatorLibraryCtrl">
+  <div class="sidebar-wrapper" ng-controller="TrafficCoordinatorLeftNavCtrl">
+    <div ng-include="'/partials/tc/leftnav.html'"></div>
+  </div>
+
+  <div ng-include="'/partials/common/header.html'"></div>
+
+  <div class="content">
+
+    <div class="content-header content-header-library">
+      <!-- include header-library.jade-->
+      <div class="header-library">
+        <div class="group-button">
+          <!-- include view-mode.jade-->
+          <div class="view-mode">
+            <button type="button" class="btn btn-grid" ng-class="{'selected': (display === 'grid')}" ng-click="showGridView()">
+              <span aria-hidden="true" class="glyphicon glyphicon-th-large"></span>
+            </button>
+            <button type="button" class="btn btn-list" ng-class="{'selected': (display === 'list')}" ng-click="showListView()">
+              <span aria-hidden="true" class="glyphicon glyphicon-align-justify"></span>
+            </button>
+          </div>
+          <!-- include group-btn-library.jade-->
+          <div class="group-btn-library">
+            <button type="button" class="btn btn-library btn-search"><img src="../../images/buttons/search.png" alt="search"/></button>
+            <button type="button" class="btn btn-library btn-book"><img src="../../images/buttons/book.png" alt="book"/></button>
+            <button type="button" class="btn btn-library btn-print"><img src="../../images/buttons/print.png" alt="print"/></button>
+          </div>
+        </div>
+        <div class="title-library">
+          <p>Library</p>
+        </div>
+      </div>
+      <div class="filter-group">
+        <!--<div class="progress-bar-container">
+                     <progress-bar name="lib-pb" class="progress__container_backgrounded progress__container_color_green"></progress-bar>
+                     </div>-->
+        <div class="filter-expanded">
+          <ul class="filter-list list-inline">
+            <li class="filter-item">
+              <div class="filter-title">Air Dates</div>
+              <div class="dropdown" id="AIRDATE-DROPDOWN">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown">This quarter<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation"><a href="#" role="menu-item" tabindex="-1">This quarter</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="filter-item">
+              <div class="filter-title">Advertisers</div>
+              <div class="dropdown" id="ADVERTISER-DROPDOWN">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedAdvertisers">All<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation" ng-repeat="advertiser in advertisers">
+                    <input type="checkbox" id="{{advertiser.value}}_ID" name="{{advertiser.name}}" value="{{advertiser.value}}" ng-click="onChangeAdvertiser($event, advertiser)">
+                    <label for="{{advertiser.value}}_ID">{{advertiser.name}}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="filter-item">
+              <div class="filter-title">Brands</div>
+              <div class="dropdown" id="BRAND-DROPDOWN">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedBrands">All<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation" ng-repeat="brand in brands">
+                    <input type="checkbox" id="{{brand.value}}_ID" name="{{brand.name}}" value="{{brand.value}}" ng-click="onChangeBrand($event, brand)">
+                    <label for="{{brand.value}}_ID">{{brand.name}}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="filter-item">
+              <div class="filter-title">Programs</div>
+              <div class="dropdown" id="PROGRAM-DROPDOWN">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedPrograms">All<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation" ng-repeat="program in programs">
+                    <input type="checkbox" id="{{program.value}}_ID" name="{{program.name}}" value="{{program.value}}" ng-click="onChangeProgram($event, program)">
+                    <label for="{{program.value}}_ID">{{program.name}}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="filter-item">
+              <div class="filter-title">Status</div>
+              <div class="dropdown" id="STATUS-DROPDOWN">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedStatuses">All<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation" ng-repeat="status in statuses">
+                    <input type="checkbox" id="{{status.value}}_ID" name="{{status.name}}" value="{{status.value}}" ng-click="onChangeStatus($event, status)">
+                    <label for="{{status.value}}_ID">{{status.name}}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="filter-item">
+              <div class="filter-title">Type</div>
+              <div class="dropdown" id="TYPE-DROPDOWN">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedTypes">All<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation" ng-repeat="type in types">
+                    <input type="checkbox" id="{{type.value}}_ID" name="{{type.name}}" value="{{type.value}}" ng-click="onChangeType($event, type)">
+                    <label for="{{type.value}}_ID">{{type.name}}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="filter-collapse collapse">
+          <ul class="filter-list list-inline">
+            <li class="filter-item">
+              <div class="filter-title">Owner</div>
+              <div class="dropdown">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown">All<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation"><a href="#" role="menu-item" tabindex="-1">All</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="filter-item">
+              <div class="filter-title">Condition</div>
+              <div class="dropdown" id="CONDITION-DROPDOWN">
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedConditions">All<span class="caret"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation" ng-repeat="condition in conditions">
+                    <input type="checkbox" id="{{condition.value}}_ID" name="{{condition.name}}" value="{{condition.value}}" ng-click="onChangeCondition($event, condition)">
+                    <label for="{{condition.value}}_ID">{{condition.name}}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="filter-item" ng-show="false">
+              <div class="filter-title"></div>
+              <input type="search" placeholder="Search text within CIs" class="form-control search-box"/>
+              <a href="javascript:void(0)">
+                <img src="../../images/buttons/search-text.png" alt="search" class="search-icon"/>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="more-filters">
+          <a data-toggle="collapse" href=".filter-collapse" aria-expanded="false" aria-controls="filter-collapse" class="show-ignored"><!--Show Ignored CI's-->&nbsp;</a>
+          <a data-toggle="collapse" href=".filter-collapse" aria-expanded="false" aria-controls="filter-collapse" class="more">More Filters</a></div>
+      </div>
+      <div class="match-ci">
+        <div class="number-matching"><span class="number-ci">{{cis.length}} </span><span>Matching CI's</span></div>
+        <div class="filter-date">
+          <div class="filter-title">Sort by</div>
+          <div class="dropdown">
+            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedSortBy">{{selectedSortBy.name}}<span class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+              <li role="presentation" ng-repeat="sortOption in sortBy">
+                <a href="#" role="menu-item" ng-click="onChangeSortBy($event, sortOption)">{{sortOption.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="selected-filters">
+          <div class="filter-title">Selected filters:</div>
+          <ul class="list-selected list-inline list-result">
+            <li class="result-item" ng-repeat="filterItem in selectedFiltersArray">
+              <div class="close-item">
+                <button type="button" class="btn-close" ng-click="ClearSelectedFilter($event, filterItem)"><img src="../../images/buttons/close-btn.png" alt="button close"/></button>
+              </div>
+              <div class="result">{{filterItem.filter.name}}</div>
+            </li>
+            <li class="result-item clear-filters" ng-show="selectedFiltersArray.length > 0">
+              <div class="close-item">
+                <button type="button" class="btn-close"><img src="../../images/buttons/close-btn.png" alt="button close"/></button>
+              </div>
+              <div class="result"><a href="javascript:void(0)" ng-click="ClearAllFilters($event)">Clear Filters</a></div>
+            </li>
+            <!--This is to get rid of the DIV filckering when all filters are removed-->
+            <li class="result-item" ng-show="selectedFiltersArray.length <= 0">
+              <br/>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--CI Display-->
+    <div id="ci-list" class="main-content" ng-class="{'list-view': display === 'list'}">
+      <div id="scroller">
+        <div ng-repeat="ci in cis | orderBy: orderBypredicate | pageOffset: $parent.currentPageNum:itemsPerPage | limitTo: itemsPerPage">
+          <div ng-include="'/partials/cc/grid_view_ci.html'"></div>
+        </div>
+      </div>
+    </div>
+    <!--PAGINATION for Emails screen-->
+    <div class="paging">
+      <div class="dropdown dropup">
+        <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown">{{itemsPerPage}}<span class="caret"></span></button>
+        <ul role="menu" class="dropdown-menu">
+          <li role="presentation"><a role="menu-item" ng-click="PageSizeChange($event, 10)">10</a></li>
+          <li role="presentation"><a role="menu-item" ng-click="PageSizeChange($event, 25)">25</a></li>
+          <li role="presentation"><a role="menu-item" ng-click="PageSizeChange($event, 50)">50</a></li>
+          <li role="presentation"><a role="menu-item" ng-click="PageSizeChange($event, 100)">100</a></li>
+          <li role="presentation"><a role="menu-item" ng-click="PageSizeChange($event, 250)">250</a></li>
+          <li role="presentation"><a role="menu-item" ng-click="PageSizeChange($event, 500)">500</a></li>
+        </ul>
+      </div>
+      <div class="per-page">per page</div>
+      <div class="page-number">
+        <nav>
+          <pagination boundary-links="true" total-items="totalItems" ng-model="$parent.currentPageNum" items-per-page="itemsPerPage"
+                      previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" max-size="10" rotate="false"
+                      ng-change="pageChanged()">
+          </pagination>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

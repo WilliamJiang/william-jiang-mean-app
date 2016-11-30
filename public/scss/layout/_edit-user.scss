@@ -1,0 +1,213 @@
+.edit-user.modal {
+	padding-left: 0;
+	z-index: 99999999;
+
+	.modal-dialog {
+		@include rem-calc(width, 617);
+		@include rem-calc(margin-top, 138);
+	}
+
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+
+	.pop-up-header {
+		@include rem-calc(height, 45);
+		@include rem-calc(padding-top padding-left, 15);
+	}
+
+	.pop-up-content {
+		@include rem-calc(padding, 15);
+	}
+}
+
+.edit-user {
+	.group-buttons {
+		clear: both;
+	}
+
+	.btn-save,
+	.btn-cancel {
+		@extend .float-right;
+	}
+
+	.btn-save {
+		@include rem-calc(margin-left, 10);
+		@include rem-calc(line-height, 25);
+
+		@extend .btn-nomal-xs;
+		@extend .f-12;
+		@extend .font-Lato-Bold;
+		@extend .white;
+		@extend .bg-mostly-pure;
+
+		padding: 0;
+
+		&:hover {
+			@extend .white;
+		}
+	}
+
+	.col-left {
+		@include rem-calc(width, 285);
+	}
+
+	.form-group {
+		@include rem-calc(margin-bottom, 10);
+		@include clearfix();
+
+		@extend .float-right;
+
+		clear: both;
+
+		input[type="text"],
+		input[type="email"] {
+			@include size(px2rem(190), px2rem(30));
+			@include rem-calc(line-height, 30);
+			@include rem-calc(padding-top padding-bottom, 0);
+			@include rem-calc(padding-left, 9);
+
+			@extend .f-14;
+			@extend .font-Lato-Regular;
+			@extend .cl-very-dark-grayish-blue;
+		}
+
+		.label-name {
+			@extend .f-14;
+			@extend .font-Lato-Bold;
+			@extend .cl-very-dark-grayish-blue;
+			@extend .text-right;
+
+			@include rem-calc(margin-right, 10);
+		}
+
+		.label-checkbox {
+			@extend .f-14;
+			@extend .font-Lato-Bold;
+			@extend .cl-very-dark-grayish-blue;
+		}
+
+		textarea {
+			@include size(px2rem(493), px2rem(91));
+
+			resize: none;
+		}
+
+		.icon-tpIcons02-09 {
+			@extend .f-28;
+			@extend .cl-very-dark-grayish-blue;
+		}
+		
+		.dropdown {
+			@extend .display-inline-block;
+		}
+
+		.dropdown-menu {
+			width: px2rem(190);
+			padding: 0;
+		}
+
+		.btn-dropdown {
+			@include size(px2rem(190), px2rem(30));
+
+			border: 1px solid $grayish-lightness-blue;
+		}
+
+		.caret-wrapper {
+			@include size(px2rem(30), px2rem(28));
+
+			@extend .bg-white;
+
+			.caret {
+				@include rem-calc(top, 13);
+				right: px2rem(11) !important;
+			}
+		}
+
+		
+		.calendar-icon {
+			@extend .absolute;
+
+			top: px2rem(0);
+			right: px2rem(5);
+		}
+
+		.optional {
+			@extend .font-Lato-Regular;
+			@extend .cl-dark-grayish-blue;
+		}
+	}
+
+	.form-group.comment {
+		@include rem-calc(margin-top, 30);
+		@include rem-calc(margin-bottom, 15);
+	}
+
+	.form-group.role {
+		@include rem-calc(margin-top, 20);
+	}
+
+	.form-group.start-date {
+		@include rem-calc(margin-top, 105);
+	}
+
+	.form-group.termination {
+		@include rem-calc(margin-top, 20);
+		
+		.btn-dropdown {
+			@extend .f-14;
+			@extend .font-Lato-Regular;
+			@extend .cl-dark-grayish-blue;
+
+			padding: 0 px2rem(6);
+		}
+
+
+	}
+
+	.form-group.group {
+		.label-name {
+			@include rem-calc(padding-top, 5);
+
+			@extend .float-left;
+		}
+		
+		.wrapper-select {
+			@include size(px2rem(190), px2rem(215));
+
+			@extend .overflow-hidden;
+			@extend .bg-white;
+
+			border: 1px solid $grayish-lightness-blue;
+			border-radius: px2rem(4);
+		}
+
+		.list-group-checkbox {		
+			// @extend .display-inline-block;
+			// border-right: none;
+			// display: inherit;
+			
+			padding-left: 10px;
+		}
+
+		.form-group {
+			@extend .float-left;
+		}
+
+		input[type="checkbox"] {
+			@include square(px2rem(15));
+			@include rem-calc(margin-right, 10);
+			@include rem-calc(top, 2);
+		}
+		
+		.checkbox {
+			@include rem-calc(margin-bottom, -7);
+		}
+
+		.label-checkbox {
+			@extend .font-Lato-Regular;
+		}
+	}
+}
+

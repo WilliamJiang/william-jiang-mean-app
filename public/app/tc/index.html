@@ -1,0 +1,91 @@
+<div class="wrapper">
+
+  <div class="sidebar-wrapper" ng-controller="TrafficCoordinatorLeftNavCtrl">
+    <div ng-include="'/partials/tc/leftnav.html'"></div>
+  </div>
+
+  <div ng-include="'/partials/common/header.html'"></div>
+
+  <div class="content scroll-content">
+    <div class="scrolling-content">
+      <div class="content-header">
+        <div class="option">
+          <div class="filter" ng-class="{ 'block': showFilters, 'none': !showFilters }">
+            <!-- AgilityIO guide: add ".active" class to active mode dropdown-->
+            <div class="dropdown active">
+              <button id="dropdown" type="button" data-toggle="dropdown" aria-expanded="true" class="btn btn-default dropdown-toggle btn-adv btn-dropdown btn-rollover">All Advertisers<span class="caret"></span>
+              </button>
+              <ul role="menu" aria-labelledby="dropdown" class="dropdown-menu">
+                <li role="presentation"><a href="#" role="menu-item" tabindex="-1">All Advertisers</a></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-date btn-dropdown btn-rollover">All Active Air Dates<span class="caret"></span>
+              </button>
+              <ul role="menu" class="dropdown-menu">
+                <li role="presentation"><a href="#" role="menu-item" tabindex="-1">All Active Air Dates</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- AgilityIO guide: add ".none" class to hidden "Add Copy Instruction" button-->
+          <!-- AgilityIO guide: add ".block" class to display "Add Copy Instruction" button-->
+          <div class="add-copy-instruction" ng-class="{ 'block': showAddCopyInstruction, 'none': !showAddCopyInstruction }">
+            <button type="button" class="btn-add" ng-click="addCopyInstruction()">
+              <span sr-only="sr-only">+</span>
+            </button>
+            <a href="/tc/add_ci" class="add-copy">Add Copy Instruction</a>
+          </div>
+          <!-- include view-mode.jade-->
+          <!-- AgilityIO guide: add ".active" class to enable "list" view button-->
+          <div class="view-mode">
+            <button type="button" class="btn btn-grid" ng-class="{'selected': (display === 'grid')}" ng-click="showGridView()">
+              <span aria-hidden="true" class="glyphicon glyphicon-th-large"></span>
+            </button>
+            <button type="button" class="btn btn-list" ng-class="{'selected': (display === 'list')}" ng-click="showListView()">
+              <span aria-hidden="true" class="glyphicon glyphicon-align-justify"></span>
+            </button>
+          </div>
+        </div>
+        <!-- AgilityIO guide: add ".show" class to display "New CI Messages"-->
+        <div class="ci-message">
+          <p>A new copy instruction has just arrived. <a href="/tc/home/new" class="new-queue">Go to your New Queue</a></p>
+        </div>
+      </div>
+      <!--CI Display-->
+      <div class="main-content" ng-class="{'list-view': display === 'list'}" ng-switch on="emailsActive">
+        <div class="ci" ng-repeat="ci in cis | pageOffset: pagination.currentPageNum:pagination.itemsPerPage | limitTo: pagination.itemsPerPage"
+             ng-include="'/partials/tc/grid_view_ci.html'" ng-click="gotoCI(ci)" ng-controller="TrafficCoordinatorCICtrl"
+             ng-class="{'confirmed-revision': ci.possible_revision, 'pendding-revision': ci.pending_revision }">
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <!--PAGINATION for Emails screen-->
+      <div class="lib-pagination" ng-if="emailsActive">
+        <div class="dropdown dropup">
+          <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown">{{pagination.itemsPerPage}}<span class="caret"></span></button>
+          <ul role="menu" class="dropdown-menu">
+            <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 10)">10</a></li>
+            <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 25)">25</a></li>
+            <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 50)">50</a></li>
+            <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 100)">100</a></li>
+            <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 250)">250</a></li>
+            <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 500)">500</a></li>
+          </ul>
+        </div>
+        <div class="per-page">per page</div>
+        <div class="page-number">
+          <nav>
+            <pagination boundary-links="true" total-items="pagination.totalItems" ng-model="pagination.currentPageNum" items-per-page="pagination.itemsPerPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" max-size="10" rotate="false"
+                        ng-change="pagination.pageChanged()">
+            </pagination>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--CI MODAL POPUP-->
+  <script type="text/ng-template" id="VIEW_CI_MODAL">
+    <div ng-include src="'/partials/tc/ci/view_ci_modal.html'"></div>
+  </script>

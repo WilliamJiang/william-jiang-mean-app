@@ -1,0 +1,54 @@
+/*------ define style of modal of bootstrap ------*/
+.ci-detail.modal {
+	@extend .overflow-hidden;
+
+	padding-left: 0 !important;
+	z-index: 99999;
+
+	.modal-dialog {
+		width: 100%;
+	
+		min-width: px2rem(1280);
+		margin: 0 auto;
+	}
+
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+}
+
+/*--------- ci-detail ---------*/
+.ci-detail {
+	.ci-header {
+		// @include size(100%, px2rem(75));
+
+		@extend .bg-very-dark-blue;
+
+		width: 100%;
+		overflow: hidden;
+		
+		padding-right: px2rem(20);
+		padding-left: px2rem(14);
+
+		border-bottom: 1px solid $darken-grayish-blue;
+	}
+
+	.group-conditions {
+		@include size(100%, px2rem(118));
+		@include rem-calc(padding-left padding-right, 20);
+		@include rem-calc(padding-top, 10);
+
+		@extend .bg-very-dark-blue;
+	}
+
+	.ci-content {
+		@include size(100%, px2rem(830));
+		// @include rem-calc(padding-left padding-right, 20);
+		@include rem-calc(padding-top, 10);
+
+		@extend .bg-darken-grayish-blue;
+		@extend .clear-both;
+	}
+}
+

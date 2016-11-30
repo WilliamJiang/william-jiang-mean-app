@@ -1,0 +1,27 @@
+<li class='annotator-item annotator-radio-fields'>
+	<div>
+		<div class="stuck-header">
+			<h4 class="category-name">Stuck: </h4>
+			<p class="stuck-reason"><%=fldStuckReason%></p>
+		</div>
+		<div class="user-date">
+			<p class="annotation-author"><%=createdUser%></p>
+			<p class="annotation-date"><%=createdDate%></p>
+		</div>
+		<div class="wrap-comment">
+			<p><%=readOnlyAnnotationText%></p>
+		</div>
+		<div class="wrap-checkbox">
+			<input id='<%=markStuckClearedID%>' type='checkbox' checked='true' disabled='true' value='' class='cat-cb-label'>
+			<label for='<%=markStuckClearedID%>' class='cat-checkbox'>Clear Stuck Annotation</label>
+		</div>
+
+		<div class="wrap-textarea">
+			<textarea rows='2' id='<%=clearStuckCommentsID%>' placeholder='Comments on clearing stuck ...' class='cat-read-text'></textarea>
+		</div>
+	</div>
+</li>
+
+
+
+

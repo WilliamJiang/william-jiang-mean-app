@@ -1,0 +1,243 @@
+<div class="wrapper" ng-controller="CopyCoordinatorLibraryCtrl">
+    <div class="sidebar-wrapper" ng-controller="CopyCoordinatorLeftNavCtrl">
+        <div ng-include="'/partials/cc/leftnav.html'"></div>
+    </div>
+
+    <div class="content">
+        <!--HEADER-->
+        <div class="content-header content-header-library">
+        <!-- include header-library.jade-->
+        <div class="header-library">
+            <div class="group-button">
+                <!-- include view-mode.jade-->
+                <div class="view-mode">
+                    <button type="button" class="btn btn-grid" ng-class="{'selected': (display === 'grid')}"
+                            ng-click="showGridView()" tooltip="Tile View" tooltip-placement="bottom">
+                        <span aria-hidden="true" class="glyphicon glyphicon-th-large"></span>
+                    </button>
+                    <button type="button" class="btn btn-list" ng-class="{'selected': (display === 'list')}"
+                            ng-click="showListView()" tooltip="List View" tooltip-placement="bottom">
+                        <span aria-hidden="true" class="glyphicon glyphicon-align-justify"></span>
+                    </button>
+                </div>
+
+                <!-- include group-btn-library.jade-->
+                <div class="group-btn-library">
+                    <button type="button" data-dismiss="modal" data-toggle="modal" data-target=".save-search"
+                            class="btn btn-library btn-save-search" ng-click="Save_Search($event)" tooltip="Save Search" tooltip-placement="bottom">
+                        <span class="icon-tpIcons02-07"></span>
+                    </button>
+                    <button type="button" class="btn btn-library btn-excel" tooltip="Export" tooltip-placement="bottom">
+                        <span class="icon-tpIcons02-05"></span>
+                    </button>
+                    <button type="button" class="btn btn-library btn-print" ng-click="onPrintClick($event)" tooltip="Print" tooltip-placement="bottom">
+                        <span class="icon-tpIcons02-06"></span>
+                    </button>
+                </div>
+            </div>
+            <!--<div class="title-library">
+                <p>Library</p>
+            </div>-->
+            <div class="title-library">
+                <a href="javascript:void(0)" class="back back-to-lib" ng-click="showLibraryCIs($event)">Back to
+                    Library</a>
+
+                <p class="library">Library</p>
+
+                <p class="ignored">Ignored</p>
+            </div>
+        </div>
+        <div class="filter-group">
+            <div class="filter-expanded">
+                <ul class="filter-list list-inline">
+                    <li class="filter-item">
+                        <div class="filter-title">Air Dates</div>
+                        <date-range-select class="cc-library" id="date-range-airdates"
+                                           ng-required="true"></date-range-select>
+                    </li>
+                    <!--<li class="filter-item">-->
+
+                    <!--<advertisers-multi-select-new></advertisers-multi-select-new>-->
+
+                    <!--</li>-->
+                    <li class="filter-item">
+
+                        <advertisers-multi-select></advertisers-multi-select>
+
+                    </li>
+                    <li class="filter-item">
+
+                        <brands-multi-select></brands-multi-select>
+
+                    </li>
+                    <li class="filter-item" style="display:none !important;"> <!--Hide Program for now-->
+
+                        <programs-multi-select></programs-multi-select>
+
+                    </li>
+
+                    <li class="filter-item">
+
+                        <status-multi-select></status-multi-select>
+
+                    </li>
+
+                    <li class="filter-item">
+
+                        <types-multi-select></types-multi-select>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="filter-collapse collapse">
+                <ul class="filter-list list-inline">
+                    <li class="filter-item">
+
+                        <owners-multi-select></owners-multi-select>
+
+                    </li>
+                    <li class="filter-item">
+
+                        <conditions-multi-select></conditions-multi-select>
+
+                    </li>
+                    <li class="filter-item" ng-show="false">
+                        <div class="filter-title"></div>
+                        <input type="search" placeholder="Search text within CIs" class="form-control search-box"/>
+                        <a href="javascript:void(0)">
+                            <img src="/images/buttons/search-text.png" alt="search" class="search-icon"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="more-filters">
+                <a href="javascript:void(0)" class="show-ignored" ng-click="showIgnoredCIs($event)">Show Ignored
+                    CI's</a>
+                <a data-toggle="collapse" href=".filter-collapse" aria-expanded="false"
+                   aria-controls="filter-collapse" class="more">More Filters</a>
+            </div>
+            <!--PROGRESSBAR for Library CIs-->
+            <div class="progress-bar-container">
+                <progress-bar name="library_progress" class="progress__container_color_pink"></progress-bar>
+            </div>
+        </div>
+        <div class="match-ci">
+            <div class="affix-matching clearfix">
+                <div class="number-matching" ng-hide="hideTotals"><span class="number-ci">{{pagination.totalItems}} </span><span>Matching CI's</span></div>
+
+                <div class="filter-date">
+                    <!--IGNORED BY-->
+                    <div class="filter-title ignored">Ignored by</div>
+                    <ignored-by-multi-select ng-show="showOwnersFilter" class="ignored"
+                                             style="float: left; position: relative;"></ignored-by-multi-select>
+                    <!--SORT BY-->
+                    <div class="filter-title">Sort by</div>
+                    <div class="dropdown">
+                        <button type="button" data-toggle="dropdown"
+                                class="btn btn-default dropdown-toggle btn-dropdown" ng-model="selectedSortBy">
+                            {{selectedSortBy.name}}<span
+                                class="caret"></span>
+                        </button>
+                        <ul role="menu" class="dropdown-menu">
+                            <li role="presentation" ng-repeat="sortOption in sortBy">
+                                <a href="#" role="menu-item" ng-click="onChangeSortBy($event, sortOption)">{{sortOption.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="selected-filters">
+                    <div class="filter-title">Selected filters:</div>
+                    <ul class="list-selected list-inline list-result">
+                        <li class="result-item" ng-repeat="filterItem in selectedFiltersArray">
+                            <div class="close-item">
+                                <button type="button" class="btn-close"
+                                        ng-click="ClearSelectedFilter($event, filterItem)"><img
+                                        src="/images/buttons/close-btn.png" alt="button close"/>
+                                </button>
+                            </div>
+                            <div class="result">{{filterItem.filter.name}}</div>
+                        </li>
+                        <li class="result-item clear-filters" ng-show="selectedFiltersArray.length > 0">
+                            <div class="close-item">
+                                <button type="button" class="btn-close"><img src="/images/buttons/close-btn.png"
+                                                                             alt="button close"/></button>
+                            </div>
+                            <div class="result"><a href="javascript:void(0)" ng-click="ClearAllFilters($event)">Clear
+                                Filters</a></div>
+                        </li>
+                        <!--This is to get rid of the DIV filckering when all filters are removed-->
+                        <li class="result-item" ng-show="selectedFiltersArray.length <= 0">
+                            <br/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--PROGRESSBAR for Ignored CIs-->
+            <div class="progress-bar-container-light" ng-show="SHOW_IGNORED_CIS">
+                <progress-bar name="library_progress_ignored" class="progress__container_color_pink"></progress-bar>
+            </div>
+        </div>
+    </div>
+        <!--CI Display-->
+        <div class="main-content" ng-class="{'list-view': display === 'list'}">
+            <div class="ci" ng-repeat="ci in cis"
+                 ng-include="'/partials/cc/ci_card.html'" ng-click="openCIModal($event,ci)" tb-click-once ng-controller="CopyCoordinatorCICtrl"
+                 ng-class="{'confirmed-revision': ci.possible_revision, 'pendding-revision': (ci.pending_revision && !ci.possibly_revised), 'potential-revision': ci.possibly_revised }">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--PAGINATION-->
+        <div class="lib-pagination">
+            <div class="pagination-wrapper">
+                <div class="dropdown dropup">
+                    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-dropdown">
+                        {{pagination.itemsPerPage}}<span class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu">
+                        <li role="presentation"><a role="menu-item"
+                                                   ng-click="pagination.PageSizeChange($event, 10)">10</a></li>
+                        <li role="presentation"><a role="menu-item"
+                                                   ng-click="pagination.PageSizeChange($event, 25)">25</a></li>
+                        <li role="presentation"><a role="menu-item"
+                                                   ng-click="pagination.PageSizeChange($event, 50)">50</a></li>
+                        <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 100)">100</a>
+                        </li>
+                        <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 250)">250</a>
+                        </li>
+                        <li role="presentation"><a role="menu-item" ng-click="pagination.PageSizeChange($event, 500)">500</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="per-page">per page</div>
+                <div class="page-number">
+                    <nav>
+                        <pagination boundary-links="true" total-items="pagination.totalItems"
+                                    ng-model="pagination.currentPage" items-per-page="pagination.itemsPerPage"
+                                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                    last-text="&raquo;" max-size="10" rotate="false"
+                                    ng-change="pagination.pageChanged()">
+                        </pagination>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--FILE CI MODAL POPUP-->
+<script type="text/ng-template" id="NEW_CI_MODAL">
+    <div ng-include src="'/partials/cc/ci/new_ci_modal.html'"></div>
+</script>
+
+<!--CI MODAL POPUP-->
+<script type="text/ng-template" id="VIEW_CI_MODAL">
+    <div ng-include src="'/partials/cc/ci/view_ci_modal.html'"></div>
+</script>
+<!--SAVE SEARCH MODAL POPUP-->
+<script type="text/ng-template" id="SAVE_SEARCH_MODAL">
+    <div ng-include src="'/partials/cc/save_search_modal.html'"></div>
+</script>
+
+<!--POSSIBLE REVISIONS MODAL POPUP-->
+<script type="text/ng-template" id="POSSIBLE_REVISION_CI_MODAL">
+    <div ng-include src="'/partials/cc/ci/possible_revision_modal.html'"></div>
+</script>

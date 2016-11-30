@@ -1,0 +1,30 @@
+{
+    "variables": {
+	"aws_access_key": "AKIAITWWFTUXOZLWSK2A",
+	"aws_secret_key": "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"
+    },
+    "builders": [{
+	"type": "amazon-ebs",
+	"access_key": "{{user `aws_access_key`}}",
+	"secret_key": "{{user `aws_secret_key`}}",
+	"region": "us-east-1",
+	"source_ami": "ami-6889d200",
+	"instance_type": "m3.medium",
+	"ssh_username": "ubuntu",
+	"ami_name": "trafficbridge-base {{timestamp}}",
+	"name": "HelloWorld"
+    }],
+    "provisioners": [{
+	"type": "shell",
+	"inline": [
+	    "sleep 30",
+	    "sudo add-apt-repository -y ppa:webupd8team/java",
+	    "sudo apt-get update",
+	    "echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections",
+	    "echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections",
+	    "sudo apt-get install -y oracle-java8-installer",
+	    "sudo apt-get install oracle-java8-set-default"
+	]
+    }],
+    "post-processors": ["vagrant"]
+}
